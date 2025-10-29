@@ -9,7 +9,6 @@ class PostsModel extends PostEntity {
   final String? url;
   final int? ordInThread;
   final String? parentUrl;
-  final String? author;
   final String? published;
   final String? title;
   final String? text;
@@ -31,7 +30,7 @@ class PostsModel extends PostEntity {
     required this.url,
     required this.ordInThread,
     required this.parentUrl,
-    required this.author,
+
     required this.published,
     required this.title,
     required this.text,
@@ -50,6 +49,7 @@ class PostsModel extends PostEntity {
     required super.thereadurl,
     required super.threadtitle,
     required super.threadimageUrl,
+    required super.author,
     required super.categories,
   });
 
@@ -97,9 +97,6 @@ class PostsModel extends PostEntity {
           : null,
       parentUrl: json['parentUrl'] != null
           ? json['parentUrl'] as String
-          : null,
-      author: json['author'] != null
-          ? json['author'] as String
           : null,
       published: json['published'] != null
           ? json['published'] as String
@@ -150,6 +147,9 @@ class PostsModel extends PostEntity {
           : null,
       id: json['thread']['uuid'] != null
           ? json['uuid'] as String
+          : '',
+      author: json['author'] != null
+          ? json['author'] as String
           : '',
       thereadurl: json['url'] != null
           ? json['url'] as String

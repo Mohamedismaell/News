@@ -99,12 +99,11 @@ class HomeScreen extends StatelessWidget {
                       addVertical(14),
                       PreviewSlide(),
                       addVertical(24),
-                      // RecommendedSection(),
                       Row(
                         children: [
                           Expanded(
                             child: Text(
-                              'Recommended for you',
+                              'Top News',
                               style: context
                                   .text
                                   .displayLarge!

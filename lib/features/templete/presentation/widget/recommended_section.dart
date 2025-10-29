@@ -19,11 +19,15 @@ class _RecommendedSectionState
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        if (state.status == NewsStatus.loading) {
+        print(
+          "🧠 NewsByDate count: ${state.newsByDate?.length}",
+        );
+
+        if (state.dateStatus == NewsStatus.loading) {
           return Center(child: CircularProgressIndicator());
         }
 
-        if (state.status == NewsStatus.error) {
+        if (state.dateStatus == NewsStatus.error) {
           return Center(
             child: Text(state.errorMessage ?? 'Error'),
           );
@@ -39,64 +43,75 @@ class _RecommendedSectionState
           physics: const NeverScrollableScrollPhysics(),
           itemCount: state.newsByDate!.length,
           itemBuilder: (context, index) {
-            return Row(
+            return Column(
               children: [
-                Container(
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    color: context.colors.surface,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(
-                          0.1,
+                Row(
+                  children: [
+                    Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          35,
                         ),
-                        blurRadius: 10,
-                        offset: Offset(0, 4),
+                        color: context.colors.surface,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(
+                              0.1,
+                            ),
+                            blurRadius: 10,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl: state
-                        .newsByDate![index]
-                        .threadimageUrl
-                        .toString(),
-                    width: 160,
-                    height: 160,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) =>
-                        CircularProgressIndicator(),
-                    errorWidget: (context, url, error) {
-                      return Image.asset(
-                        'assets/images/OIP.webp',
+                      child: CachedNetworkImage(
+                        imageUrl: state
+                            .newsByDate![index]
+                            .threadimageUrl
+                            .toString(),
                         width: 160,
                         height: 160,
                         fit: BoxFit.cover,
-                      );
-                    },
-                  ),
-                ),
-                addHorizental(20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        state
-                            .newsByDate![index]
-                            .threadtitle,
-                        style: context.text.headlineLarge!
-                            .copyWith(),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) {
+                          return Image.asset(
+                            'assets/images/OIP.webp',
+                            width: 160,
+                            height: 160,
+                            fit: BoxFit.cover,
+                          );
+                        },
                       ),
-                      addVertical(20),
-                      Text(
-                        'A Simple Trick For Creating',
-                        style: context.text.displayMedium!
-                            .copyWith(),
+                    ),
+                    addHorizental(20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.newsByDate![index].author,
+                            style: context
+                                .text
+                                .displayMedium!
+                                .copyWith(),
+                          ),
+                          addVertical(15),
+                          Text(
+                            state
+                                .newsByDate![index]
+                                .threadtitle,
+                            style: context
+                                .text
+                                .headlineLarge!
+                                .copyWith(),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    // addVertical(100),
+                  ],
                 ),
                 addVertical(20),
               ],

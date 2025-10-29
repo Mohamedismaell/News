@@ -3,38 +3,45 @@ part of 'news_cubit.dart';
 @immutable
 class NewsState {
   final String selectedCategory;
-  final NewsStatus status;
-  final List<PostEntity>? validatedNews;
+
+  // ✅ separate statuses
+  final NewsStatus categoryStatus;
+  final NewsStatus dateStatus;
+
+  // ✅ data
+  final List<PostEntity>? newsByCategory;
   final List<PostEntity>? newsByDate;
+
+  // ✅ error handling
   final String? errorMessage;
 
   const NewsState({
-    this.validatedNews,
     this.selectedCategory = 'Politics',
-    this.status = NewsStatus.initial,
+    this.categoryStatus = NewsStatus.initial,
+    this.dateStatus = NewsStatus.initial,
+    this.newsByCategory,
+    this.newsByDate,
     this.errorMessage,
-    this.newsByDate = const [],
   });
 
   NewsState copyWith({
     String? selectedCategory,
-    NewsStatus? status,
-    List<PostEntity>? validatedNews,
+    NewsStatus? categoryStatus,
+    NewsStatus? dateStatus,
+    List<PostEntity>? newsByCategory,
+    List<PostEntity>? newsByDate,
     String? errorMessage,
   }) {
     return NewsState(
       selectedCategory:
           selectedCategory ?? this.selectedCategory,
-      status: status ?? this.status,
+      categoryStatus: categoryStatus ?? this.categoryStatus,
+      dateStatus: dateStatus ?? this.dateStatus,
+      newsByCategory: newsByCategory ?? this.newsByCategory,
+      newsByDate: newsByDate ?? this.newsByDate,
       errorMessage: errorMessage ?? this.errorMessage,
-      validatedNews: validatedNews ?? this.validatedNews,
     );
   }
 }
 
 enum NewsStatus { initial, loading, loaded, error }
-//  final String id;
-//   final String thereadurl;
-//   final String threadtitle;
-//   final String threadimageUrl;
-//   final String categories;

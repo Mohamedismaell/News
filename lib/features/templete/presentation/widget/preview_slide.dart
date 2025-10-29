@@ -14,144 +14,129 @@ class PreviewSlide extends StatelessWidget {
       height: 300,
       child: BlocBuilder<NewsCubit, NewsState>(
         builder: (context, state) {
-          if (state.status == NewsStatus.loading) {
+          if (state.categoryStatus == NewsStatus.loading) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-
-          if (state.status == NewsStatus.error) {
+          if (state.categoryStatus == NewsStatus.error) {
             return Center(
               child: Text(state.errorMessage ?? 'Error'),
             );
           }
-          if (state.validatedNews == null ||
-              state.validatedNews!.isEmpty) {
+          if (state.newsByCategory == null ||
+              state.newsByCategory!.isEmpty) {
             return Center(child: Text('No news available'));
           }
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: state.validatedNews!.length,
+            itemCount: state.newsByCategory!.length,
             itemBuilder: (context, index) {
-              return state.status == NewsStatus.loading
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : state.status == NewsStatus.error
-                  ? Center(
-                      child: Text(
-                        state.errorMessage.toString(),
-                      ),
-                    )
-                  : Row(
+              return Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Stack(
                       children: [
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(12),
-                          child: Stack(
-                            children: [
-                              //! image
-                              CachedNetworkImage(
-                                imageUrl:
-                                    state
-                                        .validatedNews?[index]
-                                        .threadimageUrl ??
-                                    '',
-                                width: 330,
-                                height: 300,
+                        //! image
+                        CachedNetworkImage(
+                          imageUrl:
+                              state
+                                  .newsByCategory?[index]
+                                  .threadimageUrl ??
+                              '',
+                          width: 330,
+                          height: 300,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget:
+                              (
+                                context,
+                                url,
+                                error,
+                              ) => Image.asset(
+                                'assets/images/OIP.webp',
+                                width: 350,
+                                height: 240,
+
                                 fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                errorWidget:
-                                    (
-                                      context,
-                                      url,
-                                      error,
-                                    ) => Image.asset(
-                                      'assets/images/OIP.webp',
-                                      width: 350,
-                                      height: 240,
+                              ),
+                        ),
 
-                                      fit: BoxFit.cover,
-                                    ),
-                              ),
+                        //! linear gradiant
+                        Container(
+                          width: 330,
+                          height: 300,
 
-                              //! linear gradiant
-                              Container(
-                                width: 330,
-                                height: 300,
-
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin:
-                                        Alignment.topCenter,
-                                    end: Alignment
-                                        .bottomCenter,
-                                    colors: [
-                                      Color.fromARGB(
-                                        0,
-                                        90,
-                                        90,
-                                        90,
-                                      ),
-                                      Color.fromARGB(
-                                        189,
-                                        0,
-                                        0,
-                                        0,
-                                      ), // Heavy dark at bottom] ],
-                                    ],
-                                  ),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Color.fromARGB(
+                                  0,
+                                  90,
+                                  90,
+                                  90,
                                 ),
-                              ),
-                              //! category
-                              Positioned(
-                                left: 14,
-                                top: 190,
-                                child: Text(
-                                  state.selectedCategory,
-                                  style: context
-                                      .text
-                                      .displayMedium!
-                                      .copyWith(
-                                        color: const Color(
-                                          0xFFF3F3F6,
-                                        ),
-                                        fontSize: 20,
-                                        fontWeight:
-                                            FontWeight.w400,
-                                      ),
-                                ),
-                              ),
-                              //! title
-                              Positioned(
-                                left: 14,
-                                right: 14,
-                                top: 230,
-                                child: Text(
-                                  maxLines: 2,
-                                  overflow:
-                                      TextOverflow.ellipsis,
-                                  state
-                                      .validatedNews![index]
-                                      .threadtitle
-                                      .toString(),
-                                  style: context
-                                      .text
-                                      .displayMedium!
-                                      .copyWith(
-                                        color: Colors.white,
-                                        fontWeight:
-                                            FontWeight.w700,
-                                      ),
-                                ),
-                              ),
-                            ],
+                                Color.fromARGB(
+                                  189,
+                                  0,
+                                  0,
+                                  0,
+                                ), // Heavy dark at bottom] ],
+                              ],
+                            ),
                           ),
                         ),
-                        addHorizental(20),
+                        //! category
+                        Positioned(
+                          left: 14,
+                          top: 190,
+                          child: Text(
+                            state.selectedCategory,
+                            style: context
+                                .text
+                                .displayMedium!
+                                .copyWith(
+                                  color: const Color(
+                                    0xFFF3F3F6,
+                                  ),
+                                  fontSize: 20,
+                                  fontWeight:
+                                      FontWeight.w400,
+                                ),
+                          ),
+                        ),
+                        //! title
+                        Positioned(
+                          left: 14,
+                          right: 14,
+                          top: 230,
+                          child: Text(
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            state
+                                .newsByCategory![index]
+                                .threadtitle
+                                .toString(),
+                            style: context
+                                .text
+                                .displayMedium!
+                                .copyWith(
+                                  color: Colors.white,
+                                  fontWeight:
+                                      FontWeight.w700,
+                                ),
+                          ),
+                        ),
                       ],
-                    );
+                    ),
+                  ),
+                  addHorizental(20),
+                ],
+              );
             },
           );
         },
