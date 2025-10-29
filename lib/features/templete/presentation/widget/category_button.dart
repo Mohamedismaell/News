@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/features/templete/presentation/news_category.dart';
-import 'package:news_app/features/templete/presentation/screens/cubit/news_cubit.dart';
+import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 
 class CategoryButton extends StatefulWidget {
   const CategoryButton({

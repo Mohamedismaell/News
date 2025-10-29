@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:news_app/core/connections/result.dart';
 import 'package:news_app/features/templete/domain/entities/post_entitiy.dart';
 import '../../../../core/connections/network_info.dart';
@@ -7,7 +6,6 @@ import '../../../../core/errors/failure.dart';
 import '../../../../core/params/params.dart';
 import '../../domain/repositories/news_repository.dart';
 import '../datasources/news_remote_data_source.dart';
-// import '../models/news_model.dart';
 
 class NewsRepositoryImpl extends NewsRepository {
   final NetworkInfo networkInfo;

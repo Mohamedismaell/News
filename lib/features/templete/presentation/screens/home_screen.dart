@@ -5,11 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/features/templete/domain/usecases/get_news.dart';
-import 'package:news_app/features/templete/presentation/screens/cubit/news_cubit.dart';
-import 'package:news_app/features/templete/presentation/widget/recommended_section.dart';
-import 'package:news_app/features/templete/presentation/widget/search_bar.dart';
+import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/utility.dart';
-
 import '../../../../core/connections/network_info.dart';
 import '../../../../core/database/api/dio_consumer.dart';
 import '../../data/datasources/news_remote_data_source.dart';
@@ -17,6 +14,8 @@ import '../../data/repositories/news_repository_impl.dart';
 import '../news_category.dart';
 import '../widget/category_button.dart';
 import '../widget/preview_slide.dart';
+import '../widget/recommended_section.dart';
+import '../widget/search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -33,7 +32,6 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
-
     return SafeArea(
       child: BlocProvider(
         create: (context) => NewsCubit(getnews),
@@ -41,7 +39,6 @@ class HomeScreen extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return Scaffold(
-              backgroundColor: context.colors.surface,
               body: Padding(
                 padding: const EdgeInsets.only(
                   top: 60.0,
