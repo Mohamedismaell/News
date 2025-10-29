@@ -2,14 +2,15 @@ class EndPoints {
   static String baseUrl = 'https://api.webz.io/';
   static String news = 'newsApiLite';
   static String token =
-      '73e2257b-4e9a-41cb-9c34-a205e678e46a'; // static String key =
+      '73e2257b-4e9a-41cb-9c34-a205e678e46a';
   static String defaultCategory = 'Politics';
   static String formatCategoryQuery(String category) {
-    defaultCategory = category;
-    return defaultCategory;
+    return 'category:"$category"';
   }
 
-  //     '4f76dfdf-b4f4-4300-98ce-a892b18d8c13';
+  // static String formatDateQuery(DateTime time) {
+  //   return 'ts:"$time"';
+  // }
 }
 
 class ApiKeys {

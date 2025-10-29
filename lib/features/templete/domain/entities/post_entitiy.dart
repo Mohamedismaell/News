@@ -2,7 +2,7 @@ class PostEntity {
   final String id;
   final String thereadurl;
   final String threadtitle;
-  final String threadimageUrl;
+  final String? threadimageUrl;
   final List<String> categories;
   PostEntity({
     required this.id,

@@ -4,29 +4,30 @@ part of 'news_cubit.dart';
 class NewsState {
   final String selectedCategory;
   final NewsStatus status;
-  final List<PostEntity>? news;
+  final List<PostEntity>? validatedNews;
+  final List<PostEntity>? newsByDate;
   final String? errorMessage;
 
   const NewsState({
+    this.validatedNews,
     this.selectedCategory = 'Politics',
     this.status = NewsStatus.initial,
     this.errorMessage,
-    this.news = const [],
+    this.newsByDate = const [],
   });
 
   NewsState copyWith({
     String? selectedCategory,
-
     NewsStatus? status,
-    List<PostEntity>? news,
+    List<PostEntity>? validatedNews,
     String? errorMessage,
   }) {
     return NewsState(
       selectedCategory:
           selectedCategory ?? this.selectedCategory,
       status: status ?? this.status,
-      news: news ?? this.news,
       errorMessage: errorMessage ?? this.errorMessage,
+      validatedNews: validatedNews ?? this.validatedNews,
     );
   }
 }

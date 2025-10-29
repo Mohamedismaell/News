@@ -16,20 +16,39 @@ class NewsRepositoryImpl extends NewsRepository {
     required this.networkInfo,
   });
   //!Filtered Posts with Category
+  // @override
+  // Future<Result<List<PostEntity>>> getNewsByCategory({
+  //   required NewsCategoryParams params,
+  // }) async {
+  //   try {
+  //     final remoteNews = await remoteDataSource
+  //         .getNewsByCategory(params);
+  //     return Result.ok(remoteNews.posts ?? []);
+  //   } on ServerExceptions catch (e) {
+  //     return Result.error(
+  //       Failure(errMessage: e.errorModel.errorMessage),
+  //     );
+  //   }
+  // }
+
   @override
-  Future<Result<List<PostEntity>>> getNewsByCategory({
-    required NewsParams params,
-  }) async {
+  Future<Result<List<PostEntity>>> getNewsByDate() async {
     try {
       final remoteNews = await remoteDataSource
-          .getNewsByCategory(params);
-      //! Try Filter
-      print(remoteNews.posts);
+          .getNewsByDate();
       return Result.ok(remoteNews.posts ?? []);
     } on ServerExceptions catch (e) {
       return Result.error(
         Failure(errMessage: e.errorModel.errorMessage),
       );
     }
+  }
+
+  @override
+  Future<Result<List<PostEntity>>> getNewsByCategory({
+    required NewsCategoryParams params,
+  }) {
+    // TODO: implement getNewsByCategory
+    throw UnimplementedError();
   }
 }

@@ -37,9 +37,11 @@ class _CategoryButtonState extends State<CategoryButton> {
           onPressed: () =>
               widget.onSelected(widget.category.value),
           child: Text(
-            'Business and Finance',
+            widget.category.value,
             style: context.text.labelLarge!.copyWith(
-              color: AppColors.white,
+              color: _isSelected
+                  ? AppColors.white
+                  : const Color(0xFF465AD6),
             ),
           ),
         );

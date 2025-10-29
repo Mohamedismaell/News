@@ -8,9 +8,13 @@ class GetNewsByCategory {
 
   GetNewsByCategory({required this.repository});
 
-  Future<Result<List<PostEntity>>> call({
-    required NewsParams params,
+  Future<Result<List<PostEntity>>> callNewsCategory({
+    required NewsCategoryParams params,
   }) {
     return repository.getNewsByCategory(params: params);
+  }
+
+  Future<Result<List<PostEntity>>> callNewsDate() {
+    return repository.getNewsByDate();
   }
 }

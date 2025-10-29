@@ -8,20 +8,55 @@ class NewsRemoteDataSource {
   final ApiConsumer api;
 
   NewsRemoteDataSource({required this.api});
-  Future<NewsModel> getNewsByCategory(
-    NewsParams params,
-  ) async {
-    final response = await api.get(
-      "${EndPoints.baseUrl}/${EndPoints.news}",
+  // Future<NewsModel> getNewsByCategory(
+  //   NewsCategoryParams params,
+  // ) async {
+  //   // print(
+  //   //   "🔍 GET Request URL: ${EndPoints.baseUrl}/${EndPoints.news}",
+  //   // );
+  //   // print(
+  //   //   "🔍 Query Params: ${{'q': params.category != null ? EndPoints.formatCategoryQuery(params.category!) : EndPoints.defaultCategory, 'token': EndPoints.token}}",
+  //   // );
+  //   // print(
+  //   //   'Looooooooooook here${Uri.encodeComponent('category:"politics"')}',
+  //   // );
+  //   final categoryQuery = params.category != null
+  //       ? EndPoints.formatCategoryQuery(params.category!)
+  //       : EndPoints.formatCategoryQuery(
+  //           EndPoints.defaultCategory,
+  //         );
+  //   print('🔍 Query: $categoryQuery');
+
+  //   final newsCategoryRes = await api.get(
+  //     EndPoints.news,
+  //     queryParameters: {
+  //       'token': EndPoints.token,
+  //       'q': categoryQuery,
+  //     },
+  //   );
+  //   return NewsModel.fromJson(newsCategoryRes);
+  // }
+
+  Future<NewsModel> getNewsByDate() async {
+    // print(
+    //   'Looooooooooook here${EndPoints.baseUrl}/${EndPoints.news}',
+    // );
+
+    //! Edited to Date
+
+    final lastDayByEpoch = (DateTime.now().subtract(
+      Duration(days: 1),
+    )).millisecondsSinceEpoch;
+    // print(lastDayByEpoch);
+
+    final newsCategoryRes = await api.get(
+      EndPoints.news,
       queryParameters: {
-        'q': params.category != null
-            ? EndPoints.formatCategoryQuery(
-                params.category!,
-              )
-            : EndPoints.defaultCategory,
         'token': EndPoints.token,
+        'ts': '$lastDayByEpoch',
+        'q': '*',
       },
     );
-    return NewsModel.fromJson(response);
+    return NewsModel.fromJson(newsCategoryRes);
   }
 }
