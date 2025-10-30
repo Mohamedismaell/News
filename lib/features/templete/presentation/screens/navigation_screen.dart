@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/features/templete/presentation/screens/book_marks_screen.dart';
-import 'package:news_app/features/templete/presentation/screens/category_screen.dart';
+import 'package:news_app/features/templete/presentation/screens/categories_screen.dart';
 import 'package:news_app/features/templete/presentation/screens/home_screen.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../cubit/navigation_route/navigation_cubit.dart';
