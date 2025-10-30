@@ -95,7 +95,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                 ),
                             child: Text(
                               textAlign: TextAlign.center,
-                              '${category.emoji} ${category.value}',
+                              '${category.emoji} ${category.value.split(',').first.trim()}',
                               style: context
                                   .text
                                   .labelLarge!

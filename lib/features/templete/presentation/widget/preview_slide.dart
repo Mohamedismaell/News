@@ -85,7 +85,7 @@ class PreviewSlide extends StatelessWidget {
                                   0,
                                   0,
                                   0,
-                                ), // Heavy dark at bottom] ],
+                                ),
                               ],
                             ),
                           ),
@@ -95,7 +95,10 @@ class PreviewSlide extends StatelessWidget {
                           left: 14,
                           top: 190,
                           child: Text(
-                            state.selectedCategory,
+                            state.selectedCategory
+                                .split(',')
+                                .first
+                                .trim(),
                             style: context
                                 .text
                                 .displayMedium!

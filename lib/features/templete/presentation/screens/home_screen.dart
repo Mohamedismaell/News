@@ -14,7 +14,7 @@ import '../../data/repositories/news_repository_impl.dart';
 import '../news_category.dart';
 import '../widget/category_button.dart';
 import '../widget/preview_slide.dart';
-import '../widget/recommended_section.dart';
+import '../widget/top_news.dart';
 import '../widget/search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -74,8 +74,8 @@ class HomeScreen extends StatelessWidget {
                             ) {
                               return Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(
-                                      horizontal: 10,
+                                    const EdgeInsets.only(
+                                      right: 10,
                                     ),
                                 child: CategoryButton(
                                   category: category,

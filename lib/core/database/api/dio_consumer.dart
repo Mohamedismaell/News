@@ -70,9 +70,9 @@ class DioConsumer extends ApiConsumer {
       print(
         '📥 Response URL: ${dio.options.baseUrl}$path?${Uri(queryParameters: queryParameters).query}',
       );
-      print(
-        '📥 Response categories: ${response.data['posts']?[0]?['categories']}',
-      );
+      // print(
+      //   '📥 Response categories: ${response.data['posts']?[0]?['categories']}',
+      // );
       return response.data;
     } on DioException catch (e) {
       handleDioException(e);

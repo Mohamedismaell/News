@@ -37,7 +37,7 @@ class _CategoryButtonState extends State<CategoryButton> {
           onPressed: () =>
               widget.onSelected(widget.category.value),
           child: Text(
-            widget.category.value,
+            widget.category.value.split(',').first.trim(),
             style: context.text.labelLarge!.copyWith(
               color: _isSelected
                   ? AppColors.white
