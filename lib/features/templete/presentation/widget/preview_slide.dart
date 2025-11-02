@@ -14,6 +14,8 @@ class PreviewSlide extends StatelessWidget {
       height: 300,
       child: BlocBuilder<NewsCubit, NewsState>(
         builder: (context, state) {
+          debugPrint(
+              "Preview Slide Here ===================");
           if (state.categoryStatus == NewsStatus.loading) {
             return Center(
               child: CircularProgressIndicator(),
@@ -28,6 +30,8 @@ class PreviewSlide extends StatelessWidget {
               state.newsByCategory!.isEmpty) {
             return Center(child: Text('No news available'));
           }
+          debugPrint(
+              "Preview Slide Here ===================");
           return ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: state.newsByCategory!.length,
@@ -38,19 +42,21 @@ class PreviewSlide extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     child: InkWell(
                       onTap: () async {
+                        //Push *** Named
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NewsDetails(
+                            builder: (context) =>
+                                NewsDetails(
                               title: state
                                   .newsByCategory![index]
                                   .threadtitle,
                               description: state
                                   .newsByCategory![index]
                                   .threadText,
-                              imageUrl:
-                                  state
-                                      .newsByCategory![index]
+                              imageUrl: state
+                                      .newsByCategory![
+                                          index]
                                       .threadimageUrl ??
                                   '',
                               category: state
@@ -69,8 +75,7 @@ class PreviewSlide extends StatelessWidget {
                         children: [
                           //! image
                           CachedNetworkImage(
-                            imageUrl:
-                                state
+                            imageUrl: state
                                     .newsByCategory?[index]
                                     .threadimageUrl ??
                                 '',
@@ -79,24 +84,22 @@ class PreviewSlide extends StatelessWidget {
                             fit: BoxFit.cover,
                             placeholder: (context, url) =>
                                 CircularProgressIndicator(),
-                            errorWidget:
-                                (
-                                  context,
-                                  url,
-                                  error,
-                                ) => Image.asset(
-                                  'assets/images/OIP.webp',
-                                  width: 350,
-                                  height: 240,
-
-                                  fit: BoxFit.cover,
-                                ),
+                            errorWidget: (
+                              context,
+                              url,
+                              error,
+                            ) =>
+                                Image.asset(
+                              'assets/images/OIP.webp',
+                              width: 350,
+                              height: 240,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           //! linear gradiant
                           Container(
                             width: 330,
                             height: 300,
-
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 begin: Alignment.topCenter,
@@ -128,16 +131,14 @@ class PreviewSlide extends StatelessWidget {
                                   .first
                                   .trim(),
                               style: context
-                                  .text
-                                  .displayMedium!
+                                  .text.displayMedium!
                                   .copyWith(
-                                    color: const Color(
-                                      0xFFF3F3F6,
-                                    ),
-                                    fontSize: 20,
-                                    fontWeight:
-                                        FontWeight.w400,
-                                  ),
+                                color: const Color(
+                                  0xFFF3F3F6,
+                                ),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                           //! title
@@ -149,18 +150,15 @@ class PreviewSlide extends StatelessWidget {
                               maxLines: 2,
                               overflow:
                                   TextOverflow.ellipsis,
-                              state
-                                  .newsByCategory![index]
+                              state.newsByCategory![index]
                                   .threadtitle
                                   .toString(),
                               style: context
-                                  .text
-                                  .displayMedium!
+                                  .text.displayMedium!
                                   .copyWith(
-                                    color: Colors.white,
-                                    fontWeight:
-                                        FontWeight.w700,
-                                  ),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ],

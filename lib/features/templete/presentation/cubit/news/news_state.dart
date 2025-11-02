@@ -3,13 +3,10 @@ part of 'news_cubit.dart';
 @immutable
 class NewsState {
   final String selectedCategory;
-
   final NewsStatus categoryStatus;
   final NewsStatus dateStatus;
-
   final List<PostEntity>? newsByCategory;
   final List<PostEntity>? newsByDate;
-
   final String? errorMessage;
 
   const NewsState({

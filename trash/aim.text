@@ -1,0 +1,36 @@
+Theme Data play list  https://youtube.com/playlist?list=PLNILV9KUmm-k-HE8AU1gZ2eAjRqZvvTi2&si=Hx-n4vpNOhi6kj7D
+Route (Navigation) Hardcoded - package  Look
+responsive https://www.youtube.com/watch?v=MTaUeGmRQZY 
+onboarding
+Animation ==> https://pub.dev/packages/lottie |||||||||| https://pub.dev/packages/rive
+
+
+1. Add to routes.dart
+class Routes {
+  static const newsDetail = '/news-detail';
+}
+
+// 2. Add to app_router.dart
+case Routes.newsDetail:
+  if (settings.arguments is NewsModel) {
+    final news = settings.arguments as NewsModel;
+    return _createRoute(
+      NewsDetailScreen(
+        title: news.threadtitle,
+        description: news.threadText,
+        imageUrl: news.threadimageUrl ?? '',
+        category: news.categories.first.split(',').first.trim(),
+        author: news.author,
+      ),
+    );
+  }
+  return _createRoute(const NotFoundRouteScreen());
+
+// 3. Use in your UI (much cleaner!)
+onTap: () {
+  Navigator.pushNamed(
+    context,
+    Routes.newsDetail,
+    arguments: state.newsByCategory![index],
+  );
+}

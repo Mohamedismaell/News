@@ -17,11 +17,9 @@ class NewsDetailsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 350,
+      expandedHeight: 450,
       pinned: true,
       stretch: true,
-      // automaticallyImplyLeading: false,
-      // collapsedHeight: 100,
       elevation: 0.0,
       backgroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
@@ -103,11 +101,10 @@ class NewsDetailsAppBar extends StatelessWidget {
                         'Category',
                         style: context.text.headlineSmall!
                             .copyWith(
-                              fontSize: 20,
-                              color:
-                                  AppColors.purpleLighter,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          fontSize: 20,
+                          color: AppColors.purpleLighter,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -125,11 +122,10 @@ class NewsDetailsAppBar extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: context.text.displayLarge!
                             .copyWith(
-                              height: 1.15,
-                              fontFamily: 'SFProText',
-                              color:
-                                  AppColors.purpleLighter,
-                            ),
+                          height: 1.15,
+                          fontFamily: 'SFProText',
+                          color: AppColors.purpleLighter,
+                        ),
                       ),
                     ),
                   ),

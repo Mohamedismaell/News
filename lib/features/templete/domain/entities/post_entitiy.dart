@@ -1,3 +1,4 @@
+//* fix names
 class PostEntity {
   final String id;
   final String thereadurl;

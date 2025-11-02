@@ -64,7 +64,7 @@ class NewsDetails extends StatelessWidget {
                         //   'Text Here',
                         //   style: context.text.displayMedium,
                         // ),
-                        // const SizedBox(height: 1000),
+                        const SizedBox(height: 1000),
                       ],
                     ),
                   ),

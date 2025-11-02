@@ -42,9 +42,8 @@ class HomeScreen extends StatelessWidget {
                         'Discover thing of this world',
                         style: context.text.labelLarge!
                             .copyWith(
-                              color:
-                                  AppColors.greyLightDark,
-                            ),
+                          color: AppColors.greyLightDark,
+                        ),
                       ),
                       SizedBox(height: 34),
                       BarSearch(),
@@ -59,8 +58,8 @@ class HomeScreen extends StatelessWidget {
                               return Padding(
                                 padding:
                                     const EdgeInsets.only(
-                                      right: 10,
-                                    ),
+                                  right: 10,
+                                ),
                                 child: CategoryButton(
                                   category: category,
                                   selectedCategory: state
@@ -86,8 +85,7 @@ class HomeScreen extends StatelessWidget {
                             child: Text(
                               'Top News',
                               style: context
-                                  .text
-                                  .displayLarge!
+                                  .text.displayLarge!
                                   .copyWith(fontSize: 26),
                             ),
                           ),
