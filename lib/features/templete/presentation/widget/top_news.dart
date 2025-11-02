@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/utility.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../cubit/news/news_cubit.dart';
 
-class RecommendedSection extends StatefulWidget {
-  const RecommendedSection({super.key});
+class TopNewsSection extends StatefulWidget {
+  const TopNewsSection({super.key});
 
   @override
-  State<RecommendedSection> createState() =>
-      _RecommendedSectionState();
+  State<TopNewsSection> createState() =>
+      _TopNewsSectionState();
 }
 
-class _RecommendedSectionState
-    extends State<RecommendedSection> {
+class _TopNewsSectionState extends State<TopNewsSection> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        print(
+        debugPrint(
           "🧠 NewsByDate count: ${state.newsByDate?.length}",
         );
 

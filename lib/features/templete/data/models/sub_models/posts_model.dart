@@ -1,6 +1,5 @@
 import 'package:news_app/features/templete/data/models/sub_models/entities_model.dart';
 import 'package:news_app/features/templete/data/models/sub_models/thread_model.dart';
-
 import '../../../domain/entities/post_entitiy.dart';
 
 class PostsModel extends PostEntity {
@@ -11,7 +10,6 @@ class PostsModel extends PostEntity {
   final String? parentUrl;
   final String? published;
   final String? title;
-  final String? text;
   final String? highlightText;
   final String? highlightTitle;
   final String? highlightThreadTitle;
@@ -30,10 +28,8 @@ class PostsModel extends PostEntity {
     required this.url,
     required this.ordInThread,
     required this.parentUrl,
-
     required this.published,
     required this.title,
-    required this.text,
     required this.highlightText,
     required this.highlightTitle,
     required this.highlightThreadTitle,
@@ -51,6 +47,7 @@ class PostsModel extends PostEntity {
     required super.threadimageUrl,
     required super.author,
     required super.categories,
+    required super.threadText,
   });
 
   Map<String, dynamic> toJson() {
@@ -63,7 +60,7 @@ class PostsModel extends PostEntity {
       'author': author,
       'published': published,
       'title': title,
-      'text': text,
+      'text': threadText,
       'highlightText': highlightText,
       'highlightTitle': highlightTitle,
       'highlightThreadTitle': highlightThreadTitle,
@@ -103,9 +100,6 @@ class PostsModel extends PostEntity {
           : null,
       title: json['title'] != null
           ? json['title'] as String
-          : null,
-      text: json['text'] != null
-          ? json['text'] as String
           : null,
       highlightText: json['highlightText'] != null
           ? json['highlightText'] as String
@@ -159,6 +153,9 @@ class PostsModel extends PostEntity {
           : '',
       threadimageUrl:
           json['thread']?['main_image'] as String? ?? '',
+      threadText: json['text'] != null
+          ? json['text'] as String
+          : '',
       categories: json['categories'] != null
           ? List<String>.from(
               json['categories'] as List<dynamic>,

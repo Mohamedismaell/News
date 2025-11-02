@@ -4,15 +4,12 @@ part of 'news_cubit.dart';
 class NewsState {
   final String selectedCategory;
 
-  // ✅ separate statuses
   final NewsStatus categoryStatus;
   final NewsStatus dateStatus;
 
-  // ✅ data
   final List<PostEntity>? newsByCategory;
   final List<PostEntity>? newsByDate;
 
-  // ✅ error handling
   final String? errorMessage;
 
   const NewsState({

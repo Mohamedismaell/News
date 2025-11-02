@@ -9,6 +9,7 @@ import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.da
 import 'package:news_app/utility.dart';
 import '../../../../core/connections/network_info.dart';
 import '../../../../core/database/api/dio_consumer.dart';
+import '../../../../core/di/service_locator.dart';
 import '../../data/datasources/news_remote_data_source.dart';
 import '../../data/repositories/news_repository_impl.dart';
 import '../news_category.dart';
@@ -22,19 +23,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetNewsByCategory getnews = GetNewsByCategory(
-      repository: NewsRepositoryImpl(
-        remoteDataSource: NewsRemoteDataSource(
-          api: DioConsumer(dio: Dio()),
-        ),
-        networkInfo: NetworkInfoImpl(
-          connectionChecker: DataConnectionChecker(),
-        ),
-      ),
-    );
     return SafeArea(
       child: BlocProvider(
-        create: (context) => NewsCubit(getnews),
+        create: (context) => sl<NewsCubit>(),
         child: BlocConsumer<NewsCubit, NewsState>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -124,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      RecommendedSection(),
+                      TopNewsSection(),
                     ],
                   ),
                 ),

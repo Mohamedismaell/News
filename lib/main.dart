@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/app_theme.dart';
-import 'package:news_app/features/templete/presentation/screens/home_screen.dart';
 import 'package:news_app/features/templete/presentation/screens/navigation_Screen.dart';
 
-void main() {
+import 'core/di/service_locator.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initServiceLocator();
   runApp(const MyApp());
 }
 
