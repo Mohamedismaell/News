@@ -133,25 +133,6 @@ class NewsDetailsAppBar extends StatelessWidget {
               ),
             ),
             //! little title
-            //   Positioned(
-            //     left: 25,
-            //     bottom: 60,
-            //     child: SizedBox(
-            //       width: 315,
-            //       child: Text(
-            //         maxLines: 2,
-            //         'Author',
-            //         overflow: TextOverflow.ellipsis,
-            //         style: context.text.displayLarge!
-            //             .copyWith(
-            //               height: 1.15,
-            //               fontFamily: 'SFProText',
-            //               color: AppColors.purpleLighter,
-            //             ),
-            //       ),
-            //     ),
-            //   ),
-            //
           ],
         ),
         stretchModes: const [

@@ -42,7 +42,7 @@ class PreviewSlide extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     child: InkWell(
                       onTap: () async {
-                        //Push *** Named
+                        //! edit the nav with Go Router
                         await Navigator.push(
                           context,
                           MaterialPageRoute(

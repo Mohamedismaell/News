@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/utility.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 import '../cubit/news/news_cubit.dart';
 
@@ -38,8 +37,8 @@ class _TopNewsSectionState extends State<TopNewsSection> {
           return Center(child: Text('No news available'));
         }
         return
-        //! title Section
-        ListView.builder(
+            //! title Section
+            ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: state.newsByDate!.length,
@@ -75,8 +74,7 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                           ],
                         ),
                         child: CachedNetworkImage(
-                          imageUrl: state
-                              .newsByDate![index]
+                          imageUrl: state.newsByDate![index]
                               .threadimageUrl
                               .toString(),
                           width: 180,
@@ -86,13 +84,13 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                               CircularProgressIndicator(),
                           errorWidget:
                               (context, url, error) {
-                                return Image.asset(
-                                  'assets/images/OIP.webp',
-                                  width: 160,
-                                  height: 160,
-                                  fit: BoxFit.cover,
-                                );
-                              },
+                            return Image.asset(
+                              'assets/images/OIP.webp',
+                              width: 160,
+                              height: 160,
+                              fit: BoxFit.cover,
+                            );
+                          },
                         ),
                       ),
                       addHorizental(15),
@@ -100,9 +98,9 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                         child: Padding(
                           padding:
                               const EdgeInsets.symmetric(
-                                // horizontal: 5,
-                                vertical: 10,
-                              ),
+                            // horizontal: 5,
+                            vertical: 10,
+                          ),
                           child: SizedBox(
                             height: 160,
                             child: Column(
@@ -114,26 +112,21 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                               children: [
                                 Text(
                                   maxLines: 1,
-                                  state
-                                      .newsByDate![index]
+                                  state.newsByDate![index]
                                       .author,
                                   style: context
-                                      .text
-                                      .displayMedium!
+                                      .text.displayMedium!
                                       .copyWith(),
                                 ),
                                 addVertical(40),
-
                                 Text(
                                   maxLines: 4,
                                   overflow:
                                       TextOverflow.ellipsis,
-                                  state
-                                      .newsByDate![index]
+                                  state.newsByDate![index]
                                       .threadtitle,
                                   style: context
-                                      .text
-                                      .headlineLarge!
+                                      .text.headlineLarge!
                                       .copyWith(),
                                 ),
                               ],

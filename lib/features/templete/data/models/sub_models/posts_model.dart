@@ -3,6 +3,7 @@ import 'package:news_app/features/templete/data/models/sub_models/thread_model.d
 import '../../../domain/entities/post_entitiy.dart';
 
 class PostsModel extends PostEntity {
+  
   final ThreadModel? thread;
   final String? uuid;
   final String? url;
