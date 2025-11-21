@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/templete/presentation/widget/category_button.dart';
+import 'package:news_app/features/templete/presentation/widget/nav_bar.dart';
 import 'package:news_app/utility.dart';
 import '../../../../core/di/service_locator.dart';
 import '../news_category.dart';
@@ -17,7 +17,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<NewsCubit>(),
-      child: const Scaffold(body: _HomeBody()),
+      child: const Scaffold(
+        body: _HomeBody(),
+        bottomNavigationBar: NavBar(),
+      ),
     );
   }
 }
@@ -36,13 +39,13 @@ class _HomeBody extends StatelessWidget {
       child: ListView(
         children: [
           _HomeHeader(),
-          addVertical(34),
+          addVertical(32),
           _BarSearch(),
           addVertical(24),
           _CategoryButton(),
-          addVertical(14),
-          PreviewSlide(),
           addVertical(24),
+          PreviewSlide(),
+          addVertical(48),
           _TopNews(),
           TopNewsSection(),
         ],
@@ -57,6 +60,7 @@ class _HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Browse',

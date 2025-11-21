@@ -3,39 +3,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/utility.dart';
+import '../../../../utility.dart';
 import '../screens/news_details.dart';
 
 class PreviewSlide extends StatelessWidget {
   const PreviewSlide({super.key});
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: BlocBuilder<NewsCubit, NewsState>(
-        builder: (context, state) {
-          debugPrint(
-              "Preview Slide Here ===================");
-          if (state.categoryStatus == NewsStatus.loading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state.categoryStatus == NewsStatus.error) {
-            return Center(
-              child: Text(state.errorMessage ?? 'Error'),
-            );
-          }
-          if (state.newsByCategory == null ||
-              state.newsByCategory!.isEmpty) {
-            return Center(child: Text('No news available'));
-          }
-          debugPrint(
-              "Preview Slide Here ===================");
-          return ListView.builder(
+    return BlocBuilder<NewsCubit, NewsState>(
+      builder: (context, state) {
+        if (state.categoryStatus == NewsStatus.loading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state.categoryStatus == NewsStatus.error) {
+          return Center(
+            child: Text(state.errorMessage ?? 'Error'),
+          );
+        }
+        if (state.newsByCategory == null ||
+            state.newsByCategory!.isEmpty) {
+          return Center(child: Text('No news available'));
+        }
+        return SizedBox(
+          height: 256,
+          child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: state.newsByCategory!.length,
             itemBuilder: (context, index) {
+              final category = state.selectedCategory
+                  .split(',')
+                  .first
+                  .trim();
               return Row(
                 children: [
                   ClipRRect(
@@ -59,11 +59,7 @@ class PreviewSlide extends StatelessWidget {
                                           index]
                                       .threadimageUrl ??
                                   '',
-                              category: state
-                                  .selectedCategory
-                                  .split(',')
-                                  .first
-                                  .trim(),
+                              category: category,
                               author: state
                                   .newsByCategory![index]
                                   .author,
@@ -76,14 +72,21 @@ class PreviewSlide extends StatelessWidget {
                           //! image
                           CachedNetworkImage(
                             imageUrl: state
-                                    .newsByCategory?[index]
+                                    .newsByCategory![index]
                                     .threadimageUrl ??
                                 '',
                             width: 330,
                             height: 300,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) =>
-                                CircularProgressIndicator(),
+                            placeholder: (_, __) =>
+                                Container(
+                              width: 330,
+                              height: 300,
+                              color: Colors.grey.shade300,
+                              child: const Center(
+                                  child:
+                                      CircularProgressIndicator()),
+                            ),
                             errorWidget: (
                               context,
                               url,
@@ -91,8 +94,8 @@ class PreviewSlide extends StatelessWidget {
                             ) =>
                                 Image.asset(
                               'assets/images/OIP.webp',
-                              width: 350,
-                              height: 240,
+                              width: 330,
+                              height: 300,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -104,7 +107,7 @@ class PreviewSlide extends StatelessWidget {
                               gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: [
+                                colors: const [
                                   Color.fromARGB(
                                     0,
                                     90,
@@ -124,12 +127,9 @@ class PreviewSlide extends StatelessWidget {
                           //! category
                           Positioned(
                             left: 14,
-                            top: 190,
+                            top: 165,
                             child: Text(
-                              state.selectedCategory
-                                  .split(',')
-                                  .first
-                                  .trim(),
+                              category,
                               style: context
                                   .text.displayMedium!
                                   .copyWith(
@@ -145,7 +145,7 @@ class PreviewSlide extends StatelessWidget {
                           Positioned(
                             left: 14,
                             right: 14,
-                            top: 230,
+                            top: 200,
                             child: Text(
                               maxLines: 2,
                               overflow:
@@ -169,9 +169,9 @@ class PreviewSlide extends StatelessWidget {
                 ],
               );
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
