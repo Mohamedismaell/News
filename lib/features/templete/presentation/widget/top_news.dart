@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/theme/app_theme.dart';
+import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/utility.dart';
 
 import '../cubit/news/news_cubit.dart';
@@ -63,7 +63,7 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(15),
-                          color: context.colors.surface,
+                          // color: context.colors.surface,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
@@ -77,8 +77,8 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                           imageUrl: state.newsByDate![index]
                               .threadimageUrl
                               .toString(),
-                          width: 180,
-                          height: 180,
+                          width: 140,
+                          height: 140,
                           fit: BoxFit.cover,
                           placeholder: (context, url) =>
                               CircularProgressIndicator(),
@@ -102,7 +102,7 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                             vertical: 10,
                           ),
                           child: SizedBox(
-                            height: 160,
+                            // height: 160,
                             child: Column(
                               //handle
                               mainAxisAlignment:
@@ -111,23 +111,20 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                                   CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  maxLines: 1,
-                                  state.newsByDate![index]
-                                      .author,
-                                  style: context
-                                      .text.displayMedium!
-                                      .copyWith(),
-                                ),
-                                addVertical(40),
+                                    maxLines: 1,
+                                    state.newsByDate![index]
+                                        .author,
+                                    style: AppTextStyles
+                                        .headlLineMedium),
+                                addVertical(15),
                                 Text(
-                                  maxLines: 4,
+                                  maxLines: 3,
                                   overflow:
                                       TextOverflow.ellipsis,
                                   state.newsByDate![index]
                                       .threadtitle,
-                                  style: context
-                                      .text.headlineLarge!
-                                      .copyWith(),
+                                  style: AppTextStyles
+                                      .headlLineSmall,
                                 ),
                               ],
                             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/core/theme/app_theme.dart';
 import 'core/di/service_locator.dart';
 import 'core/routes/app_router.dart';
+import 'core/theme/theme_data/light_theme_data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: lightTheme,
+      theme: getLightTheme(),
+      themeMode: ThemeMode.light,
       routerConfig: AppRouter.router,
     );
   }

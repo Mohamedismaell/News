@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/theme/app_theme.dart';
+import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import '../../../../utility.dart';
 import '../screens/news_details.dart';
@@ -130,14 +131,11 @@ class PreviewSlide extends StatelessWidget {
                             top: 165,
                             child: Text(
                               category,
-                              style: context
-                                  .text.displayMedium!
+                              style: AppTextStyles
+                                  .hintTextSmall
                                   .copyWith(
-                                color: const Color(
-                                  0xFFF3F3F6,
-                                ),
+                                color: AppColors.white,
                                 fontSize: 20,
-                                fontWeight: FontWeight.w400,
                               ),
                             ),
                           ),
@@ -153,11 +151,10 @@ class PreviewSlide extends StatelessWidget {
                               state.newsByCategory![index]
                                   .threadtitle
                                   .toString(),
-                              style: context
-                                  .text.displayMedium!
+                              style: AppTextStyles.textBold
                                   .copyWith(
+                                fontSize: 18,
                                 color: Colors.white,
-                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/theme/app_theme.dart';
+import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/templete/presentation/widget/news_details_appbar.dart';
 import 'package:news_app/utility.dart';
@@ -47,23 +47,22 @@ class NewsDetails extends StatelessWidget {
                       children: [
                         Text(
                           'Results',
-                          style: context.text.displayMedium,
+                          style:
+                              AppTextStyles.headlLineSmall,
                         ),
                         addVertical(20),
                         Text(
                           title,
-                          style: context.text.displayMedium,
+                          style:
+                              AppTextStyles.hintTextlarge,
                         ),
                         addVertical(20),
                         Text(
                           description,
-                          style: context.text.displayMedium,
+                          style:
+                              AppTextStyles.hintTextlarge,
                         ),
                         addVertical(20),
-                        // Text(
-                        //   'Text Here',
-                        //   style: context.text.displayMedium,
-                        // ),
                         const SizedBox(height: 1000),
                       ],
                     ),
