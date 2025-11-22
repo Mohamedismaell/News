@@ -11,6 +11,7 @@ class NewsCubit extends Cubit<NewsState> {
     init();
   }
   final GetNewsByCategory getNews;
+  bool _isloaded = false;
   Future<void> eitherFailureOrSuccessByCategory(
     String category,
   ) async {
@@ -75,17 +76,25 @@ class NewsCubit extends Cubit<NewsState> {
     );
   }
 
-  Future<void> init() async {
-    emit(
-      state.copyWith(
-        categoryStatus: NewsStatus.loading,
-        dateStatus: NewsStatus.loading,
-      ),
-    );
-    await eitherFailureOrSuccessByCategory(
-      EndPoints.defaultCategory,
-    );
-    await eitherFailureOrSuccessByDate();
+  void init() {
+    if (_isloaded) return;
+    fetchInitial(_isloaded);
+  }
+
+  Future<void> fetchInitial(bool isloaded) async {
+    if (!isloaded) {
+      emit(
+        state.copyWith(
+          categoryStatus: NewsStatus.loading,
+          dateStatus: NewsStatus.loading,
+        ),
+      );
+      await eitherFailureOrSuccessByCategory(
+        EndPoints.defaultCategory,
+      );
+      await eitherFailureOrSuccessByDate();
+      _isloaded = true;
+    }
   }
 
   void selectCategory(String category) {

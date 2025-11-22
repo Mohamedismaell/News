@@ -47,7 +47,7 @@ Future<void> initServiceLocator() async {
   );
 
   //! Cubits
-  sl.registerFactory(
+  sl.registerLazySingleton(
     () => NewsCubit(sl<GetNewsByCategory>()),
   );
 }
