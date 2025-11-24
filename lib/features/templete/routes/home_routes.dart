@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
+import 'package:news_app/features/templete/presentation/model/news_detail_args.dart';
+import 'package:news_app/features/templete/presentation/screens/news_details.dart';
 import '../../../core/di/service_locator.dart';
 import '../presentation/screens/book_marks_screen.dart';
 import '../presentation/screens/categories_screen.dart';
@@ -14,7 +16,6 @@ class HomeRoutes {
       builder: (context, state, child) {
         final index =
             _indexFromLocation(state.matchedLocation);
-
         return BlocProvider.value(
           value: sl<NewsCubit>()..init(),
           child: Scaffold(
@@ -63,12 +64,20 @@ class HomeRoutes {
         ),
         GoRoute(
           path: AppRoutes.category,
-          builder: (_, __) => const CategoryScreen(),
+          builder: (_, __) => const CategoriesScreen(),
         ),
         GoRoute(
           path: AppRoutes.bookmarks,
           builder: (_, __) => const BookMarksScreen(),
         ),
+        GoRoute(
+            path: AppRoutes.newsDetails,
+            builder: (context, state) {
+              final argu = state.extra as NewsDetailsArgs;
+
+              return NewsDetails(
+                  category: argu.category, post: argu.post);
+            }),
       ],
     ),
   ];

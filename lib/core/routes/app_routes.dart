@@ -3,4 +3,5 @@ class AppRoutes {
   static const String home = '/home';
   static const String category = '/categories';
   static const String bookmarks = '/bookmarks';
+  static const String newsDetails = '/newsdetails';
 }

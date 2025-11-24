@@ -1,79 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
-import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/templete/presentation/widget/news_details_appbar.dart';
 import 'package:news_app/utility.dart';
-import '../../../../core/di/service_locator.dart';
+import '../../domain/entities/post_entitiy.dart';
 
 class NewsDetails extends StatelessWidget {
   const NewsDetails({
     super.key,
-    required this.imageUrl,
-    required this.author,
+    required this.post,
     required this.category,
-    required this.title,
-    required this.description,
   });
-  final String title;
-  final String description;
-  final String imageUrl;
+  final PostEntity post;
   final String category;
-  final String author;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<NewsCubit>(),
-      child: BlocBuilder<NewsCubit, NewsState>(
-        builder: (context, state) {
-          return Scaffold(
-            body: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                NewsDetailsAppBar(
-                  imageUrl: imageUrl,
-                  category: category,
-                  author: author,
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Results',
-                          style:
-                              AppTextStyles.headlLineSmall,
-                        ),
-                        addVertical(20),
-                        Text(
-                          title,
-                          style:
-                              AppTextStyles.hintTextlarge,
-                        ),
-                        addVertical(20),
-                        Text(
-                          description,
-                          style:
-                              AppTextStyles.hintTextlarge,
-                        ),
-                        addVertical(20),
-                        const SizedBox(height: 1000),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
+    return Scaffold(
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          NewsDetailsAppBar(
+            imageUrl: post.threadimageUrl!,
+            category: category,
+            author: post.author,
+          ),
+          _BottomBar(post: post),
+        ],
       ),
     );
   }
 }
+
 // Title - text - url
+class _BottomBar extends StatelessWidget {
+  const _BottomBar({required this.post});
+  final PostEntity post;
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Results',
+              style: AppTextStyles.headlLineMedium,
+            ),
+            addVertical(20),
+            Text(
+              post.threadtitle,
+              style: AppTextStyles.textRegular
+                  .copyWith(fontSize: 20),
+            ),
+            addVertical(20),
+            Text(
+              post.threadText,
+              style: AppTextStyles.textRegular
+                  .copyWith(fontSize: 18),
+            ),
+            addVertical(20),
+            const SizedBox(height: 1000),
+          ],
+        ),
+      ),
+    );
+  }
+}

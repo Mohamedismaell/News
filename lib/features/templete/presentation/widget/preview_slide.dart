@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
+import 'package:news_app/features/templete/presentation/model/news_detail_args.dart';
 import '../../../../utility.dart';
-import '../screens/news_details.dart';
 
 class PreviewSlide extends StatelessWidget {
   const PreviewSlide({super.key});
@@ -44,28 +46,12 @@ class PreviewSlide extends StatelessWidget {
                     child: InkWell(
                       onTap: () async {
                         //! edit the nav with Go Router
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                NewsDetails(
-                              title: state
-                                  .newsByCategory![index]
-                                  .threadtitle,
-                              description: state
-                                  .newsByCategory![index]
-                                  .threadText,
-                              imageUrl: state
-                                      .newsByCategory![
-                                          index]
-                                      .threadimageUrl ??
-                                  '',
-                              category: category,
-                              author: state
-                                  .newsByCategory![index]
-                                  .author,
-                            ),
-                          ),
+                        await context.push(
+                          AppRoutes.newsDetails,
+                          extra: NewsDetailsArgs(
+                              post: state
+                                  .newsByCategory![index],
+                              category: category),
                         );
                       },
                       child: Stack(

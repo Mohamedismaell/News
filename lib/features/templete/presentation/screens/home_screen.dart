@@ -4,7 +4,7 @@ import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/utility.dart';
-import '../news_category.dart';
+import '../../data/datasources/news_category.dart';
 import '../widget/preview_slide.dart';
 import '../widget/top_news.dart';
 

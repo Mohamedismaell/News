@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/utility.dart';
 
 class NewsDetailsAppBar extends StatelessWidget {
@@ -22,6 +23,11 @@ class NewsDetailsAppBar extends StatelessWidget {
       elevation: 0.0,
       backgroundColor: AppColors.white,
       flexibleSpace: FlexibleSpaceBar(
+        stretchModes: const [
+          StretchMode.blurBackground,
+          StretchMode.zoomBackground,
+          StretchMode.fadeTitle,
+        ],
         background: Stack(
           fit: StackFit.expand,
           children: [
@@ -84,47 +90,26 @@ class NewsDetailsAppBar extends StatelessWidget {
                 crossAxisAlignment:
                     CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        12,
-                      ),
-                      // color: AppColors.prima,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      child: Text(
-                        'Category',
-                        // style: context.text.headlineSmall!
-                        //     .copyWith(
-                        //   fontSize: 20,
-                        //   color: AppColors.purpleLighter,
-                        //   fontWeight: FontWeight.bold,
-                        // ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      category,
+                      style: AppTextStyles.textSemibold
+                          .copyWith(
+                        color: AppColors.white,
                       ),
                     ),
                   ),
-                  addVertical(10),
-                  SizedBox(
-                    width: 315,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      child: Text(
-                        maxLines: 2,
-                        'Author',
-                        overflow: TextOverflow.ellipsis,
-                        // style: context.text.displayLarge!
-                        //     .copyWith(
-                        //   height: 1.15,
-                        //   fontFamily: 'SFProText',
-                        //   color: AppColors.purpleLighter,
-                        // ),
+                  addVertical(16),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10),
+                    child: Text(
+                      author,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.headlLineMedium
+                          .copyWith(
+                        color: AppColors.white,
                       ),
                     ),
                   ),
@@ -134,16 +119,11 @@ class NewsDetailsAppBar extends StatelessWidget {
             //! little title
           ],
         ),
-        stretchModes: const [
-          StretchMode.blurBackground,
-          StretchMode.zoomBackground,
-          StretchMode.fadeTitle,
-        ],
       ),
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: Container(
-          height: 32,
+          height: 30,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             color: Colors.white,

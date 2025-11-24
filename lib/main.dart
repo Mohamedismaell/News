@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/observers/app_bloc_observer.dart';
 import 'core/di/service_locator.dart';
 import 'core/routes/app_router.dart';
 import 'core/theme/theme_data/light_theme_data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  Bloc.observer = AppBlocObserver();
+
   await initServiceLocator();
+
   runApp(const MyApp());
 }
 
@@ -15,9 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: getLightTheme(),
-      themeMode: ThemeMode.light,
       routerConfig: AppRouter.router,
     );
   }
