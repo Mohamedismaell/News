@@ -95,23 +95,37 @@ class PreviewSlide extends StatelessWidget {
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                                 colors: const [
+                                  // Color.fromARGB(
+                                  //   0,
+                                  //   90,
+                                  //   90,
+                                  //   90,
+                                  // ),
                                   Color.fromARGB(
-                                    0,
-                                    90,
-                                    90,
-                                    90,
-                                  ),
+                                      18, 42, 42, 42),
                                   Color.fromARGB(
-                                    189,
-                                    0,
-                                    0,
-                                    0,
-                                  ),
+                                      166, 0, 0, 0),
                                 ],
                               ),
                             ),
                           ),
                           //! category + Title
+                          Positioned(
+                            right: 5,
+                            top: 5,
+                            child: IconButton(
+                                onPressed: () => context
+                                    .read<NewsCubit>()
+                                    .toggleBookmark(
+                                        state.newsByCategory![
+                                            index],
+                                        category),
+                                icon: Icon(
+                                  Icons.bookmark_border,
+                                  color: AppColors.white,
+                                  size: 30,
+                                )),
+                          ),
                           Positioned(
                             left: 14,
                             top: 165,

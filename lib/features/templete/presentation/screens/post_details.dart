@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
-import 'package:news_app/features/templete/presentation/widget/news_details_appbar.dart';
+import 'package:news_app/features/templete/presentation/widget/post_details_appbar.dart';
 import 'package:news_app/utility.dart';
 import '../../domain/entities/post_entitiy.dart';
 
-class PostDetail extends StatelessWidget {
-  const PostDetail(
+class PostDetails extends StatelessWidget {
+  const PostDetails(
       {super.key,
       required this.post,
       required this.category});
@@ -31,7 +31,7 @@ class _PostDetailsBody extends StatelessWidget {
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          NewsDetailsAppBar(
+          PostDetailsAppbar(
             imageUrl: post.threadimageUrl!,
             category: category,
             author: post.author,

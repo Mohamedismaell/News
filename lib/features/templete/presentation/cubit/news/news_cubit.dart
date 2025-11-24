@@ -4,6 +4,7 @@ import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/params/params.dart';
 import 'package:news_app/features/templete/domain/usecases/get_news.dart';
 import '../../../domain/entities/post_entitiy.dart';
+import '../../model/Book_marked_post.dart';
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
@@ -101,5 +102,20 @@ class NewsCubit extends Cubit<NewsState> {
     if (state.selectedCategory == category) return;
     emit(state.copyWith(selectedCategory: category));
     eitherFailureOrSuccessByCategory(category);
+  }
+
+  void toggleBookmark(PostEntity post, String category) {
+    final currentbookmarks =
+        List<BookmarkedPost>.from(state.bookmarks ?? []);
+    if (currentbookmarks.contains(
+        BookmarkedPost(post: post, category: category))) {
+      currentbookmarks.remove(
+          BookmarkedPost(post: post, category: category));
+    } else {
+      currentbookmarks.add(
+          BookmarkedPost(post: post, category: category));
+    }
+    emit(state.copyWith(bookmarks: currentbookmarks));
+    debugPrint('heereeeeeeeeee$currentbookmarks');
   }
 }

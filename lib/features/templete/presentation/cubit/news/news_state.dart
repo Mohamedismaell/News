@@ -7,8 +7,8 @@ class NewsState {
   final NewsStatus dateStatus;
   final List<PostEntity>? newsByCategory;
   final List<PostEntity>? newsByDate;
+  final List<BookmarkedPost>? bookmarks;
   final String? errorMessage;
-
   const NewsState({
     this.selectedCategory = 'Politics',
     this.categoryStatus = NewsStatus.initial,
@@ -16,6 +16,7 @@ class NewsState {
     this.newsByCategory,
     this.newsByDate,
     this.errorMessage,
+    this.bookmarks,
   });
 
   NewsState copyWith({
@@ -24,6 +25,7 @@ class NewsState {
     NewsStatus? dateStatus,
     List<PostEntity>? newsByCategory,
     List<PostEntity>? newsByDate,
+    List<BookmarkedPost>? bookmarks,
     String? errorMessage,
   }) {
     return NewsState(
@@ -33,6 +35,7 @@ class NewsState {
       dateStatus: dateStatus ?? this.dateStatus,
       newsByCategory: newsByCategory ?? this.newsByCategory,
       newsByDate: newsByDate ?? this.newsByDate,
+      bookmarks: bookmarks ?? this.bookmarks,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }

@@ -3,8 +3,8 @@ import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/utility.dart';
 
-class NewsDetailsAppBar extends StatelessWidget {
-  const NewsDetailsAppBar({
+class PostDetailsAppbar extends StatelessWidget {
+  const PostDetailsAppbar({
     super.key,
     required this.imageUrl,
     required this.category,
