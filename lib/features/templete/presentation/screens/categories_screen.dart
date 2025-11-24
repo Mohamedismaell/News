@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/features/templete/data/datasources/news_category.dart';
@@ -87,7 +89,8 @@ class _CategoriesButton extends StatelessWidget {
             final category = NewsCategory.values[index];
             return InkWell(
               onTap: () {
-                //! Handle category tap
+                context.push(AppRoutes.categoryScreen,
+                    extra: category);
               },
               child: Container(
                 alignment: Alignment.center,

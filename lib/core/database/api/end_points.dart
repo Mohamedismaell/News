@@ -2,7 +2,7 @@ class EndPoints {
   static String baseUrl = 'https://api.webz.io/';
   static String news = 'newsApiLite';
   static String token =
-      '73e2257b-4e9a-41cb-9c34-a205e678e46a';
+      '263c0ff3-d380-4285-8bca-fb187fb47d76';
   static String defaultCategory = 'Politics';
   static String formatCategoryQuery(String category) {
     return 'category:"$category"';

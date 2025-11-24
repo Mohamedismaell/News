@@ -101,16 +101,12 @@ class NewsDetailsAppBar extends StatelessWidget {
                     ),
                   ),
                   addVertical(16),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10),
-                    child: Text(
-                      author,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.headlLineMedium
-                          .copyWith(
-                        color: AppColors.white,
-                      ),
+                  Text(
+                    author,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.headlLineMedium
+                        .copyWith(
+                      color: AppColors.white,
                     ),
                   ),
                 ],

@@ -63,7 +63,6 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(15),
-                          // color: context.colors.surface,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
@@ -98,13 +97,10 @@ class _TopNewsSectionState extends State<TopNewsSection> {
                         child: Padding(
                           padding:
                               const EdgeInsets.symmetric(
-                            // horizontal: 5,
                             vertical: 10,
                           ),
                           child: SizedBox(
-                            // height: 160,
                             child: Column(
-                              //handle
                               mainAxisAlignment:
                                   MainAxisAlignment.start,
                               crossAxisAlignment:
