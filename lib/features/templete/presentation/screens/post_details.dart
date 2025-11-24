@@ -4,8 +4,8 @@ import 'package:news_app/features/templete/presentation/widget/news_details_appb
 import 'package:news_app/utility.dart';
 import '../../domain/entities/post_entitiy.dart';
 
-class NewsDetailsScreen extends StatelessWidget {
-  const NewsDetailsScreen(
+class PostDetail extends StatelessWidget {
+  const PostDetail(
       {super.key,
       required this.post,
       required this.category});
@@ -13,15 +13,15 @@ class NewsDetailsScreen extends StatelessWidget {
   final String category;
   @override
   Widget build(BuildContext context) {
-    return _NewsDetailsBody(
+    return _PostDetailsBody(
       post: post,
       category: category,
     );
   }
 }
 
-class _NewsDetailsBody extends StatelessWidget {
-  const _NewsDetailsBody(
+class _PostDetailsBody extends StatelessWidget {
+  const _PostDetailsBody(
       {required this.post, required this.category});
   final PostEntity post;
   final String category;

@@ -111,36 +111,45 @@ class PreviewSlide extends StatelessWidget {
                               ),
                             ),
                           ),
-                          //! category
+                          //! category + Title
                           Positioned(
                             left: 14,
                             top: 165,
-                            child: Text(
-                              category,
-                              style: AppTextStyles
-                                  .hintTextSmall
-                                  .copyWith(
-                                color: AppColors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                          //! title
-                          Positioned(
-                            left: 14,
-                            right: 14,
-                            top: 200,
-                            child: Text(
-                              maxLines: 2,
-                              overflow:
-                                  TextOverflow.ellipsis,
-                              state.newsByCategory![index]
-                                  .threadtitle
-                                  .toString(),
-                              style: AppTextStyles.textBold
-                                  .copyWith(
-                                fontSize: 18,
-                                color: Colors.white,
+                            child: SizedBox(
+                              width: 300,
+                              child: Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment
+                                        .start,
+                                children: [
+                                  Text(
+                                    category,
+                                    style: AppTextStyles
+                                        .hintTextSmall
+                                        .copyWith(
+                                      color:
+                                          AppColors.white,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  addVertical(2),
+                                  Text(
+                                    maxLines: 2,
+                                    overflow: TextOverflow
+                                        .ellipsis,
+                                    state
+                                        .newsByCategory![
+                                            index]
+                                        .threadtitle
+                                        .toString(),
+                                    style: AppTextStyles
+                                        .textBold
+                                        .copyWith(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),

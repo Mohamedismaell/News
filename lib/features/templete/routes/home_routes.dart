@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/templete/presentation/model/news_detail_args.dart';
-import 'package:news_app/features/templete/presentation/screens/news_details.dart';
+import 'package:news_app/features/templete/presentation/screens/post_details.dart';
+import 'package:news_app/features/templete/presentation/widget/post_details_appbar.dart';
 import '../../../core/di/service_locator.dart';
 import '../data/datasources/news_category.dart';
 import '../presentation/screens/book_marks_screen.dart';
@@ -79,7 +80,7 @@ class HomeRoutes {
         builder: (context, state) {
           final argu = state.extra as NewsDetailsArgs;
 
-          return NewsDetailsScreen(
+          return PostDetails(
               category: argu.category, post: argu.post);
         }),
     GoRoute(

@@ -1,20 +1,33 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import '../../features/templete/presentation/cubit/news/news_cubit.dart';
+import '../../features/templete/presentation/model/news_detail_args.dart';
 import 'app_routes.dart';
 
 /// Navigation helper class to handle all navigation operations
 class NavigationHelper {
   /// Navigate to splash screen
-  static void goToHome(BuildContext context) {
-    context.go(AppRoutes.home);
-  }
+  // static void goToHome(BuildContext context) {
+  //   context.go(AppRoutes.home);
+  // }
 
-  static void goToCategories(BuildContext context) {
-    context.go(AppRoutes.category);
-  }
+  // static void goToCategories(BuildContext context) {
+  //   context.go(AppRoutes.category);
+  // }
 
-  static void goToBookmarkes(BuildContext context) {
-    context.go(AppRoutes.bookmarks);
+  // static void goToBookmarkes(BuildContext context) {
+  //   context.go(AppRoutes.bookmarks);
+  // }
+
+  static Future<Object?> goToPostDetails(
+      BuildContext context, NewsState state, int index) {
+    return context.push(
+      AppRoutes.newsDetails,
+      extra: NewsDetailsArgs(
+          post: state.newsByCategory![index],
+          category: state
+              .newsByCategory![index].categories.first),
+    );
   }
 
   /// Navigate to onboarding screens
