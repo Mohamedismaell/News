@@ -39,6 +39,12 @@ class NewsState {
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
+
+  bool isBookmarked(String postId) {
+    return bookmarks?.any(
+            (markedPost) => markedPost.post.id == postId) ??
+        false;
+  }
 }
 
 enum NewsStatus { initial, loading, loaded, error }

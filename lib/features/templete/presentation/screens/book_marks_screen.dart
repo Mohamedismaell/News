@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../utility.dart';
 import '../cubit/news/news_cubit.dart';
+import '../model/news_detail_args.dart';
 
 class BookMarksScreen extends StatelessWidget {
   const BookMarksScreen({super.key});
@@ -24,11 +27,11 @@ class BookMarksScreen extends StatelessWidget {
             return Column(
               children: [
                 InkWell(
-                  // onTap: () async => await context.push(
-                  //     AppRoutes.newsDetails,
-                  //     extra: NewsDetailsArgs(
-                  //         post: post,
-                  //         category: post.categories.first)),
+                  onTap: () async => await context.push(
+                      AppRoutes.newsDetails,
+                      extra: NewsDetailsArgs(
+                          post: post,
+                          category: post.categories.first)),
                   child: Stack(
                     children: [
                       //! image

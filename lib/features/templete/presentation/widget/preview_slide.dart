@@ -39,6 +39,9 @@ class PreviewSlide extends StatelessWidget {
                   .split(',')
                   .first
                   .trim();
+              final post = state.newsByCategory![index];
+              final isBookmarked =
+                  state.isBookmarked(post.id);
               return Row(
                 children: [
                   ClipRRect(
@@ -49,8 +52,7 @@ class PreviewSlide extends StatelessWidget {
                         await context.push(
                           AppRoutes.newsDetails,
                           extra: NewsDetailsArgs(
-                              post: state
-                                  .newsByCategory![index],
+                              post: post,
                               category: category),
                         );
                       },
@@ -58,10 +60,8 @@ class PreviewSlide extends StatelessWidget {
                         children: [
                           //! image
                           CachedNetworkImage(
-                            imageUrl: state
-                                    .newsByCategory![index]
-                                    .threadimageUrl ??
-                                '',
+                            imageUrl:
+                                post.threadimageUrl ?? '',
                             width: 330,
                             height: 300,
                             fit: BoxFit.cover,
@@ -117,11 +117,12 @@ class PreviewSlide extends StatelessWidget {
                                 onPressed: () => context
                                     .read<NewsCubit>()
                                     .toggleBookmark(
-                                        state.newsByCategory![
-                                            index],
-                                        category),
+                                        post, category),
                                 icon: Icon(
-                                  Icons.bookmark_border,
+                                  isBookmarked
+                                      ? Icons.bookmark
+                                      : Icons
+                                          .bookmark_border,
                                   color: AppColors.white,
                                   size: 30,
                                 )),

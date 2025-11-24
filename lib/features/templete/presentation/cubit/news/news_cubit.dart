@@ -105,17 +105,21 @@ class NewsCubit extends Cubit<NewsState> {
   }
 
   void toggleBookmark(PostEntity post, String category) {
-    final currentbookmarks =
+    final currentBookmarks =
         List<BookmarkedPost>.from(state.bookmarks ?? []);
-    if (currentbookmarks.contains(
-        BookmarkedPost(post: post, category: category))) {
-      currentbookmarks.remove(
-          BookmarkedPost(post: post, category: category));
+    final index = currentBookmarks.indexWhere(
+      (bookmark) => bookmark.post.id == post.id,
+    );
+
+    if (index != -1) {
+      currentBookmarks.removeAt(index);
     } else {
-      currentbookmarks.add(
+      currentBookmarks.add(
           BookmarkedPost(post: post, category: category));
     }
-    emit(state.copyWith(bookmarks: currentbookmarks));
-    debugPrint('heereeeeeeeeee$currentbookmarks');
+
+    emit(state.copyWith(bookmarks: currentBookmarks));
+    debugPrint(
+        'Total bookmarks: ${currentBookmarks.length}');
   }
 }
