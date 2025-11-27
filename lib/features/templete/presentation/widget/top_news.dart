@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/utility.dart';
-
 import '../../../../core/routes/app_routes.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../cubit/news/news_cubit.dart';
 import '../model/news_detail_args.dart';
 
@@ -42,6 +42,8 @@ class TopNewsSection extends StatelessWidget {
           itemCount: state.newsByDate!.length,
           itemBuilder: (context, index) {
             final post = state.newsByDate![index];
+            final isBookmarked =
+                state.isBookmarked(post.id);
             return Column(
               children: [
                 Container(
@@ -77,9 +79,7 @@ class TopNewsSection extends StatelessWidget {
                             ],
                           ),
                           child: CachedNetworkImage(
-                            imageUrl: state
-                                .newsByDate![index]
-                                .threadimageUrl
+                            imageUrl: post.threadimageUrl
                                 .toString(),
                             width: 140,
                             height: 140,
@@ -112,21 +112,41 @@ class TopNewsSection extends StatelessWidget {
                                     CrossAxisAlignment
                                         .start,
                                 children: [
-                                  Text(
-                                      maxLines: 1,
-                                      state
-                                          .newsByDate![
-                                              index]
-                                          .author,
-                                      style: AppTextStyles
-                                          .headlLineMedium),
+                                  Row(
+                                    children: [
+                                      Text(
+                                          maxLines: 1,
+                                          post.author
+                                              .split(',')
+                                              .first,
+                                          style: AppTextStyles
+                                              .headlLineMedium),
+                                      Spacer(),
+                                      IconButton(
+                                          onPressed: () => context
+                                              .read<
+                                                  NewsCubit>()
+                                              .toggleBookmark(
+                                                post,
+                                              ),
+                                          icon: Icon(
+                                            isBookmarked
+                                                ? Icons
+                                                    .bookmark
+                                                : Icons
+                                                    .bookmark_border,
+                                            color: AppColors
+                                                .purplePrimary,
+                                            size: 30,
+                                          )),
+                                    ],
+                                  ),
                                   addVertical(15),
                                   Text(
                                     maxLines: 3,
                                     overflow: TextOverflow
                                         .ellipsis,
-                                    state.newsByDate![index]
-                                        .threadtitle,
+                                    post.threadtitle,
                                     style: AppTextStyles
                                         .headlLineSmall,
                                   ),

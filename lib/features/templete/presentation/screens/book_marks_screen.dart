@@ -8,133 +8,127 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../utility.dart';
 import '../cubit/news/news_cubit.dart';
 import '../model/news_detail_args.dart';
+import '../widget/stacked_image.dart';
 
 class BookMarksScreen extends StatelessWidget {
   const BookMarksScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return const _BookmarksBody();
+  }
+}
+
+class _BookmarksBody extends StatelessWidget {
+  const _BookmarksBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          vertical: 10, horizontal: 19),
+      child: ListView(
+        children: [
+          const _BookmarksHeader(),
+          addVertical(32),
+          const _BookmarksPosts(),
+        ],
+      ),
+    );
+  }
+}
+
+class _BookmarksHeader extends StatelessWidget {
+  const _BookmarksHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Bookmarks',
+            style: AppTextStyles.headlLineLarge),
+        addVertical(8),
+        Text('Saved articles to the library',
+            style: AppTextStyles.hintTextlarge.copyWith()),
+      ],
+    );
+  }
+}
+
+class _BookmarksPosts extends StatelessWidget {
+  const _BookmarksPosts();
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        return ListView.builder(
-          // shrinkWrap: true,
-          // physics: NeverScrollableScrollPhysics(),
-          itemCount: state.bookmarks!.length,
-          itemBuilder: (context, index) {
-            final post = state.bookmarks![index].post;
-            final category =
-                state.bookmarks![index].category;
-            return Column(
-              children: [
-                InkWell(
-                  onTap: () async => await context.push(
-                      AppRoutes.newsDetails,
-                      extra: NewsDetailsArgs(
-                          post: post,
-                          category: post.categories.first)),
-                  child: Stack(
-                    children: [
-                      //! image
-                      Container(
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(15),
-                        ),
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              post.threadimageUrl ?? '',
-                          height: 272,
-                          fit: BoxFit.cover,
-                          placeholder: (_, __) => Container(
-                            height: 272,
-                            color: Colors.grey.shade300,
-                            child: const Center(
-                                child:
-                                    CircularProgressIndicator()),
-                          ),
-                          errorWidget: (
-                            context,
-                            url,
-                            error,
-                          ) =>
-                              Image.asset(
-                            'assets/images/OIP.webp',
-                            height: 272,
-                            fit: BoxFit.cover,
+        return state.bookmarks == null ||
+                state.bookmarks!.isEmpty
+            ? SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.7,
+                child: Center(
+                  child: SizedBox(
+                    width: 270,
+                    // height: 265,
+                    child: Column(
+                      mainAxisAlignment:
+                          MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 72,
+                          height: 72,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(50),
+                              color:
+                                  AppColors.purpleLighter),
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.all(20),
+                            child: Icon(
+                              Icons.library_books_outlined,
+                              color: AppColors.purpleIcons,
+                              size: 30,
+                            ),
                           ),
                         ),
-                      ),
-                      //! linear gradiant
-                      Container(
-                        height: 272,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(15),
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: const [
-                              Color.fromARGB(
-                                0,
-                                90,
-                                90,
-                                90,
-                              ),
-                              Color.fromARGB(
-                                189,
-                                0,
-                                0,
-                                0,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      //! category + title
-                      Positioned(
-                        left: 8,
-                        top: 165,
-                        child: SizedBox(
-                          width: 350,
-                          child: Column(
-                            crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                category,
-                                style: AppTextStyles
-                                    .hintTextSmall
-                                    .copyWith(
-                                  color: AppColors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              Text(
-                                maxLines: 2,
-                                overflow:
-                                    TextOverflow.ellipsis,
-                                post.threadtitle.toString(),
-                                style: AppTextStyles
-                                    .textBold
-                                    .copyWith(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                        addVertical(24),
+                        Text(
+                          textAlign: TextAlign.center,
+                          'You haven\'t saved any articles yet. Start reading and bookmarking them now',
+                          style: AppTextStyles.textMedium,
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                addVertical(20)
-              ],
-            );
-          },
-        );
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: state.bookmarks!.length,
+                itemBuilder: (context, index) {
+                  final post = state.bookmarks![index].post;
+                  final category =
+                      state.bookmarks![index].category;
+                  final isBookmarked =
+                      state.isBookmarked(post.id);
+                  return Column(
+                    children: [
+                      StackedImage(
+                        post: post,
+                        category: category,
+                        isBookmarked: isBookmarked,
+                        imageHeight: 255,
+                        textContainerWidth: 0.8,
+                      ),
+                      addVertical(20)
+                    ],
+                  );
+                },
+              );
       },
     );
   }

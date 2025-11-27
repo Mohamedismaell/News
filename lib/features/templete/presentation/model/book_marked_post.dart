@@ -2,7 +2,7 @@ import '../../domain/entities/post_entitiy.dart';
 
 class BookmarkedPost {
   final PostEntity post;
-  final String category;
+  final String? category;
   // final DateTime bookmarkedAt;
 
   const BookmarkedPost({
@@ -21,7 +21,7 @@ class BookmarkedPost {
       Map<String, dynamic> json) {
     return BookmarkedPost(
       post: json['post'] as PostEntity,
-      category: json['category'] as String,
+      category: json['category'] as String?,
       // bookmarkedAt:
       // DateTime.parse(json['bookmarkedAt'] as String),
     );

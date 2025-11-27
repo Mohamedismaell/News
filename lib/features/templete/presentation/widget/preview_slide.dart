@@ -1,12 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:news_app/core/routes/app_routes.dart';
-import 'package:news_app/core/theme/app_colors.dart';
-import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/templete/presentation/model/news_detail_args.dart';
+import 'package:news_app/features/templete/presentation/widget/stacked_image.dart';
 import '../../../../utility.dart';
 
 class PreviewSlide extends StatelessWidget {
@@ -15,170 +10,92 @@ class PreviewSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        if (state.categoryStatus == NewsStatus.loading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (state.categoryStatus == NewsStatus.error) {
-          return Center(
-            child: Text(state.errorMessage ?? 'Error'),
-          );
-        }
-        if (state.newsByCategory == null ||
-            state.newsByCategory!.isEmpty) {
-          return Center(child: Text('No news available'));
-        }
-        return SizedBox(
-          height: 256,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: state.newsByCategory!.length,
-            itemBuilder: (context, index) {
-              final category = state.selectedCategory
-                  .split(',')
-                  .first
-                  .trim();
-              final post = state.newsByCategory![index];
-              final isBookmarked =
-                  state.isBookmarked(post.id);
-              return Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: InkWell(
-                      onTap: () async {
-                        //! edit the nav with Go Router
-                        await context.push(
-                          AppRoutes.newsDetails,
-                          extra: NewsDetailsArgs(
-                              post: post,
-                              category: category),
-                        );
-                      },
-                      child: Stack(
-                        children: [
-                          //! image
-                          CachedNetworkImage(
-                            imageUrl:
-                                post.threadimageUrl ?? '',
-                            width: 330,
-                            height: 300,
-                            fit: BoxFit.cover,
-                            placeholder: (_, __) =>
-                                Container(
-                              width: 330,
-                              height: 300,
-                              color: Colors.grey.shade300,
-                              child: const Center(
-                                  child:
-                                      CircularProgressIndicator()),
-                            ),
-                            errorWidget: (
-                              context,
-                              url,
-                              error,
-                            ) =>
-                                Image.asset(
-                              'assets/images/OIP.webp',
-                              width: 330,
-                              height: 300,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          //! linear gradiant
-                          Container(
-                            width: 330,
-                            height: 300,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: const [
-                                  // Color.fromARGB(
-                                  //   0,
-                                  //   90,
-                                  //   90,
-                                  //   90,
-                                  // ),
-                                  Color.fromARGB(
-                                      18, 42, 42, 42),
-                                  Color.fromARGB(
-                                      166, 0, 0, 0),
-                                ],
-                              ),
-                            ),
-                          ),
-                          //! category + Title
-                          Positioned(
-                            right: 5,
-                            top: 5,
-                            child: IconButton(
-                                onPressed: () => context
-                                    .read<NewsCubit>()
-                                    .toggleBookmark(
-                                        post, category),
-                                icon: Icon(
-                                  isBookmarked
-                                      ? Icons.bookmark
-                                      : Icons
-                                          .bookmark_border,
-                                  color: AppColors.white,
-                                  size: 30,
-                                )),
-                          ),
-                          Positioned(
-                            left: 14,
-                            top: 165,
-                            child: SizedBox(
-                              width: 300,
-                              child: Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment
-                                        .start,
-                                children: [
-                                  Text(
-                                    category,
-                                    style: AppTextStyles
-                                        .hintTextSmall
-                                        .copyWith(
-                                      color:
-                                          AppColors.white,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  addVertical(2),
-                                  Text(
-                                    maxLines: 2,
-                                    overflow: TextOverflow
-                                        .ellipsis,
-                                    state
-                                        .newsByCategory![
-                                            index]
-                                        .threadtitle
-                                        .toString(),
-                                    style: AppTextStyles
-                                        .textBold
-                                        .copyWith(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  addHorizental(20),
-                ],
-              );
-            },
-          ),
-        );
+        return switch (state.categoryStatus) {
+          NewsStatus.loading => _LoadingState(),
+          NewsStatus.error => _ErrorState(
+              message: state.errorMessage,
+            ),
+          NewsStatus.loaded => _LoadedState(
+              state: state,
+            ),
+          _ => const SizedBox.shrink()
+        };
       },
+    );
+  }
+}
+
+class _LoadingState extends StatelessWidget {
+  const _LoadingState();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+          // height: 256,
+          child: const CircularProgressIndicator()),
+    );
+  }
+}
+
+class _ErrorState extends StatelessWidget {
+  final String? message;
+  const _ErrorState({this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 256,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.error_outline,
+                size: 48, color: Colors.red),
+            SizedBox(height: 8),
+            Text(message ?? 'Error loading news'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LoadedState extends StatelessWidget {
+  const _LoadedState({required this.state});
+  final NewsState state;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 256,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: state.newsByCategory!.length,
+        itemBuilder: (context, index) {
+          final post = state.newsByCategory![index];
+          final category = state.selectedCategory
+              .split(',')
+              .first
+              .trim();
+          final isBookmarked = state.isBookmarked(post.id);
+          return Row(
+            children: [
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: StackedImage(
+                    post: post,
+                    category: category,
+                    isBookmarked: isBookmarked,
+                    imageHeight: 330,
+                    imageWidth: 330,
+                    textContainerWidth: 0.7,
+                    // textContainerWidth: 300,
+                  )),
+              addHorizental(15),
+            ],
+          );
+        },
+      ),
     );
   }
 }

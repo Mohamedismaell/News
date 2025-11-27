@@ -104,7 +104,7 @@ class NewsCubit extends Cubit<NewsState> {
     eitherFailureOrSuccessByCategory(category);
   }
 
-  void toggleBookmark(PostEntity post, String category) {
+  void toggleBookmark(PostEntity post, {String? category}) {
     final currentBookmarks =
         List<BookmarkedPost>.from(state.bookmarks ?? []);
     final index = currentBookmarks.indexWhere(

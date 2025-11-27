@@ -6,6 +6,7 @@ import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.da
 import 'package:news_app/utility.dart';
 import '../../data/datasources/news_category.dart';
 import '../widget/preview_slide.dart';
+import '../widget/stacked_image.dart';
 import '../widget/top_news.dart';
 
 class HomeScreen extends StatelessWidget {
