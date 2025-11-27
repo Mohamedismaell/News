@@ -73,7 +73,8 @@ class _BottomBar extends StatelessWidget {
               style: AppTextStyles.textRegular
                   .copyWith(fontSize: 18),
             ),
-            addVertical(20),
+            //* Edite here
+            // addVertical(20),
             const SizedBox(height: 1000),
           ],
         ),

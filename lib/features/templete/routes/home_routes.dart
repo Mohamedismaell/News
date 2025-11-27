@@ -6,7 +6,6 @@ import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.da
 import 'package:news_app/features/templete/presentation/model/news_detail_args.dart';
 import 'package:news_app/features/templete/presentation/screens/post_details.dart';
 import '../../../core/di/service_locator.dart';
-import '../data/datasources/news_category.dart';
 import '../presentation/screens/book_marks_screen.dart';
 import '../presentation/screens/categories_screen.dart';
 import '../presentation/screens/category_screen.dart';
@@ -85,10 +84,10 @@ class HomeRoutes {
     GoRoute(
         path: AppRoutes.categoryScreen,
         builder: (context, state) {
-          final category = state.extra as NewsCategory;
+          final category = state.extra as String;
 
           return CategoryScreen(
-            category: category.value,
+            category: category,
           );
         }),
   ];

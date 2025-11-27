@@ -87,10 +87,17 @@ class _CategoriesButton extends StatelessWidget {
           childCount: NewsCategory.values.length,
           (context, index) {
             final category = NewsCategory.values[index];
+            //     !.split(',')
+            //     .first
+            //     .trim();
+
             return InkWell(
               onTap: () {
                 context.push(AppRoutes.categoryScreen,
-                    extra: category);
+                    extra: category.value
+                        .split(',')
+                        .first
+                        .trim());
               },
               child: Container(
                 alignment: Alignment.center,
