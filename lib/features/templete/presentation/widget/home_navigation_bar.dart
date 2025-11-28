@@ -9,10 +9,12 @@ class HomeNavigationBar extends StatelessWidget {
   final String currentLocation;
 
   int get _selectedIndex {
-    if (currentLocation.startsWith(AppRoutes.category))
+    if (currentLocation.startsWith(AppRoutes.category)) {
       return 1;
-    if (currentLocation.startsWith(AppRoutes.bookmarks))
+    }
+    if (currentLocation.startsWith(AppRoutes.bookmarks)) {
       return 2;
+    }
     return 0;
   }
 
