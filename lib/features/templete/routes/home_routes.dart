@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
+import 'package:news_app/features/templete/data/datasources/news_category.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/templete/presentation/model/news_detail_args.dart';
 import 'package:news_app/features/templete/presentation/screens/post_details.dart';
@@ -71,6 +72,22 @@ class HomeRoutes {
           path: AppRoutes.bookmarks,
           builder: (_, __) => const BookMarksScreen(),
         ),
+        GoRoute(
+            path: AppRoutes.categoryScreen,
+            builder: (context, state) {
+              final category = state.extra as NewsCategory;
+
+              // return CategoryScreen(
+              //   category: category,
+              // );
+
+              context
+                  .read<NewsCubit>()
+                  .eitherFailureOrSuccessByCategory(
+                      category.value);
+
+              return CategoryScreen(category: category);
+            }),
       ],
     ),
     GoRoute(
@@ -80,15 +97,6 @@ class HomeRoutes {
 
           return PostDetails(
               category: argu.category, post: argu.post);
-        }),
-    GoRoute(
-        path: AppRoutes.categoryScreen,
-        builder: (context, state) {
-          final category = state.extra as String;
-
-          return CategoryScreen(
-            category: category,
-          );
         }),
   ];
 }

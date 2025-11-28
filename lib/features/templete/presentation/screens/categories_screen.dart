@@ -94,10 +94,7 @@ class _CategoriesButton extends StatelessWidget {
             return InkWell(
               onTap: () {
                 context.push(AppRoutes.categoryScreen,
-                    extra: category.value
-                        .split(',')
-                        .first
-                        .trim());
+                    extra: category);
               },
               child: Container(
                 alignment: Alignment.center,

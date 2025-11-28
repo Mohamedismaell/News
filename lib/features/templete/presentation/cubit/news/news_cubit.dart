@@ -13,14 +13,39 @@ class NewsCubit extends Cubit<NewsState> {
   }
   final GetNewsByCategory getNews;
   bool _isloaded = false;
+  int _categoryRequestId = 0; // ✅ Track category requests
+  int _dateRequestId = 0; // ✅ Track date requests
+
   Future<void> eitherFailureOrSuccessByCategory(
     String category,
   ) async {
+    // ✅ Increment and capture current request ID
+    final requestId = ++_categoryRequestId;
+    print(
+        '🔵 Category request #$requestId started: $category');
+
+    emit(state.copyWith(
+      categoryStatus: NewsStatus.loading,
+      newsByCategory: [],
+      selectedCategory: category,
+    ));
     final response = await getNews.callNewsCategory(
       params: NewsCategoryParams(category: category),
     );
+
+    if (requestId != _categoryRequestId) {
+      print(
+          '⏭️ Ignoring outdated category request #$requestId for: $category');
+      return;
+    }
+
+    print(
+        '✅ Processing latest category request #$requestId: $category');
+
     response.when(
       success: (newsApi) {
+        if (requestId != _categoryRequestId) return;
+
         final validateNewsCategory = newsApi.where((post) {
           return post.threadimageUrl != null &&
               post.threadimageUrl!.isNotEmpty &&
@@ -77,26 +102,54 @@ class NewsCubit extends Cubit<NewsState> {
     );
   }
 
-  void init() {
-    if (_isloaded) return;
-    fetchInitial(_isloaded);
-  }
+  Future<void> init() async {
+    if (_isloaded) {
+      print('✅ Already initialized, skipping');
+      return;
+    }
 
-  Future<void> fetchInitial(bool isloaded) async {
-    if (!isloaded) {
-      emit(
-        state.copyWith(
-          categoryStatus: NewsStatus.loading,
-          dateStatus: NewsStatus.loading,
-        ),
-      );
+    print('🔄 Initializing NewsCubit...');
+    _isloaded = true;
+
+    emit(state.copyWith(
+      categoryStatus: NewsStatus.loading,
+      dateStatus: NewsStatus.loading,
+    ));
+
+    try {
       await eitherFailureOrSuccessByCategory(
-        EndPoints.defaultCategory,
-      );
+          EndPoints.defaultCategory);
       await eitherFailureOrSuccessByDate();
-      _isloaded = true;
+      print('✅ NewsCubit initialized successfully');
+    } catch (e) {
+      print('❌ NewsCubit initialization failed: $e');
+      _isloaded = false;
     }
   }
+
+  //* wait for it now
+
+  // void init() {
+  //   if (_isloaded) return;
+  //   fetchInitial(_isloaded);
+
+  // }
+
+  // Future<void> fetchInitial(bool isloaded) async {
+  //   if (!isloaded) {
+  //     emit(
+  //       state.copyWith(
+  //         categoryStatus: NewsStatus.loading,
+  //         dateStatus: NewsStatus.loading,
+  //       ),
+  //     );
+  //     await eitherFailureOrSuccessByCategory(
+  //       EndPoints.defaultCategory,
+  //     );
+  //     await eitherFailureOrSuccessByDate();
+  //     _isloaded = true;
+  //   }
+  // }
 
   void selectCategory(String category) {
     if (state.selectedCategory == category) return;

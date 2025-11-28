@@ -59,6 +59,7 @@ class _BookmarksPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
+        //TODO: Empty refactor thew state condition
         return state.bookmarks == null ||
                 state.bookmarks!.isEmpty
             ? SizedBox(

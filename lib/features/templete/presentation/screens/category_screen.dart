@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:news_app/features/templete/data/datasources/news_category.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/templete/presentation/widget/stacked_image.dart';
 import 'package:news_app/utility.dart';
@@ -8,13 +9,11 @@ import '../../../../core/theme/app_text_styles.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key, required this.category});
-  final String category;
+  final NewsCategory category;
   @override
   Widget build(BuildContext context) {
-    context
-        .read<NewsCubit>()
-        .eitherFailureOrSuccessByCategory(category);
-
+    final categoryValue =
+        category.value.split(',').first.trim();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -22,10 +21,10 @@ class CategoryScreen extends StatelessWidget {
         child: ListView(
           children: [
             _CategoryHeader(
-              category: category,
+              category: categoryValue,
             ),
             addVertical(10),
-            _Posts(category: category)
+            _Posts(category: categoryValue)
           ],
         ),
       ),
@@ -56,31 +55,33 @@ class _Posts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
-      builder: (context, state) {
-        return ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: state.newsByCategory!.length,
-          itemBuilder: (context, index) {
-            final post = state.newsByCategory![index];
-            final isBookmarked =
-                state.isBookmarked(post.id);
-            //TODO: fix diplay category from categories screen into green comment
-            return Column(
-              children: [
-                StackedImage(
-                    post: post,
-                    //* The category under ===>
-                    category: category,
-                    isBookmarked: isBookmarked,
-                    imageHeight: 260,
-                    textContainerWidth: 0.8),
-                addVertical(15)
-              ],
-            );
-          },
-        );
-      },
-    );
+        builder: (context, state) {
+      final Widget content = ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: state.newsByCategory!.length,
+        itemBuilder: (context, index) {
+          final post = state.newsByCategory![index];
+          final isBookmarked = state.isBookmarked(post.id);
+          return Column(
+            children: [
+              StackedImage(
+                  post: post,
+                  category: category,
+                  isBookmarked: isBookmarked,
+                  imageHeight: 260,
+                  textContainerWidth: 0.8),
+              addVertical(15)
+            ],
+          );
+        },
+      );
+      return switch (state.categoryStatus) {
+        NewsStatus.loading =>
+          Center(child: CircularProgressIndicator()),
+        NewsStatus.loaded => Center(child: content),
+        _ => const SizedBox.shrink()
+      };
+    });
   }
 }
