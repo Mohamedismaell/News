@@ -1,6 +1,7 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:news_app/core/theme/cubit/theme_cubit.dart';
 import 'package:news_app/features/templete/data/datasources/news_remote_data_source.dart';
 import 'package:news_app/features/templete/data/repositories/news_repository_impl.dart';
 import 'package:news_app/features/templete/domain/usecases/get_news.dart';
@@ -49,5 +50,8 @@ Future<void> initServiceLocator() async {
   //! Cubits
   sl.registerLazySingleton(
     () => NewsCubit(sl<GetNewsByCategory>()),
+  );
+  sl.registerLazySingleton(
+    () => ThemeCubit(),
   );
 }

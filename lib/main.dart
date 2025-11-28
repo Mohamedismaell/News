@@ -22,20 +22,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeState>(
-      builder: (context, state) {
-        return BlocBuilder<ThemeCubit, ThemeState>(
-          builder: (context, state) {
-            return MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              theme: getLightTheme(),
-              darkTheme: getDarkTheme(),
-              themeMode: state.themeMode,
-              routerConfig: AppRouter.router,
-            );
-          },
-        );
-      },
+    return BlocProvider(
+      create: (context) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: getLightTheme(),
+            darkTheme: getDarkTheme(),
+            themeMode: state.themeMode,
+            routerConfig: AppRouter.router,
+          );
+        },
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
+import 'package:news_app/core/theme/cubit/theme_cubit.dart';
 import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/utility.dart';
 import '../../data/datasources/news_category.dart';
@@ -52,13 +53,23 @@ class _HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Text('Browse', style: AppTextStyles.headlLineLarge),
-        addVertical(8),
-        Text('Discover thing of this world',
-            style: AppTextStyles.hintTextlarge)
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Browse',
+                style: AppTextStyles.headlLineLarge),
+            addVertical(8),
+            Text('Discover thing of this world',
+                style: AppTextStyles.hintTextlarge)
+          ],
+        ),
+        Spacer(),
+        IconButton(
+            onPressed: () =>
+                context.read<ThemeCubit>().toggleTheme(),
+            icon: Icon(Icons.wb_sunny_outlined))
       ],
     );
   }
