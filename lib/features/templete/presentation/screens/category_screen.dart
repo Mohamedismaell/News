@@ -14,19 +14,17 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoryValue =
         category.value.split(',').first.trim();
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 15, vertical: 10),
-        child: ListView(
-          children: [
-            _CategoryHeader(
-              category: categoryValue,
-            ),
-            addVertical(10),
-            _Posts(category: categoryValue)
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 15, vertical: 10),
+      child: ListView(
+        children: [
+          _CategoryHeader(
+            category: categoryValue,
+          ),
+          addVertical(10),
+          _Posts(category: categoryValue)
+        ],
       ),
     );
   }

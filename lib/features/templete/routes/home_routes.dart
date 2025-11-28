@@ -75,12 +75,8 @@ class HomeRoutes {
         GoRoute(
             path: AppRoutes.categoryScreen,
             builder: (context, state) {
+              //Todo: Edit cateogry passing type here.
               final category = state.extra as NewsCategory;
-
-              // return CategoryScreen(
-              //   category: category,
-              // );
-
               context
                   .read<NewsCubit>()
                   .eitherFailureOrSuccessByCategory(

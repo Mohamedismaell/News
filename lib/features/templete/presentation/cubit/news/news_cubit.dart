@@ -13,13 +13,12 @@ class NewsCubit extends Cubit<NewsState> {
   }
   final GetNewsByCategory getNews;
   bool _isloaded = false;
-  int _categoryRequestId = 0; // ✅ Track category requests
-  int _dateRequestId = 0; // ✅ Track date requests
+  int _categoryRequestId = 0;
+  // int _dateRequestId = 0;
 
   Future<void> eitherFailureOrSuccessByCategory(
     String category,
   ) async {
-    // ✅ Increment and capture current request ID
     final requestId = ++_categoryRequestId;
     print(
         '🔵 Category request #$requestId started: $category');
@@ -104,11 +103,11 @@ class NewsCubit extends Cubit<NewsState> {
 
   Future<void> init() async {
     if (_isloaded) {
-      print('✅ Already initialized, skipping');
+      print('Already initialized, skipping');
       return;
     }
 
-    print('🔄 Initializing NewsCubit...');
+    print(' Initializing NewsCubit...');
     _isloaded = true;
 
     emit(state.copyWith(
@@ -120,9 +119,9 @@ class NewsCubit extends Cubit<NewsState> {
       await eitherFailureOrSuccessByCategory(
           EndPoints.defaultCategory);
       await eitherFailureOrSuccessByDate();
-      print('✅ NewsCubit initialized successfully');
+      print('NewsCubit initialized successfully');
     } catch (e) {
-      print('❌ NewsCubit initialization failed: $e');
+      print(' NewsCubit initialization failed: $e');
       _isloaded = false;
     }
   }

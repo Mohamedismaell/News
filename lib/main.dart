@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/observers/app_bloc_observer.dart';
 import 'core/di/service_locator.dart';
 import 'core/routes/app_router.dart';
+import 'core/theme/cubit/theme_cubit.dart';
+import 'core/theme/theme_data/dark_theme_data.dart';
 import 'core/theme/theme_data/light_theme_data.dart';
 
 void main() async {
@@ -20,10 +22,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: getLightTheme(),
-      routerConfig: AppRouter.router,
+    return BlocBuilder<ThemeCubit, ThemeState>(
+      builder: (context, state) {
+        return BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              theme: getLightTheme(),
+              darkTheme: getDarkTheme(),
+              themeMode: state.themeMode,
+              routerConfig: AppRouter.router,
+            );
+          },
+        );
+      },
     );
   }
 }
