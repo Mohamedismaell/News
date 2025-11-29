@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/features/templete/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/templete/presentation/widget/stacked_image.dart';
+import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
+import 'package:news_app/features/get_news/presentation/widget/stacked_image.dart';
 import '../../../../utility.dart';
 
 class PreviewSlide extends StatelessWidget {

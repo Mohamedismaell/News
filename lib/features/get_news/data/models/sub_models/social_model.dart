@@ -1,5 +1,5 @@
-import 'package:news_app/features/templete/data/models/sub_models/facebook_model.dart';
-import 'package:news_app/features/templete/data/models/sub_models/vk_model.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/facebook_model.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/vk_model.dart';
 
 class SocialModel {
   final String? updated;

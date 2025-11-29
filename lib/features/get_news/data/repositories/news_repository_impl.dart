@@ -1,5 +1,5 @@
 import 'package:news_app/core/connections/result.dart';
-import 'package:news_app/features/templete/domain/entities/post_entitiy.dart';
+import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
 import '../../../../core/connections/network_info.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';

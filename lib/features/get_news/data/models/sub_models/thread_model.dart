@@ -1,4 +1,4 @@
-import 'package:news_app/features/templete/data/models/sub_models/social_model.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/social_model.dart';
 import '../../../../../core/database/api/end_points.dart';
 
 class ThreadModel {

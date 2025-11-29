@@ -1,4 +1,4 @@
-import '../../domain/entities/post_entitiy.dart';
+import '../../../get_news/domain/entities/post_entitiy.dart';
 
 class BookmarkedPost {
   final PostEntity post;

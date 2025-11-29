@@ -1,4 +1,4 @@
-import 'package:news_app/features/templete/data/models/sub_models/posts_model.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/posts_model.dart';
 
 class NewsModel {
   final List<PostsModel>? posts;
@@ -25,10 +25,10 @@ class NewsModel {
           ? List<PostsModel>.from(
               (json['posts'] as List<dynamic>)
                   .map<PostsModel?>(
-                    (post) => PostsModel.fromJson(
-                      post as Map<String, dynamic>,
-                    ),
-                  ),
+                (post) => PostsModel.fromJson(
+                  post as Map<String, dynamic>,
+                ),
+              ),
             )
           : null,
 
@@ -52,5 +52,5 @@ class NewsModel {
     );
   }
 
-  copyWith({required List<PostsModel> posts}) {}
+  void copyWith({required List<PostsModel> posts}) {}
 }

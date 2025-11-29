@@ -2,12 +2,12 @@ import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:news_app/core/theme/cubit/theme_cubit.dart';
-import 'package:news_app/features/templete/data/datasources/news_remote_data_source.dart';
-import 'package:news_app/features/templete/data/repositories/news_repository_impl.dart';
-import 'package:news_app/features/templete/domain/usecases/get_news.dart';
+import 'package:news_app/features/get_news/data/datasources/news_remote_data_source.dart';
+import 'package:news_app/features/get_news/data/repositories/news_repository_impl.dart';
+import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
 
-import '../../features/templete/domain/repositories/news_repository.dart';
-import '../../features/templete/presentation/cubit/news/news_cubit.dart';
+import '../../features/get_news/domain/repositories/news_repository.dart';
+import '../../features/get_news/presentation/cubit/news/news_cubit.dart';
 import '../connections/network_info.dart';
 import '../database/api/dio_consumer.dart';
 import '../database/cache/cache_helper.dart';

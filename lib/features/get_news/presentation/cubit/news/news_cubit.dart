@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/params/params.dart';
-import 'package:news_app/features/templete/domain/usecases/get_news.dart';
+import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
 import '../../../domain/entities/post_entitiy.dart';
-import '../../model/Book_marked_post.dart';
+import '../../model/book_marked_post.dart';
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {

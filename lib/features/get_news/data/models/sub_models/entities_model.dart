@@ -1,6 +1,6 @@
-import 'package:news_app/features/templete/data/models/sub_models/locations.dart';
-import 'package:news_app/features/templete/data/models/sub_models/organizations.dart';
-import 'package:news_app/features/templete/data/models/sub_models/persons.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/locations.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/organizations.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/persons.dart';
 
 class EntitiesModel {
   final List<Persons> persons;
@@ -15,15 +15,12 @@ class EntitiesModel {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'persons': persons
-          .map((person) => person.toJson())
-          .toList(),
-      'organizations': organizations
-          .map((x) => x.toJson())
-          .toList(),
-      'locations': locations
-          .map((x) => x.toJson())
-          .toList(),
+      'persons':
+          persons.map((person) => person.toJson()).toList(),
+      'organizations':
+          organizations.map((x) => x.toJson()).toList(),
+      'locations':
+          locations.map((x) => x.toJson()).toList(),
     };
   }
 

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
-import 'package:news_app/features/templete/data/datasources/news_category.dart';
+import 'package:news_app/features/get_news/data/datasources/news_category.dart';
 import 'package:news_app/utility.dart';
 
 class CategoriesScreen extends StatelessWidget {

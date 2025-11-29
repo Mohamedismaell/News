@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
-import 'package:news_app/features/templete/presentation/widget/post_details_appbar.dart';
+import 'package:news_app/features/get_news/presentation/widget/post_details_appbar.dart';
 import 'package:news_app/utility.dart';
 import '../../domain/entities/post_entitiy.dart';
 

@@ -1,9 +1,8 @@
-import 'package:news_app/features/templete/data/models/sub_models/entities_model.dart';
-import 'package:news_app/features/templete/data/models/sub_models/thread_model.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/entities_model.dart';
+import 'package:news_app/features/get_news/data/models/sub_models/thread_model.dart';
 import '../../../domain/entities/post_entitiy.dart';
 
 class PostsModel extends PostEntity {
-  
   final ThreadModel? thread;
   final String? uuid;
   final String? url;
@@ -110,8 +109,8 @@ class PostsModel extends PostEntity {
           : null,
       highlightThreadTitle:
           json['highlightThreadTitle'] != null
-          ? json['highlightThreadTitle'] as String
-          : null,
+              ? json['highlightThreadTitle'] as String
+              : null,
       language: json['language'] != null
           ? json['language'] as String
           : null,
@@ -146,9 +145,8 @@ class PostsModel extends PostEntity {
       author: json['author'] != null
           ? json['author'] as String
           : '',
-      thereadurl: json['url'] != null
-          ? json['url'] as String
-          : '',
+      thereadurl:
+          json['url'] != null ? json['url'] as String : '',
       threadtitle: json['thread']['title'] != null
           ? json['title'] as String
           : '',
