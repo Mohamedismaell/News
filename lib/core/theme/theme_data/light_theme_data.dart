@@ -9,18 +9,13 @@ ThemeData getLightTheme() {
       navigationBarTheme: NavigationBarThemeData(
           backgroundColor: Colors.white,
           indicatorColor: Colors.transparent,
-          iconTheme:
-              WidgetStateProperty.resolveWith((states) {
-            return states.contains(WidgetState.selected)
-                ? IconThemeData(
-                    color: AppColors.purplePrimary,
-                    size: 28,
-                  )
-                : IconThemeData(
-                    color: AppColors.greyPrimary,
-                    size: 28,
-                  );
-          })));
+          iconTheme: WidgetStateProperty.resolveWith(
+              (states) => IconThemeData(
+                  size: 28,
+                  color:
+                      states.contains(WidgetState.selected)
+                          ? AppColors.purplePrimary
+                          : AppColors.greyPrimary))));
 }
 
 // extension ShortTheme on BuildContext {

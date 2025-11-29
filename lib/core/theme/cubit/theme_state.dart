@@ -5,5 +5,6 @@ class ThemeState {
 
   const ThemeState({required this.themeMode});
 
-  // bool get isDark => themeMode == ThemeMode.dark;
+  bool get isDark => themeMode == ThemeMode.dark;
+  bool get isLight => themeMode == ThemeMode.light;
 }

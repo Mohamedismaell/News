@@ -3,18 +3,36 @@ import 'package:flutter/material.dart';
 import '../app_colors.dart';
 
 class CustomColors {
-  CustomColor._();
   final Color secondaryColor;
-
-  const CustomColors._({required this.secondaryColor});
+  final Color buttonSelected;
+  final Color buttonUnselected;
+  final Color buttonTextSelected;
+  final Color buttonTextUnselected;
+  const CustomColors._({
+    required this.secondaryColor,
+    required this.buttonSelected,
+    required this.buttonUnselected,
+    required this.buttonTextSelected,
+    required this.buttonTextUnselected,
+  });
 
   factory CustomColors._light() {
     return const CustomColors._(
-        secondaryColor: AppColors.blackDarker);
+        secondaryColor: AppColors.blackDarker,
+        buttonSelected: AppColors.purplePrimary,
+        buttonUnselected: AppColors.greyLighter,
+        buttonTextSelected: Colors.white,
+        buttonTextUnselected: AppColors.greyPrimary);
   }
+
   factory CustomColors._dark() {
     return const CustomColors._(
-        secondaryColor: AppColors.greyLighter);
+        secondaryColor: AppColors.greyLighter,
+        buttonSelected: Color(
+            0xFF6C7FFF), // Lighter purple for dark mode
+        buttonUnselected: Color(0xFF2A2A2A), // Dark grey
+        buttonTextSelected: Colors.white,
+        buttonTextUnselected: Color(0xFFB0B0B0));
   }
 }
 

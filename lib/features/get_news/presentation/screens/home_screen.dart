@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/core/theme/cubit/theme_cubit.dart';
-import 'package:news_app/core/theme/extensions/custom_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/utility.dart';
@@ -67,7 +66,10 @@ class _HomeHeader extends StatelessWidget {
                             .customColors.secondaryColor)),
             addVertical(8),
             Text('Discover thing of this world',
-                style: AppTextStyles.hintTextlarge)
+                style: AppTextStyles.hintTextlarge.copyWith(
+                    // color: context
+                    //     .customColors.secondaryColor)
+                    ))
           ],
         ),
         Spacer(),
@@ -147,8 +149,10 @@ class _CategoryButton extends StatelessWidget {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: isSelected
-                            ? AppColors.purplePrimary
-                            : AppColors.greyLighter,
+                            ? context
+                                .customColors.buttonSelected
+                            : context.customColors
+                                .buttonUnselected,
                       ),
                       onPressed: () => context
                           .read<NewsCubit>()
@@ -182,13 +186,16 @@ class _TopNews extends StatelessWidget {
       children: [
         Expanded(
           child: Text('Top News',
-              style: AppTextStyles.headlLineLarge),
+              style: AppTextStyles.headlLineLarge.copyWith(
+                  color:
+                      context.customColors.secondaryColor)),
         ),
         TextButton(
           onPressed: () {},
           child: Text(
             'See All',
-            style: AppTextStyles.hintTextlarge,
+            style: AppTextStyles.hintTextlarge.copyWith(
+                color: context.customColors.secondaryColor),
           ),
         ),
       ],
