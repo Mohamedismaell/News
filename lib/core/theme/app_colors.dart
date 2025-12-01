@@ -11,7 +11,7 @@ class AppColors {
   static const Color blackPrimary = Color(0xFF333647);
   static const Color blackLight = Color(0xFF44485F);
   static const Color blackLighter = Color(0xFF555A77);
-
+  
   static const Color greyDarker = Color(0xFF666C8E);
   static const Color greyLightDark = Color(0xFF7C81A1);
   static const Color greyPrimary = Color(0xFF7C82A1);
@@ -20,3 +20,7 @@ class AppColors {
 
   static const Color white = Color(0xFFFFFFFF);
 }
+//  buttonSelected: Color(0xFF6C7FFF), // Lighter purple for dark mode
+//       buttonUnselected: Color(0xFF2A2A2A), // Dark grey
+//       buttonTextSelected: Colors.white,
+//       buttonTextUnselected: Color(0xFFB0B0B0), 

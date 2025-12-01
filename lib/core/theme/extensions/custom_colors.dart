@@ -29,8 +29,8 @@ class CustomColors {
     return const CustomColors._(
         secondaryColor: AppColors.greyLighter,
         buttonSelected: Color(
-            0xFF6C7FFF), // Lighter purple for dark mode
-        buttonUnselected: Color(0xFF2A2A2A), // Dark grey
+            0xFF6C7FFF),
+        buttonUnselected: Color(0xFF2A2A2A), 
         buttonTextSelected: Colors.white,
         buttonTextUnselected: Color(0xFFB0B0B0));
   }
