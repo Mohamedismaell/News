@@ -50,16 +50,16 @@ lib/
 
 <p align="center">
 
-<img width="250" height="500" alt="Screenshot_1764635341" src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" />
-<img width="250" height="500" alt="Screenshot_1764623644" src="https://github.com/user-attachments/assets/c24b3663-e197-4b94-930d-046e973e93be" />
-<img width="250" height="500" alt="Screenshot_1764635382" src="https://github.com/user-attachments/assets/c9696062-3730-4cb6-abc2-f019bf52ed82" />
-
+<img width="250" height="200" alt="Screenshot_1764635341" src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" />
+<img width="250" height="200" alt="Screenshot_1764623644" src="https://github.com/user-attachments/assets/c24b3663-e197-4b94-930d-046e973e93be" />
+<img width="250" height="200" alt="Screenshot_1764635382" src="https://github.com/user-attachments/assets/c9696062-3730-4cb6-abc2-f019bf52ed82" />
+<img width="250" height="200" alt="Screenshot_1764635397" src="https://github.com/user-attachments/assets/a802938c-f8a8-44b4-ab34-a498d1d182b1" />
+<img width="250" height="200" alt="Screenshot_1764635322" src="https://github.com/user-attachments/assets/f4a297e1-5c33-4de3-b2ce-0715709880ff" />
+<img width="250" height="200" alt="Screenshot_1764635388" src="https://github.com/user-attachments/assets/eca9b636-2fcc-4de9-8ec4-564eb052d458" />
 
   
 </p>
-<img width="250" height="500" alt="Screenshot_1764635397" src="https://github.com/user-attachments/assets/a802938c-f8a8-44b4-ab34-a498d1d182b1" />
-<img width="250" height="500" alt="Screenshot_1764635322" src="https://github.com/user-attachments/assets/f4a297e1-5c33-4de3-b2ce-0715709880ff" />
-<img width="250" height="500" alt="Screenshot_1764635388" src="https://github.com/user-attachments/assets/eca9b636-2fcc-4de9-8ec4-564eb052d458" />
+
 
 ## 🌐 API Source
 
