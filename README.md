@@ -91,8 +91,8 @@ lib/
 
 This application uses the **NewsAPI**:
 
-- API: [https://newsapi.org](https://newsapi.org)
-- Endpoint: `/v2/top-headlines`
+- API: [https://newsapi.org](https://api.webz.io/)
+- Endpoint: `newsApiLite`
 - You need an API key to fetch news articles.
 
 ## 🚀 Getting Started
@@ -138,7 +138,7 @@ flutter test
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 1.  Fork the project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+2.  Create your Feature Branch 
+3.  Commit your changes
+4.  Push to the Branch 
 5.  Open a Pull Request
