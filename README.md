@@ -57,43 +57,23 @@ lib/
 </thead>
 <tbody>
 <tr>
-<td> target="_blank" rel="Screenshot_1764635341" <img src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" width="300" style="max-width: 100%;"></td>
-<td><a target="_blank" rel="noopener noreferrer" <img src="https://github.com/user-attachments/assets/c24b3663-e197-4b94-930d-046e973e93be" width="300" style="max-width: 100%;"></a></td>
+<td> <img src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" width="300" style="max-width: 100%;"></td>
+<td> <img src="https://github.com/user-attachments/assets/c24b3663-e197-4b94-930d-046e973e93be" width="300" style="max-width: 100%;"></td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener noreferrer" <img src="https://github.com/user-attachments/assets/c9696062-3730-4cb6-abc2-f019bf52ed82" width="300" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" <img src="https://github.com/user-attachments/assets/a802938c-f8a8-44b4-ab34-a498d1d182b1" width="300" style="max-width: 100%;"></a></td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/5.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/5.png" width="300" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/6.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/6.png" width="300" style="max-width: 100%;"></a></td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/7.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/7.png" width="300" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/8.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/8.png" width="300" style="max-width: 100%;"></a></td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/9.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/9.png" width="300" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/10.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/10.png" width="300" style="max-width: 100%;"></a></td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/11.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/11.png" width="300" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/12.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/12.png" width="300" style="max-width: 100%;"></a></td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/13.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/13.png" width="300" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="/JideGuru/FlutterEbookApp/blob/master/ss/14.png"><img src="/JideGuru/FlutterEbookApp/raw/master/ss/14.png" width="300" style="max-width: 100%;"></a></td>
+<td><img src="https://github.com/user-attachments/assets/c9696062-3730-4cb6-abc2-f019bf52ed82" width="300" style="max-width: 100%;"></td>
+<td><img src="https://github.com/user-attachments/assets/a802938c-f8a8-44b4-ab34-a498d1d182b1" width="300" style="max-width: 100%;"></td>
 </tr>
 </tbody>
 </table></markdown-accessiblity-table>
-<p align="center">
+<!-- <p align="center">
 
 <img width="250" height="200" alt="Screenshot_1764635341" src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" />
 <img width="250" height="200" alt="Screenshot_1764623644" src="https://github.com/user-attachments/assets/c24b3663-e197-4b94-930d-046e973e93be" />
 <img width="250" height="200" alt="Screenshot_1764635382" src="https://github.com/user-attachments/assets/c9696062-3730-4cb6-abc2-f019bf52ed82" />
 <img width="250" height="200" alt="Screenshot_1764635397" src="https://github.com/user-attachments/assets/a802938c-f8a8-44b4-ab34-a498d1d182b1" />
 <img width="250" height="200" alt="Screenshot_1764635322" src="https://github.com/user-attachments/assets/f4a297e1-5c33-4de3-b2ce-0715709880ff" />
-<img width="250" height="200" alt="Screenshot_1764635388" src="https://github.com/user-attachments/assets/eca9b636-2fcc-4de9-8ec4-564eb052d458" />
+<img width="250" height="200" alt="Screenshot_1764635388" src="https://github.com/user-attachments/assets/eca9b636-2fcc-4de9-8ec4-564eb052d458" /> -->
 
   
 </p>
