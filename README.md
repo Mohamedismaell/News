@@ -57,7 +57,7 @@ lib/
 </thead>
 <tbody>
 <tr>
-<td><a target="_blank" rel="Screenshot_1764635341" <img src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" width="300" style="max-width: 100%;"></a></td>
+<td> target="_blank" rel="Screenshot_1764635341" <img src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" width="300" style="max-width: 100%;"></td>
 <td><a target="_blank" rel="noopener noreferrer" <img src="https://github.com/user-attachments/assets/c24b3663-e197-4b94-930d-046e973e93be" width="300" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
