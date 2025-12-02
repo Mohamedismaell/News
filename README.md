@@ -1,4 +1,4 @@
-<img width="1344" height="2992" alt="Screenshot_1764635341" src="https://github.com/user-attachments/assets/a502b86f-e097-433b-b528-b72fd8f8efe1" /><img width="1344" height="2992" alt="Screenshot_1764623644" src="https://github.com/user-attachments/assets/a27a3494-d582-46bd-992a-c2e0f3fd152c" /># 📰 News App
+# 📰 News App
 
 A modern, feature-rich News Application built with Flutter, designed to keep you updated with the latest headlines from around the world.
 
@@ -9,7 +9,7 @@ A modern, feature-rich News Application built with Flutter, designed to keep you
 - **Offline Support**: Cache news for offline reading.
 - **Search**: Search for specific news articles.
 - **Dark/Light Mode**: Seamless theme switching.
-- **Responsive Design**: <img width="1344" height="2992" alt="Screenshot_1764635323" src="https://github.com/user-attachments/assets/2774982b-7892-43bc-84a5-9423e08d8726" />
+- **Responsive Design**:
 Optimized for various screen sizes.
 
 ## 🛠️ Tech Stack
@@ -57,7 +57,7 @@ lib/
 </thead>
 <tbody>
 <tr>
-<td><a target="_blank" rel="noopener noreferrer" <img src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" width="300" style="max-width: 100%;"></a></td>
+<td><a target="_blank" rel="Screenshot_1764635341" <img src="https://github.com/user-attachments/assets/62e59a12-6759-4fdf-a1f5-b4f90e2162c8" width="300" style="max-width: 100%;"></a></td>
 <td><a target="_blank" rel="noopener noreferrer" <img src="https://github.com/user-attachments/assets/c24b3663-e197-4b94-930d-046e973e93be" width="300" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
