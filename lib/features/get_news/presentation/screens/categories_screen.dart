@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
+import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/get_news/data/datasources/news_category.dart';
 import 'package:news_app/utility.dart';
 
@@ -54,7 +55,8 @@ class _CategoryHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Categories',
-                style: AppTextStyles.headlLineLarge),
+                style: AppTextStyles.headlLineLarge
+                    .copyWith(color: context.customColors.secondaryColor)),
             addVertical(8),
             Text('Thousands of articles in each category',
                 style: AppTextStyles.hintTextlarge),
@@ -76,8 +78,7 @@ class _CategoriesButton extends StatelessWidget {
         horizontal: 16,
       ),
       sliver: SliverGrid(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
@@ -93,8 +94,7 @@ class _CategoriesButton extends StatelessWidget {
 
             return InkWell(
               onTap: () {
-                context.push(AppRoutes.categoryScreen,
-                    extra: category);
+                context.push(AppRoutes.categoryScreen, extra: category);
               },
               child: Container(
                 alignment: Alignment.center,
@@ -110,8 +110,7 @@ class _CategoriesButton extends StatelessWidget {
                   child: Text(
                     textAlign: TextAlign.center,
                     '${category.emoji} ${category.value.split(',').first.trim()}',
-                    style:
-                        AppTextStyles.textSemibold.copyWith(
+                    style: AppTextStyles.textSemibold.copyWith(
                       color: AppColors.greyDarker,
                     ),
                   ),

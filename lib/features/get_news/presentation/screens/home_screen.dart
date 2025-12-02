@@ -61,9 +61,7 @@ class _HomeHeader extends StatelessWidget {
           children: [
             Text('Browse',
                 style: AppTextStyles.headlLineLarge
-                    .copyWith(
-                        color: context
-                            .customColors.secondaryColor)),
+                    .copyWith(color: context.customColors.secondaryColor)),
             addVertical(8),
             Text('Discover thing of this world',
                 style: AppTextStyles.hintTextlarge.copyWith(
@@ -74,8 +72,7 @@ class _HomeHeader extends StatelessWidget {
         ),
         Spacer(),
         IconButton(
-            onPressed: () =>
-                context.read<ThemeCubit>().toggleTheme(),
+            onPressed: () => context.read<ThemeCubit>().toggleTheme(),
             icon: Icon(Icons.wb_sunny_outlined))
       ],
     );
@@ -92,7 +89,7 @@ class _BarSearch extends StatelessWidget {
       height: 66,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: AppColors.greyLighter,
+        color: context.customColors.searchBarUnseected,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -110,8 +107,7 @@ class _BarSearch extends StatelessWidget {
                 hintStyle: AppTextStyles.textMedium
                     .copyWith(color: AppColors.greyPrimary),
                 border: InputBorder.none,
-                isCollapsed:
-                    true, // removes default vertical padding
+                isCollapsed: true, // removes default vertical padding
               ),
               // style: context.text.headlineLarge,
             ),
@@ -140,8 +136,7 @@ class _CategoryButton extends StatelessWidget {
             children: NewsCategory.values.map((
               category,
             ) {
-              final isSelected =
-                  state.selectedCategory == category.value;
+              final isSelected = state.selectedCategory == category.value;
               return Padding(
                   padding: const EdgeInsets.only(
                     right: 15,
@@ -149,21 +144,15 @@ class _CategoryButton extends StatelessWidget {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: isSelected
-                            ? context
-                                .customColors.buttonSelected
-                            : context.customColors
-                                .buttonUnselected,
+                            ? context.customColors.buttonSelected
+                            : context.customColors.buttonUnselected,
                       ),
                       onPressed: () => context
                           .read<NewsCubit>()
                           .selectCategory(category.value),
                       child: Text(
-                        category.value
-                            .split(',')
-                            .first
-                            .trim(),
-                        style: AppTextStyles.textSemibold
-                            .copyWith(
+                        category.value.split(',').first.trim(),
+                        style: AppTextStyles.textSemibold.copyWith(
                           color: isSelected
                               ? AppColors.white
                               : AppColors.greyPrimary,
@@ -186,16 +175,15 @@ class _TopNews extends StatelessWidget {
       children: [
         Expanded(
           child: Text('Top News',
-              style: AppTextStyles.headlLineLarge.copyWith(
-                  color:
-                      context.customColors.secondaryColor)),
+              style: AppTextStyles.headlLineLarge
+                  .copyWith(color: context.customColors.secondaryColor)),
         ),
         TextButton(
           onPressed: () {},
           child: Text(
             'See All',
-            style: AppTextStyles.hintTextlarge.copyWith(
-                color: context.customColors.secondaryColor),
+            style: AppTextStyles.hintTextlarge
+                .copyWith(color: context.customColors.secondaryColor),
           ),
         ),
       ],

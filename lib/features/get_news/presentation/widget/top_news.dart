@@ -31,8 +31,7 @@ class TopNewsSection extends StatelessWidget {
             child: Text(state.errorMessage ?? 'Error'),
           );
         }
-        if (state.newsByDate == null ||
-            state.newsByDate!.isEmpty) {
+        if (state.newsByDate == null || state.newsByDate!.isEmpty) {
           return Center(child: Text('No news available'));
         }
         return ListView.builder(
@@ -41,45 +40,38 @@ class TopNewsSection extends StatelessWidget {
           itemCount: state.newsByDate!.length,
           itemBuilder: (context, index) {
             final post = state.newsByDate![index];
-            final isBookmarked =
-                state.isBookmarked(post.id);
+            final isBookmarked = state.isBookmarked(post.id);
             return Column(
               children: [
                 InkWell(
                   onTap: () async => await context.push(
                     AppRoutes.newsDetails,
                     extra: NewsDetailsArgs(
-                        post: post,
-                        category: post.categories.first),
+                        post: post, category: post.categories.first),
                   ),
                   child: Row(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black
-                                  .withOpacity(0.1),
+                              color: Colors.black.withOpacity(0.1),
                               blurRadius: 10,
                               offset: Offset(0, 4),
                             ),
                           ],
                         ),
                         child: CachedNetworkImage(
-                          imageUrl: post.threadimageUrl
-                              .toString(),
+                          imageUrl: post.threadimageUrl.toString(),
                           width: 140,
                           height: 140,
                           fit: BoxFit.cover,
                           placeholder: (context, url) =>
                               CircularProgressIndicator(),
-                          errorWidget:
-                              (context, url, error) {
+                          errorWidget: (context, url, error) {
                             return Image.asset(
                               'assets/images/OIP.webp',
                               width: 160,
@@ -92,64 +84,55 @@ class TopNewsSection extends StatelessWidget {
                       addHorizental(15),
                       Expanded(
                         child: Padding(
-                          padding:
-                              const EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             vertical: 10,
                           ),
                           child: SizedBox(
-                            child: Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                        maxLines: 1,
-                                        post.author
-                                            .split(',')
-                                            .first,
-                                        style: AppTextStyles
-                                            .headlLineMedium
-                                            .copyWith(
-                                                color: context
-                                                    .customColors
-                                                    .secondaryColor)),
-                                    Spacer(),
-                                    IconButton(
-                                        onPressed: () => context
-                                            .read<
-                                                NewsCubit>()
-                                            .toggleBookmark(
-                                              post,
-                                            ),
-                                        icon: Icon(
-                                          isBookmarked
-                                              ? Icons
-                                                  .bookmark
-                                              : Icons
-                                                  .bookmark_border,
-                                          color: AppColors
-                                              .purplePrimary,
-                                          size: 30,
-                                        )),
-                                  ],
-                                ),
-                                addVertical(15),
-                                Text(
-                                  maxLines: 3,
-                                  overflow:
-                                      TextOverflow.ellipsis,
-                                  post.threadtitle,
-                                  style: AppTextStyles
-                                      .headlLineSmall
-                                      .copyWith(
-                                          color: context
-                                              .customColors
-                                              .secondaryColor),
-                                ),
-                              ],
+                            child: Builder(
+                              builder: (context) => Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      //* Author
+                                      Text(
+                                          maxLines: 1,
+                                          post.author.split(',').first,
+                                          style: AppTextStyles.headlLineMedium
+                                              .copyWith(
+                                                  color: context.customColors
+                                                      .secondaryColor)),
+                                      Spacer(),
+                                      //* Saved icon
+                                      IconButton(
+                                          onPressed: () => context
+                                              .read<NewsCubit>()
+                                              .toggleBookmark(
+                                                post,
+                                              ),
+                                          icon: Icon(
+                                            isBookmarked
+                                                ? Icons.bookmark
+                                                : Icons.bookmark_border,
+                                            color: AppColors.purplePrimary,
+                                            size: 30,
+                                          )),
+                                    ],
+                                  ),
+                                  addVertical(15),
+                                  //
+                                  Text(
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                    post.threadtitle,
+                                    style: AppTextStyles.headlLineSmall
+                                        .copyWith(
+                                            color: context
+                                                .customColors.secondaryColor),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
