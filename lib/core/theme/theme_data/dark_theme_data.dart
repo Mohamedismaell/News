@@ -5,7 +5,7 @@ ThemeData getDarkTheme() {
   return ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: const Color(0xFF1A1A1A),
+    scaffoldBackgroundColor: AppColors.backGroundDark,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.purplePrimary,

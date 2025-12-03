@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
+import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/utility.dart';
 
 class PostDetailsAppbar extends StatelessWidget {
@@ -87,15 +88,13 @@ class PostDetailsAppbar extends StatelessWidget {
               left: 15,
               bottom: 60,
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ElevatedButton(
                     onPressed: () {},
                     child: Text(
                       category,
-                      style: AppTextStyles.textSemibold
-                          .copyWith(
+                      style: AppTextStyles.textSemibold.copyWith(
                         color: AppColors.white,
                       ),
                     ),
@@ -104,8 +103,7 @@ class PostDetailsAppbar extends StatelessWidget {
                   Text(
                     author,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.headlLineMedium
-                        .copyWith(
+                    style: AppTextStyles.headlLineMedium.copyWith(
                       color: AppColors.white,
                     ),
                   ),
@@ -121,8 +119,8 @@ class PostDetailsAppbar extends StatelessWidget {
         child: Container(
           height: 30,
           alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            color: Colors.white,
+          decoration: BoxDecoration(
+            color: context.customColors.bottomAppbar,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(32.0),
               topRight: Radius.circular(32.0),

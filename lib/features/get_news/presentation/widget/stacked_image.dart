@@ -28,10 +28,8 @@ class StackedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async => await context.push(
-          AppRoutes.newsDetails,
-          extra: NewsDetailsArgs(
-              post: post, category: post.categories.first)),
+      onTap: () async => await context.push(AppRoutes.newsDetails,
+          extra: NewsDetailsArgs(post: post, category: post.categories.first)),
       child: Stack(
         children: [
           //! image
@@ -49,8 +47,7 @@ class StackedImage extends StatelessWidget {
                 height: imageHeight,
                 width: imageWidth,
                 color: Colors.grey.shade300,
-                child: const Center(
-                    child: CircularProgressIndicator()),
+                child: const Center(child: CircularProgressIndicator()),
               ),
               errorWidget: (
                 context,
@@ -98,12 +95,9 @@ class StackedImage extends StatelessWidget {
             child: IconButton(
                 onPressed: () => context
                     .read<NewsCubit>()
-                    .toggleBookmark(post,
-                        category: category),
+                    .toggleBookmark(post, category: category),
                 icon: Icon(
-                  isBookmarked
-                      ? Icons.bookmark
-                      : Icons.bookmark_border,
+                  isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                   color: AppColors.white,
                   size: 30,
                 )),
@@ -113,16 +107,13 @@ class StackedImage extends StatelessWidget {
             left: 10,
             top: 155,
             child: SizedBox(
-              width: MediaQuery.of(context).size.width *
-                  textContainerWidth,
+              width: MediaQuery.of(context).size.width * textContainerWidth,
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     category ?? post.categories.first,
-                    style: AppTextStyles.hintTextSmall
-                        .copyWith(
+                    style: AppTextStyles.hintTextSmall.copyWith(
                       color: AppColors.white,
                       fontSize: 20,
                     ),
