@@ -4,12 +4,11 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/routes/app_routes.dart';
 
 class HomeNavigationBar extends StatelessWidget {
-  const HomeNavigationBar(
-      {super.key, required this.currentLocation});
+  const HomeNavigationBar({super.key, required this.currentLocation});
   final String currentLocation;
 
   int get _selectedIndex {
-    if (currentLocation.startsWith(AppRoutes.category)) {
+    if (currentLocation.startsWith(AppRoutes.categories)) {
       return 1;
     }
     if (currentLocation.startsWith(AppRoutes.bookmarks)) {
@@ -29,7 +28,7 @@ class HomeNavigationBar extends StatelessWidget {
             context.go(AppRoutes.home);
             break;
           case 1:
-            context.go(AppRoutes.category);
+            context.go(AppRoutes.categories);
             break;
           case 2:
             context.go(AppRoutes.bookmarks);

@@ -21,8 +21,8 @@ class HomeRoutes {
           value: sl<NewsCubit>()..init(),
           child: Scaffold(
               body: child,
-              bottomNavigationBar: HomeNavigationBar(
-                  currentLocation: state.matchedLocation)),
+              bottomNavigationBar:
+                  HomeNavigationBar(currentLocation: state.matchedLocation)),
         );
       },
       routes: [
@@ -31,7 +31,7 @@ class HomeRoutes {
           builder: (_, __) => const HomeScreen(),
         ),
         GoRoute(
-          path: AppRoutes.category,
+          path: AppRoutes.categories,
           builder: (_, __) => const CategoriesScreen(),
         ),
         GoRoute(
@@ -45,8 +45,7 @@ class HomeRoutes {
               final category = state.extra as NewsCategory;
               context
                   .read<NewsCubit>()
-                  .eitherFailureOrSuccessByCategory(
-                      category.value);
+                  .eitherFailureOrSuccessByCategory(category.value);
 
               return CategoryScreen(category: category);
             }),
@@ -57,8 +56,7 @@ class HomeRoutes {
         builder: (context, state) {
           final argu = state.extra as NewsDetailsArgs;
 
-          return PostDetails(
-              category: argu.category, post: argu.post);
+          return PostDetails(category: argu.category, post: argu.post);
         }),
   ];
 }
