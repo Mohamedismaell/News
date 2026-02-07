@@ -37,7 +37,7 @@ class CustomColors {
         buttonTextSelected: AppColors.white,
         buttonTextUnselected: Color(0xFFB0B0B0),
         searchBarUnseected: AppColors.greyLight,
-        bottomAppbar: AppColors.backGroundDark);
+        bottomAppbar: AppColors.blackDarker);
   }
 }
 
