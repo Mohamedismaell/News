@@ -3,11 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:news_app/core/database/api/dio_consumer.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
 import 'package:news_app/core/injection/service_locator.dart';
-import 'package:news_app/features/get_news/data/datasources/news_remote_data_source.dart';
+import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 
 import 'core/observers/app_bloc_observer.dart';
 import 'core/routes/app_router.dart';
@@ -22,12 +22,14 @@ Future<void> main() async {
   print('Step 2: Bloc observer set');
   HydratedBloc.storage = await buildHydratedStorage();
   print('Step 3: HydratedStorage built');
-  await initializeDependencies();
-  print('Step 4: Service Locator initialized');
-  // NewsRemoteDataSource(api: sl<DioConsumer>()).testDummyApi();
+  await Hive.initFlutter();
+  final onboardingBox = await Hive.openBox('onboardingBox');
+  print('Step 4: Hive Opened');
+  await initializeDependencies(onboardingBox: onboardingBox);
+  print('Step 5: Service Locator initialized');
   runApp(
-    // DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
-    AppBootstrap(),
+    DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
+    // AppBootstrap(),
   );
 }
 
@@ -38,7 +40,10 @@ class AppBootstrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => sl<ThemeCubit>())],
+      providers: [
+        BlocProvider(create: (context) => sl<ThemeCubit>()),
+        BlocProvider(create: (context) => sl<OnboardingCubit>()),
+      ],
       child: const MyApp(),
     );
   }
@@ -63,7 +68,7 @@ class MyApp extends StatelessWidget {
                 theme: getLightTheme(),
                 darkTheme: getDarkTheme(),
                 themeMode: mode.themeMode,
-                routerConfig: AppRouter.router,
+                routerConfig: sl<AppRouter>().router,
                 builder: DevicePreview.appBuilder,
               );
             });

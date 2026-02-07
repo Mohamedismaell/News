@@ -1,19 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'on_boarding_cubit.dart';
 
-class OnBoardingState extends Equatable {
-  final bool isFirstTime;
+abstract class OnboardingState {}
 
-  const OnBoardingState({this.isFirstTime = true});
+class OnboardingInitial extends OnboardingState {}
 
-  @override
-  List<Object?> get props => [isFirstTime];
+class ShowOnboarding extends OnboardingState {}
 
-  OnBoardingState copyWith({
-    bool? isFirstTime,
-  }) {
-    return OnBoardingState(
-      isFirstTime: isFirstTime ?? this.isFirstTime,
-    );
-  }
-}
+class SkipOnboarding extends OnboardingState {}

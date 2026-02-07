@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
+import 'package:news_app/core/routes/go_router_refresh_stream.dart';
 import 'package:news_app/features/get_news/routes/home_routes.dart';
+import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 import 'package:news_app/features/onboarding/routes/onboarding_routes.dart';
 
 class AppRouter {
-  static GoRouter get router => _router;
+  final OnboardingCubit onboardingCubit;
+  AppRouter({required this.onboardingCubit});
+  // static GoRouter get router => _router;
 
-  static final GoRouter _router = GoRouter(
+  late final GoRouter router = GoRouter(
     initialLocation: AppRoutes.splash,
+    refreshListenable: GoRouterRefreshStream(onboardingCubit.stream),
+    redirect: (context, state) {
+      final gate = context.read<OnboardingCubit>().state;
+      if (gate is ShowOnboarding) return '/onboarding';
+      if (gate is SkipOnboarding) return '/home';
+      return null;
+    },
     routes: [...OnBoardingRoutes.routes, ...HomeRoutes.routes],
     errorBuilder: (context, state) => ErrorScreen(error: state.error),
   );
@@ -56,3 +68,7 @@ class ErrorScreen extends StatelessWidget {
     );
   }
 }
+// class GoRouterRefreshStream extends ChangeNotifier{
+// final 
+
+// }

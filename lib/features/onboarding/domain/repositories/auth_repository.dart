@@ -1,3 +1,4 @@
-abstract class AuthRepository {
-  // Future<Result> loginWithGoogle();
+abstract class OnboardingRepository {
+  Future<bool> isFirstTime();
+  Future<void> setNotFirstTime();
 }

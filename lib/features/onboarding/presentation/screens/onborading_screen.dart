@@ -1,7 +1,12 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
+import 'package:news_app/features/onboarding/domain/usecases/check_first_time_use_case.dart';
+import 'package:news_app/features/onboarding/domain/usecases/complete_onboarding_use_case.dart';
+import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 import 'package:news_app/features/onboarding/presentation/widgets/onboarding_pages.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -57,8 +62,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
             child: ElevatedButton(
               onPressed: () {
-                pageController.page == 2
-                    ? null
+                pageController.page == 1
+                    ? context.read<OnboardingCubit>().finishOnboarding()
                     : pageController.nextPage(
                         duration: Duration(milliseconds: 400),
                         curve: Curves.easeIn,
