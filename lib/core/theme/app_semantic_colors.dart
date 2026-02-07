@@ -1,5 +1,3 @@
-import 'app_colors.dart';
-
 class AppSemanticColors {
   const AppSemanticColors._();
 
