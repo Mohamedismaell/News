@@ -22,7 +22,7 @@ class NewsCubit extends Cubit<NewsState> {
     String category,
   ) async {
     final requestId = ++_categoryRequestId;
-    print('🔵 Category request #$requestId started: $category');
+    // print('🔵 Category request #$requestId started: $category');
 
     emit(state.copyWith(
       categoryStatus: NewsStatus.loading,
@@ -34,11 +34,11 @@ class NewsCubit extends Cubit<NewsState> {
     );
 
     if (requestId != _categoryRequestId) {
-      print('⏭️ Ignoring outdated category request #$requestId for: $category');
+      // print('⏭️ Ignoring outdated category request #$requestId for: $category');
       return;
     }
 
-    print('✅ Processing latest category request #$requestId: $category');
+    // print('✅ Processing latest category request #$requestId: $category');
 
     response.when(
       success: (newsApi) {
@@ -102,11 +102,11 @@ class NewsCubit extends Cubit<NewsState> {
 
   Future<void> init() async {
     if (_isloaded) {
-      print('Already initialized, skipping');
+      // print('Already initialized, skipping');
       return;
     }
 
-    print(' Initializing NewsCubit...');
+    // print(' Initializing NewsCubit...');
     _isloaded = true;
 
     emit(state.copyWith(
@@ -117,9 +117,9 @@ class NewsCubit extends Cubit<NewsState> {
     try {
       await eitherFailureOrSuccessByCategory(EndPoints.defaultCategory);
       await eitherFailureOrSuccessByDate();
-      print('NewsCubit initialized successfully');
+      // print('NewsCubit initialized successfully');
     } catch (e) {
-      print(' NewsCubit initialization failed: $e');
+      // print(' NewsCubit initialization failed: $e');
       _isloaded = false;
     }
   }
@@ -167,6 +167,6 @@ class NewsCubit extends Cubit<NewsState> {
     }
 
     emit(state.copyWith(bookmarks: currentBookmarks));
-    debugPrint('Total bookmarks: ${currentBookmarks.length}');
+    // debugPrint('Total bookmarks: ${currentBookmarks.length}');
   }
 }

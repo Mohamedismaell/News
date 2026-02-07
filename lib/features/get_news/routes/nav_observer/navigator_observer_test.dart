@@ -15,7 +15,7 @@ class NavigatorObserverTest extends NavigatorObserver {
   /// route, is `previousRoute`.
   @override
   void didPush(Route route, Route? previousRoute) {
-    print("PUSHED: ${route.settings.name}");
+    // print("PUSHED: ${route.settings.name}");
   }
 
   /// The [Navigator] popped `route`.
@@ -24,7 +24,7 @@ class NavigatorObserverTest extends NavigatorObserver {
   /// route, is `previousRoute`.
   @override
   void didPop(Route route, Route? previousRoute) {
-    print("POPPED: ${route.settings.name}");
+    // print("POPPED: ${route.settings.name}");
   }
 
   /// The [Navigator] removed `route`.
@@ -38,13 +38,13 @@ class NavigatorObserverTest extends NavigatorObserver {
   /// to the bottommost route.
   @override
   void didRemove(Route route, Route? previousRoute) {
-    print("REMOVED: ${route.settings.name}");
+    // print("REMOVED: ${route.settings.name}");
   }
 
   /// The [Navigator] replaced `oldRoute` with `newRoute`.
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
-    print("REPLACED: ${oldRoute?.settings.name} → ${newRoute?.settings.name}");
+    // print("REPLACED: ${oldRoute?.settings.name} → ${newRoute?.settings.name}");
   }
 
   /// The top most route has changed.
@@ -58,7 +58,7 @@ class NavigatorObserverTest extends NavigatorObserver {
   /// by the `topRoute`. This can also be null if this is the first build.
   @override
   void didChangeTop(Route<dynamic> topRoute, Route<dynamic>? previousTopRoute) {
-    print("CHANGED TOP: ${topRoute.settings.name}");
+    // print("CHANGED TOP: ${topRoute.settings.name}");
   }
 
   /// The [Navigator]'s routes are being moved by a user gesture.
@@ -68,7 +68,7 @@ class NavigatorObserverTest extends NavigatorObserver {
   @override
   void didStartUserGesture(
       Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print("STARTED USER GESTURE: ${route.settings.name}");
+    // print("STARTED USER GESTURE: ${route.settings.name}");
   }
 
   /// User gesture is no longer controlling the [Navigator].
@@ -76,6 +76,6 @@ class NavigatorObserverTest extends NavigatorObserver {
   /// Paired with an earlier call to [didStartUserGesture].
   @override
   void didStopUserGesture() {
-    print("STOPPED USER GESTURE");
+    // print("STOPPED USER GESTURE");
   }
 }

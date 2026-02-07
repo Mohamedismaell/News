@@ -63,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         duration: Duration(milliseconds: 400),
                         curve: Curves.easeIn,
                       );
-                print('pageController.page == > ${pageController.page}');
+                // print('pageController.page == > ${pageController.page}');
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

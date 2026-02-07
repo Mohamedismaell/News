@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
 import '../../errors/exceptions.dart';
 import 'api_consumer.dart';
 import 'api_interceptor.dart';
@@ -11,23 +10,20 @@ class DioConsumer extends ApiConsumer {
 
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
+
     dio.interceptors.add(ApiInterceptor());
+
     dio.interceptors.add(
       LogInterceptor(
-        request: true,
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: true,
-        responseBody: true,
-        error: true,
+        request: kDebugMode,
+        requestHeader: kDebugMode,
+        requestBody: kDebugMode,
+        responseBody: kDebugMode,
+        responseHeader: kDebugMode,
+        error: kDebugMode,
       ),
     );
   }
-  // void nothingDio() {
-  //   Dio(BaseOptions(
-
-  //   ));
-  // }
 
   @override
   Future delete(
@@ -58,8 +54,8 @@ class DioConsumer extends ApiConsumer {
     CancelToken? cancelToken,
   }) async {
     try {
-      debugPrint('🔍 Request URL: ${dio.options.baseUrl}$path');
-      debugPrint('🔍 Query Parameters: $queryParameters');
+      // debugPrint('🔍 Request URL: ${dio.options.baseUrl}$path');
+      // debugPrint('🔍 Query Parameters: $queryParameters');
 
       final response = await dio.get(
         path,
@@ -68,12 +64,12 @@ class DioConsumer extends ApiConsumer {
         cancelToken: cancelToken,
       );
 
-      debugPrint('📥 Total Results: ${response.data['totalResults']}');
-      debugPrint('📥 Posts Count: ${response.data['posts']?.length ?? 0}');
-      debugPrint('📥 Requests Left: ${response.data['requestsLeft']}');
-      debugPrint(
-        '📥 Response URL: ${dio.options.baseUrl}$path?${Uri(queryParameters: queryParameters).query}',
-      );
+      // debugPrint('📥 Total Results: ${response.data['totalResults']}');
+      // debugPrint('📥 Posts Count: ${response.data['posts']?.length ?? 0}');
+      // debugPrint('📥 Requests Left: ${response.data['requestsLeft']}');
+      // debugPrint(
+      //   '📥 Response URL: ${dio.options.baseUrl}$path?${Uri(queryParameters: queryParameters).query}',
+      // );
       // debugPrint(
       //   '📥 Response categories: ${response.data['posts']?[0]?['categories']}',
       // );

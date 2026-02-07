@@ -58,4 +58,17 @@ class NewsRemoteDataSource {
     );
     return NewsModel.fromJson(newsCategoryRes);
   }
+
+  // Future<Map<String, dynamic>> testDummyApi() async {
+  //   final newsCategoryRes = await api.post(
+  //     'https://dummyjson.com/auth/login',
+  //     data: {
+  //       'username': 'emilys',
+  //       'password': 'emilyspass',
+  //       'expiresInMins': 30,
+  //     },
+  //   );
+
+  //   return newsCategoryRes;
+  // }
 }
