@@ -8,9 +8,9 @@
 //   final String key = "CachedTemplate";
 //   TemplateLocalDataSource({required this.cache});
 
-//   cacheTemplate(NewsModel? templateToCache) {
+//   Future<void> cacheTemplate(NewsModel? templateToCache) async {
 //     if (templateToCache != null) {
-//       cache.saveData(
+//       await cache.saveData(
 //         key: key,
 //         value: json.encode(templateToCache.toJson()),
 //       );

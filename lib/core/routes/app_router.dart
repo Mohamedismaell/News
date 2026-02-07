@@ -9,8 +9,7 @@ class AppRouter {
   static final GoRouter _router = GoRouter(
     initialLocation: AppRoutes.home,
     routes: [...HomeRoutes.routes],
-    errorBuilder: (context, state) =>
-        ErrorScreen(error: state.error),
+    errorBuilder: (context, state) => ErrorScreen(error: state.error),
   );
 }
 

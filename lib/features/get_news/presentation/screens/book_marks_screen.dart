@@ -81,7 +81,7 @@ class _BookmarksPosts extends StatelessWidget {
                             padding: const EdgeInsets.all(20),
                             child: Icon(
                               Icons.library_books_outlined,
-                              color: AppColors.purpleIcons,
+                              color: AppColors.purplePrimary,
                               size: 30,
                             ),
                           ),
