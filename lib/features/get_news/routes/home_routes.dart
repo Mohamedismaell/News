@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/features/get_news/data/datasources/news_category.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/model/news_detail_args.dart';
 import 'package:news_app/features/get_news/presentation/screens/post_details.dart';
 import 'package:news_app/features/get_news/presentation/widget/home_navigation_bar.dart';
-import '../../../core/di/service_locator.dart';
+
 import '../presentation/screens/book_marks_screen.dart';
 import '../presentation/screens/categories_screen.dart';
 import '../presentation/screens/category_screen.dart';

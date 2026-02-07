@@ -2,18 +2,17 @@ import 'package:news_app/core/connections/result.dart';
 import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
 
-import '../../../../core/connections/network_info.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/repositories/news_repository.dart';
 import '../datasources/news_remote_data_source.dart';
 
 class NewsRepositoryImpl extends NewsRepository {
-  final NetworkInfo networkInfo;
+  // final NetworkInfo networkInfo;
   final NewsRemoteDataSource remoteDataSource;
   NewsRepositoryImpl({
     required this.remoteDataSource,
-    required this.networkInfo,
+    // required this.networkInfo,
   });
   //!Filtered Posts with Category\
 
