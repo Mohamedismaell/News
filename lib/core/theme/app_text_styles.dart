@@ -5,8 +5,7 @@ import 'app_colors.dart';
 
 class AppTextStyles {
   const AppTextStyles._();
-  static TextStyle _textline(double size, FontWeight weight,
-          {Color? color}) =>
+  static TextStyle _textline(double size, FontWeight weight, {Color? color}) =>
       TextStyle(
         fontSize: size,
         fontWeight: weight,
@@ -15,8 +14,7 @@ class AppTextStyles {
       );
   static final textRegular = _textline(16, FontWeight.w400);
   static final textMedium = _textline(16, FontWeight.w500);
-  static final textSemibold =
-      _textline(16, FontWeight.w600);
+  static final textSemibold = _textline(16, FontWeight.w600);
   static final textBold = _textline(16, FontWeight.w700);
 
   //!Head Line Semi_bold

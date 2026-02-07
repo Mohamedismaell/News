@@ -4,7 +4,7 @@ import 'package:news_app/core/theme/app_colors.dart';
 class AppTextTheme {
   const AppTextTheme._();
 
-  static const String font = 'Merriweather';
+  static const String font = 'SFProText';
 
   static TextTheme from(ColorScheme c) {
     return TextTheme(

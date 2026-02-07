@@ -18,20 +18,20 @@ ThemeData getLightTheme() {
         titleTextStyle: rawTextTheme.titleLarge,
       ),
       // //! input
-      // inputDecorationTheme: InputDecorationTheme(
-      //   // border: InputBorder.none,
-      //   filled: true,
-      //   fillColor: AppColors.surfaceLight,
-      //   hintStyle: AppTextTheme.from(lightColorScheme).labelMedium,
-      //   border: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(12),
-      //     borderSide: BorderSide(color: AppColors.outlineLight),
-      //   ),
-      //   enabledBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(12),
-      //     borderSide: BorderSide(color: AppColors.outlineLight),
-      //   ),
-      // ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        filled: true,
+        hintStyle: rawTextTheme.bodyLarge,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide.none,
+        ),
+        hoverColor: Colors.transparent,
+      ),
       // //! dialog
       // dialogTheme: DialogThemeData(
       //   backgroundColor: AppColors.backgroundLight,
@@ -47,8 +47,8 @@ ThemeData getLightTheme() {
           elevation: WidgetStateProperty.all(10),
           backgroundColor: WidgetStateProperty.all(lightColorScheme.primary),
           foregroundColor: WidgetStateProperty.all(lightColorScheme.onPrimary),
-          padding:
-              WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 16.h)),
+          padding: WidgetStateProperty.all(
+              EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w)),
           textStyle: WidgetStateProperty.all(
             responsiveTextTheme.labelMedium?.copyWith(inherit: false),
           ),

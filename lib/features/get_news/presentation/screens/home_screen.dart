@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/core/theme/manager/theme_cubit.dart';
@@ -25,23 +26,21 @@ class _HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 60.0,
-        left: 28.0,
-        right: 16.01,
+      padding: EdgeInsets.symmetric(
+        horizontal: 20.w,
       ),
       child: ListView(
         children: [
           _HomeHeader(),
-          addVertical(32),
+          SizedBox(height: 32.h),
           _BarSearch(),
-          addVertical(24),
+          SizedBox(height: 24.h),
           _CategoryButton(),
-          addVertical(24),
+          SizedBox(height: 24.h),
           PreviewSlide(),
-          addVertical(48),
+          SizedBox(height: 48.h),
           _TopNews(),
-          addVertical(24),
+          SizedBox(height: 24.h),
           TopNewsSection(),
         ],
       ),
@@ -59,15 +58,10 @@ class _HomeHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Browse',
-                style: AppTextStyles.headlLineLarge
-                    .copyWith(color: context.customColors.secondaryColor)),
-            addVertical(8),
+            Text('Browse', style: context.textTheme.headlineMedium),
+            SizedBox(height: 8.h),
             Text('Discover thing of this world',
-                style: AppTextStyles.hintTextlarge.copyWith(
-                    // color: context
-                    //     .customColors.secondaryColor)
-                    ))
+                style: context.textTheme.bodySmall)
           ],
         ),
         Spacer(),
@@ -85,39 +79,25 @@ class _BarSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 336,
-      height: 66,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: context.customColors.searchBarUnseected,
+        color: Color(0xFFF3F4F6),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
-        children: [
-          Icon(
+      child: TextField(
+        decoration: InputDecoration(
+          prefixIcon: Icon(
             Icons.search,
-            size: 30,
+            size: 24.sp,
             color: AppColors.greyPrimary,
           ),
-          addHorizental(24),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search',
-                hintStyle: AppTextStyles.textMedium
-                    .copyWith(color: AppColors.greyPrimary),
-                border: InputBorder.none,
-                isCollapsed: true, // removes default vertical padding
-              ),
-              // style: context.text.headlineLarge,
-            ),
-          ),
-          Icon(
+          hintText: 'Search',
+          // isCollapsed: true,
+          suffixIcon: Icon(
             Icons.mic,
-            size: 30,
+            size: 24.sp,
             color: AppColors.greyPrimary,
           ),
-        ],
+        ),
       ),
     );
   }
@@ -138,25 +118,28 @@ class _CategoryButton extends StatelessWidget {
             ) {
               final isSelected = state.selectedCategory == category.value;
               return Padding(
-                  padding: const EdgeInsets.only(
-                    right: 15,
+                  padding: EdgeInsets.only(
+                    right: 16.w,
                   ),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: isSelected
-                            ? context.customColors.buttonSelected
-                            : context.customColors.buttonUnselected,
-                      ),
+                          backgroundColor: isSelected
+                              ? context.colorTheme.primary
+                              : context.colorTheme.surface,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.w, vertical: 8.h),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16.r)),
+                          elevation: 0),
                       onPressed: () => context
                           .read<NewsCubit>()
                           .selectCategory(category.value),
                       child: Text(
                         category.value.split(',').first.trim(),
-                        style: AppTextStyles.textSemibold.copyWith(
-                          color: isSelected
-                              ? AppColors.white
-                              : AppColors.greyPrimary,
-                        ),
+                        style: context.textTheme.labelSmall!.copyWith(
+                            color: isSelected
+                                ? context.colorTheme.onPrimary
+                                : context.colorTheme.onSurface),
                       )));
             }).toList(),
           ),
@@ -174,16 +157,13 @@ class _TopNews extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text('Top News',
-              style: AppTextStyles.headlLineLarge
-                  .copyWith(color: context.customColors.secondaryColor)),
+          child: Text('Top News', style: context.textTheme.headlineMedium),
         ),
         TextButton(
           onPressed: () {},
           child: Text(
             'See All',
-            style: AppTextStyles.hintTextlarge
-                .copyWith(color: context.customColors.secondaryColor),
+            style: context.textTheme.bodySmall,
           ),
         ),
       ],
