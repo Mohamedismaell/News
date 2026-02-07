@@ -23,6 +23,12 @@ class DioConsumer extends ApiConsumer {
       ),
     );
   }
+  // void nothingDio() {
+  //   Dio(BaseOptions(
+
+  //   ));
+  // }
+
   @override
   Future delete(
     String path, {

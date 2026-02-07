@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/on_boarding/presentation/widgets/onboarding_pages.dart';
+import 'package:news_app/features/onboarding/presentation/widgets/onboarding_pages.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {

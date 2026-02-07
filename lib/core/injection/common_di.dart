@@ -1,6 +1,5 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
-import 'package:news_app/core/connections/network_info.dart';
 import 'package:news_app/core/database/api/dio_consumer.dart';
 import 'package:news_app/core/database/cache/cache_helper.dart';
 import 'package:news_app/core/injection/service_locator.dart';

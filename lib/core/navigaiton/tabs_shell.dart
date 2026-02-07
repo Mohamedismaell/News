@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/core/helper/size_provider/sized_helper_extension.dart';
 
 class TabsShell extends StatefulWidget {
   const TabsShell({super.key});

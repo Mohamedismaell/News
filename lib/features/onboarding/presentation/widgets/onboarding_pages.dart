@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/on_boarding/presentation/models/user_details.dart';
+import 'package:news_app/features/onboarding/presentation/models/user_details.dart';
 
 class OnboardingPages extends StatelessWidget {
   const OnboardingPages({

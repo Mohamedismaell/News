@@ -6,4 +6,5 @@ class AppRoutes {
   static const String newsDetails = '/newsdetails';
   static const String categoryScreen = '/categoryscreen';
   static const String onBoarding = '/onboarding';
+  static const String splash = '/splash';
 }

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/features/get_news/routes/home_routes.dart';
-import 'package:news_app/features/on_boarding/routes/onboarding_routes.dart';
+import 'package:news_app/features/onboarding/routes/onboarding_routes.dart';
 
 class AppRouter {
   static GoRouter get router => _router;
 
   static final GoRouter _router = GoRouter(
-    initialLocation: AppRoutes.onBoarding,
+    initialLocation: AppRoutes.splash,
     routes: [...OnBoardingRoutes.routes, ...HomeRoutes.routes],
     errorBuilder: (context, state) => ErrorScreen(error: state.error),
   );
