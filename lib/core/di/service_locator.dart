@@ -43,8 +43,7 @@ Future<void> initServiceLocator() async {
 
   //! Use Cases
   sl.registerLazySingleton(
-    () =>
-        GetNewsByCategory(repository: sl<NewsRepository>()),
+    () => GetNewsByCategory(repository: sl<NewsRepository>()),
   );
 
   //! Cubits

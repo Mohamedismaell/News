@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/database/api/end_points.dart';
-import 'package:news_app/core/params/params.dart';
+import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
+
 import '../../../domain/entities/post_entitiy.dart';
 import '../../model/book_marked_post.dart';
+
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
@@ -20,8 +22,7 @@ class NewsCubit extends Cubit<NewsState> {
     String category,
   ) async {
     final requestId = ++_categoryRequestId;
-    print(
-        '🔵 Category request #$requestId started: $category');
+    print('🔵 Category request #$requestId started: $category');
 
     emit(state.copyWith(
       categoryStatus: NewsStatus.loading,
@@ -33,13 +34,11 @@ class NewsCubit extends Cubit<NewsState> {
     );
 
     if (requestId != _categoryRequestId) {
-      print(
-          '⏭️ Ignoring outdated category request #$requestId for: $category');
+      print('⏭️ Ignoring outdated category request #$requestId for: $category');
       return;
     }
 
-    print(
-        '✅ Processing latest category request #$requestId: $category');
+    print('✅ Processing latest category request #$requestId: $category');
 
     response.when(
       success: (newsApi) {
@@ -116,8 +115,7 @@ class NewsCubit extends Cubit<NewsState> {
     ));
 
     try {
-      await eitherFailureOrSuccessByCategory(
-          EndPoints.defaultCategory);
+      await eitherFailureOrSuccessByCategory(EndPoints.defaultCategory);
       await eitherFailureOrSuccessByDate();
       print('NewsCubit initialized successfully');
     } catch (e) {
@@ -157,8 +155,7 @@ class NewsCubit extends Cubit<NewsState> {
   }
 
   void toggleBookmark(PostEntity post, {String? category}) {
-    final currentBookmarks =
-        List<BookmarkedPost>.from(state.bookmarks ?? []);
+    final currentBookmarks = List<BookmarkedPost>.from(state.bookmarks ?? []);
     final index = currentBookmarks.indexWhere(
       (bookmark) => bookmark.post.id == post.id,
     );
@@ -166,12 +163,10 @@ class NewsCubit extends Cubit<NewsState> {
     if (index != -1) {
       currentBookmarks.removeAt(index);
     } else {
-      currentBookmarks.add(
-          BookmarkedPost(post: post, category: category));
+      currentBookmarks.add(BookmarkedPost(post: post, category: category));
     }
 
     emit(state.copyWith(bookmarks: currentBookmarks));
-    debugPrint(
-        'Total bookmarks: ${currentBookmarks.length}');
+    debugPrint('Total bookmarks: ${currentBookmarks.length}');
   }
 }

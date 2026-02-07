@@ -1,5 +1,6 @@
 import 'package:news_app/core/connections/result.dart';
-import '../../../../core/params/params.dart';
+import 'package:news_app/core/params/news_category_params.dart';
+
 import '../entities/post_entitiy.dart';
 import '../repositories/news_repository.dart';
 

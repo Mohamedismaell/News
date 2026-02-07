@@ -1,7 +1,7 @@
-import 'package:news_app/core/params/params.dart';
+import 'package:news_app/core/database/api/api_consumer.dart';
+import 'package:news_app/core/database/api/end_points.dart';
+import 'package:news_app/core/params/news_category_params.dart';
 
-import '../../../../core/database/api/api_consumer.dart';
-import '../../../../core/database/api/end_points.dart';
 import '../models/news_model.dart';
 
 class NewsRemoteDataSource {
