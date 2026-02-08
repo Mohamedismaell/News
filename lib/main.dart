@@ -9,7 +9,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
-import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 
 import 'core/observers/app_bloc_observer.dart';
 import 'core/routes/app_router.dart';

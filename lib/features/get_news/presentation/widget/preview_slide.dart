@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/enums/stats.dart';
+import 'package:news_app/core/widget/category_news_skeltonizer.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/widget/stacked_image.dart';
 import 'package:shimmer/shimmer.dart';
@@ -13,7 +14,7 @@ class PreviewSlide extends StatelessWidget {
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
         return switch (state.categoryStatus) {
-          NewsStatus.loading => _LoadingState(),
+          NewsStatus.loading => CategoryNewsSkeltonizer(),
           NewsStatus.error => _ErrorState(
               message: state.errorMessage,
             ),
@@ -23,46 +24,6 @@ class PreviewSlide extends StatelessWidget {
           _ => const SizedBox.shrink()
         };
       },
-    );
-  }
-}
-
-class _LoadingState extends StatelessWidget {
-  const _LoadingState();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: 256.w,
-        height: 256.h,
-        child: Shimmer.fromColors(
-            baseColor: Colors.red,
-            highlightColor: Colors.yellow,
-            child: const Center(child: CircularProgressIndicator())),
-      ),
-    );
-  }
-}
-
-class _ErrorState extends StatelessWidget {
-  final String? message;
-  const _ErrorState({this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 256.h,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.error_outline, size: 48.sp, color: Colors.red),
-            SizedBox(height: 8.h),
-            Text(message ?? 'Error loading news'),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -99,6 +60,28 @@ class _LoadedState extends StatelessWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+class _ErrorState extends StatelessWidget {
+  final String? message;
+  const _ErrorState({this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 256.h,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.error_outline, size: 48.sp, color: Colors.red),
+            SizedBox(height: 8.h),
+            Text(message ?? 'Error loading news'),
+          ],
+        ),
       ),
     );
   }

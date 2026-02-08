@@ -1,8 +1,6 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';

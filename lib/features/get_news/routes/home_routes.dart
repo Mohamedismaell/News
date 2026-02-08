@@ -44,9 +44,7 @@ class HomeRoutes {
             builder: (context, state) {
               //Todo: Edit cateogry passing type here.
               final category = state.extra as NewsCategory;
-              context
-                  .read<NewsCubit>()
-                  .eitherFailureOrSuccessByCategory(category.value);
+              context.read<NewsCubit>().callNewsCategory(category.value);
 
               return CategoryScreen(category: category);
             }),

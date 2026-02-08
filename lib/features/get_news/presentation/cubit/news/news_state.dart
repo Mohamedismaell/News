@@ -10,9 +10,9 @@ class NewsState {
   final List<BookmarkedPost>? bookmarks;
   final String? errorMessage;
   const NewsState({
+    this.dateStatus = NewsStatus.loading,
+    this.categoryStatus = NewsStatus.loading,
     this.selectedCategory = 'Politics',
-    this.categoryStatus = NewsStatus.initial,
-    this.dateStatus = NewsStatus.initial,
     this.newsByCategory,
     this.newsByDate,
     this.errorMessage,
