@@ -28,19 +28,19 @@ class _HomeBody extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: 20.w,
       ),
-      child: ListView(
-        children: [
-          _HomeHeader(),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: _HomeHeader()),
           SizedBox(height: 32.h),
-          _BarSearch(),
+          SliverToBoxAdapter(child: _BarSearch()),
           SizedBox(height: 24.h),
-          _CategoryButton(),
+          SliverToBoxAdapter(child: _CategoryButton()),
           SizedBox(height: 24.h),
-          PreviewSlide(),
+          SliverToBoxAdapter(child: PreviewSlide()),
           SizedBox(height: 48.h),
-          _TopNews(),
+          SliverToBoxAdapter(child: _TopNews()),
           SizedBox(height: 24.h),
-          TopNewsSection(),
+          // TopNewsSection(),
         ],
       ),
     );

@@ -5,7 +5,6 @@ import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/get_news/data/datasources/news_category.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/widget/stacked_image.dart';
-import 'package:news_app/utility.dart';
 import '../../../../core/theme/app_text_styles.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -21,7 +20,7 @@ class CategoryScreen extends StatelessWidget {
           _CategoryHeader(
             category: categoryValue,
           ),
-          addVertical(10),
+          SizedBox(height: 10),
           _Posts(category: categoryValue)
         ],
       ),
@@ -67,7 +66,7 @@ class _Posts extends StatelessWidget {
                   isBookmarked: isBookmarked,
                   imageHeight: 260,
                   textContainerWidth: 0.8),
-              addVertical(20)
+              SizedBox(height: 20)
             ],
           );
         },

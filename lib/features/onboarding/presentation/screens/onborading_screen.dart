@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/injection/service_locator.dart';
+import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 import 'package:news_app/features/onboarding/presentation/widgets/onboarding_pages.dart';
@@ -59,12 +60,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                 child: ElevatedButton(
                   onPressed: () {
-                    pageController.page == 1
-                        ? context.read<OnboardingCubit>().finishOnboarding()
-                        : pageController.nextPage(
-                            duration: const Duration(milliseconds: 400),
-                            curve: Curves.easeIn,
-                          );
+                    if (pageController.page == 1) {
+                      context.read<OnboardingCubit>().finishOnboarding();
+                      context.read<AppGateCubit>().start();
+                    } else {
+                      pageController.nextPage(
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeIn,
+                      );
+                    }
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

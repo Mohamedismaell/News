@@ -18,7 +18,7 @@ class AppGateCubit extends Cubit<AppGateState> {
   }
 
   // Called once from Splash screen (or app bootstrap)
-  Future<void> check() async {
+  Future<void> start() async {
     final isFirstTime = await onboardingRepository.isFirstTime();
 
     if (isFirstTime) {

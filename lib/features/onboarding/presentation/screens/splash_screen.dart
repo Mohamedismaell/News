@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
-      context.read<AppGateCubit>().check();
+      context.read<AppGateCubit>().start();
     });
     super.initState();
   }

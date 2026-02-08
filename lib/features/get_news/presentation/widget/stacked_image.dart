@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
-import 'package:news_app/utility.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -119,7 +118,7 @@ class StackedImage extends StatelessWidget {
                       fontSize: 20,
                     ),
                   ),
-                  addVertical(5),
+                  SizedBox(height: 5),
                   Text(
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

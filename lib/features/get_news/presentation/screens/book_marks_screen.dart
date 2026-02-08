@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../utility.dart';
 import '../cubit/news/news_cubit.dart';
 import '../widget/stacked_image.dart';
 
@@ -26,7 +25,7 @@ class _BookmarksBody extends StatelessWidget {
       child: ListView(
         children: [
           const _BookmarksHeader(),
-          addVertical(32),
+          SizedBox(height: 32),
           const _BookmarksPosts(),
         ],
       ),
@@ -45,7 +44,7 @@ class _BookmarksHeader extends StatelessWidget {
         Text('Bookmarks',
             style: AppTextStyles.headlLineLarge
                 .copyWith(color: context.customColors.secondaryColor)),
-        addVertical(8),
+        SizedBox(height: 8),
         Text('Saved articles to the library',
             style: AppTextStyles.hintTextlarge),
       ],
@@ -86,7 +85,7 @@ class _BookmarksPosts extends StatelessWidget {
                             ),
                           ),
                         ),
-                        addVertical(24),
+                        SizedBox(height: 24),
                         Text(
                           textAlign: TextAlign.center,
                           'You haven\'t saved any articles yet. Start reading and bookmarking them now',

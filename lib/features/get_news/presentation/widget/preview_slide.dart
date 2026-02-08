@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/widget/stacked_image.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../../utility.dart';
 
 class PreviewSlide extends StatelessWidget {
   const PreviewSlide({super.key});

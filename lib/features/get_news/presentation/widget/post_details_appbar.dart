@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/utility.dart';
 
 class PostDetailsAppbar extends StatelessWidget {
   const PostDetailsAppbar({
@@ -99,7 +98,7 @@ class PostDetailsAppbar extends StatelessWidget {
                       ),
                     ),
                   ),
-                  addVertical(16),
+                  SizedBox(height: 16),
                   Text(
                     author,
                     overflow: TextOverflow.ellipsis,

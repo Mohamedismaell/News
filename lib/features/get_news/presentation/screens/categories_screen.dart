@@ -5,7 +5,6 @@ import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/get_news/data/datasources/news_category.dart';
-import 'package:news_app/utility.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -57,10 +56,10 @@ class _CategoryHeader extends StatelessWidget {
             Text('Categories',
                 style: AppTextStyles.headlLineLarge
                     .copyWith(color: context.customColors.secondaryColor)),
-            addVertical(8),
+            SizedBox(height: 8),
             Text('Thousands of articles in each category',
                 style: AppTextStyles.hintTextlarge),
-            addVertical(16)
+            SizedBox(height: 16)
           ],
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/get_news/presentation/widget/post_details_appbar.dart';
-import 'package:news_app/utility.dart';
 import '../../domain/entities/post_entitiy.dart';
 
 class PostDetails extends StatelessWidget {
@@ -59,18 +58,18 @@ class _BottomBar extends StatelessWidget {
               style: AppTextStyles.headlLineMedium
                   .copyWith(color: context.customColors.secondaryColor),
             ),
-            addVertical(20),
+            SizedBox(height: 20),
             Text(
               post.threadtitle,
               style: AppTextStyles.textRegular.copyWith(fontSize: 20),
             ),
-            addVertical(20),
+            SizedBox(height: 20),
             Text(
               post.threadText,
               style: AppTextStyles.textRegular.copyWith(fontSize: 18),
             ),
             //* Edite here
-            // addVertical(20),
+            // SizedBox(height:20),
             const SizedBox(height: 1000),
           ],
         ),
