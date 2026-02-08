@@ -21,6 +21,7 @@ class NewsRepositoryImpl extends NewsRepository {
     required NewsCategoryParams params,
   }) async {
     try {
+      // await Future.delayed(Duration(seconds: 20));
       final remoteNews = await remoteDataSource.getNewsByCategory(params);
       return Result.ok(remoteNews.posts ?? []);
     } on ServerExceptions catch (e) {
@@ -33,6 +34,7 @@ class NewsRepositoryImpl extends NewsRepository {
   @override
   Future<Result<List<PostEntity>>> getNewsByDate() async {
     try {
+      // await Future.delayed(Duration(seconds: 20));
       final remoteNews = await remoteDataSource.getNewsByDate();
       // debugPrint(
       //   'remoteNews from data source: $remoteNews',

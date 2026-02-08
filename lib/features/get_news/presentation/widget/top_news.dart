@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +6,7 @@ import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/core/widget/app_cached_image.dart';
+import 'package:news_app/core/widget/top_news_skeltonizer.dart';
 
 import '../../../../core/routes/app_routes.dart';
 import '../cubit/news/news_cubit.dart';
@@ -24,11 +24,9 @@ class TopNewsSection extends StatelessWidget {
           "🧠 NewsByDate count: ${state.newsByDate?.length}",
         );
 
-        // if (state.dateStatus == NewsStatus.loading) {
-        //   return SliverToBoxAdapter(
-        //     child: Center(child: CircularProgressIndicator()),
-        //   );
-        // }
+        if (state.dateStatus == NewsStatus.loading) {
+          return TopNewsSkeltonizer();
+        }
 
         if (state.dateStatus == NewsStatus.error) {
           return SliverToBoxAdapter(
@@ -52,19 +50,12 @@ class TopNewsSection extends StatelessWidget {
               child: SizedBox(
                 height: 96.h,
                 child: Row(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Container(
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.r),
-                        boxShadow: [
-                          // BoxShadow(
-                          //   color: Colors.black.withOpacity(0.1),
-                          //   blurRadius: 10,
-                          //   offset: Offset(0, 4),
-                          // ),
-                        ],
+                        boxShadow: [],
                       ),
                       child: GestureDetector(
                           onTap: () async => await context.push(
@@ -81,56 +72,47 @@ class TopNewsSection extends StatelessWidget {
                     ),
                     SizedBox(width: 15.w),
                     Expanded(
-                      child: SizedBox(
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                //* Author
-                                Expanded(
-                                  child: Text(
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      post.author.split(',').first,
-                                      style: context.textTheme.bodyMedium),
-                                ),
-                                //* Saved icon
-                                IconButton(
-                                    padding: EdgeInsets.zero,
-                                    constraints: const BoxConstraints(),
-                                    visualDensity: VisualDensity.compact,
-                                    onPressed: () => context
-                                        .read<NewsCubit>()
-                                        .toggleBookmark(
-                                          post,
-                                        ),
-                                    icon: Icon(
-                                      isBookmarked
-                                          ? Icons.bookmark
-                                          : Icons.bookmark_border,
-                                      color: context.colorTheme.primary,
-                                      size: 18.sp,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(height: 8.h),
-                            //
-                            Expanded(
-                              child: Text(
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                  softWrap: true,
-                                  post.threadtitle,
-                                  style: context.textTheme.bodySmall!.copyWith(
-                                      fontSize: 14.sp,
-                                      color: AppColors.blackPrimary)),
-                            ),
-                            // SizedBox(height: 8.h),
-                          ],
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    post.author.split(',').first,
+                                    style: context.textTheme.bodyMedium),
+                              ),
+                              IconButton(
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(),
+                                  visualDensity: VisualDensity.compact,
+                                  onPressed: () =>
+                                      context.read<NewsCubit>().toggleBookmark(
+                                            post,
+                                          ),
+                                  icon: Icon(
+                                    isBookmarked
+                                        ? Icons.bookmark
+                                        : Icons.bookmark_border,
+                                    color: context.colorTheme.primary,
+                                    size: 18.sp,
+                                  )),
+                            ],
+                          ),
+                          Expanded(
+                            child: Text(
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                softWrap: true,
+                                post.threadtitle,
+                                style: context.textTheme.bodySmall!.copyWith(
+                                    fontSize: 14.sp,
+                                    color: AppColors.blackPrimary)),
+                          ),
+                        ],
                       ),
                     ),
                   ],

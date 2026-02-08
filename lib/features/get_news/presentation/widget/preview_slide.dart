@@ -73,6 +73,7 @@ class _LoadedState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: 256.w,
       height: 256.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -89,7 +90,7 @@ class _LoadedState extends StatelessWidget {
                     post: post,
                     category: category,
                     isBookmarked: isBookmarked,
-                    imageWidth: 256.w,
+                    imageWidth: 200.w,
                     imageHeight: 256.h,
                     textContainerWidth: 0.7,
                     // textContainerWidth: 300,

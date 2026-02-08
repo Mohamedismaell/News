@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 
+//Todo Add real SVG
 class BottomNav extends StatelessWidget {
   const BottomNav({super.key, required this.currentIndex, required this.onTap});
   final int currentIndex;
@@ -24,7 +25,7 @@ class _CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80.h,
+      height: 62.h,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(50),
@@ -38,7 +39,6 @@ class _CustomBottomNav extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _NavSvgIcon(
-              // path: 'assets/icons/home.min.svg',
               icon: Icons.home,
               onTap: () => onTap(0),
               isActive: currentIndex == 0,
@@ -79,25 +79,23 @@ class _NavSvgIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color = isActive ? context.colorTheme.primary : Colors.grey;
-    return SizedBox(
-      child: InkWell(
-        onTap: onTap,
-        child: AnimatedScale(
-          duration: const Duration(milliseconds: 180),
-          key: ValueKey(isActive),
-          curve: Curves.easeOut,
-          scale: isActive ? 1.2 : 1.0,
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 220),
-            child: path == null
-                ? Icon(icon, size: 30.sp, color: color)
-                : SvgPicture.asset(
-                    path!,
-                    width: 23.w,
-                    fit: BoxFit.contain,
-                    colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-                  ),
-          ),
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 180),
+        key: ValueKey(isActive),
+        curve: Curves.easeOut,
+        scale: isActive ? 1.2 : 1.0,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 220),
+          child: path == null
+              ? Icon(icon, size: 24.sp, color: color)
+              : SvgPicture.asset(
+                  path!,
+                  width: 24.w,
+                  fit: BoxFit.contain,
+                  colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+                ),
         ),
       ),
     );
