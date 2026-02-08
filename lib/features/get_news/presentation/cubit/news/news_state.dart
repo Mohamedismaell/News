@@ -29,8 +29,7 @@ class NewsState {
     String? errorMessage,
   }) {
     return NewsState(
-      selectedCategory:
-          selectedCategory ?? this.selectedCategory,
+      selectedCategory: selectedCategory ?? this.selectedCategory,
       categoryStatus: categoryStatus ?? this.categoryStatus,
       dateStatus: dateStatus ?? this.dateStatus,
       newsByCategory: newsByCategory ?? this.newsByCategory,
@@ -41,10 +40,7 @@ class NewsState {
   }
 
   bool isBookmarked(String postId) {
-    return bookmarks?.any(
-            (markedPost) => markedPost.post.id == postId) ??
+    return bookmarks?.any((markedPost) => markedPost.post.id == postId) ??
         false;
   }
 }
-
-enum NewsStatus { initial, loading, loaded, error }

@@ -1,35 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/widget/bottom_nav.dart';
+import 'package:news_app/features/get_news/presentation/screens/book_marks_screen.dart';
+import 'package:news_app/features/get_news/presentation/screens/categories_screen.dart';
+import 'package:news_app/features/get_news/presentation/screens/home_screen.dart';
+import 'package:news_app/features/get_news/presentation/screens/profile_screen.dart';
 
-class TabsShell extends StatefulWidget {
-  const TabsShell({super.key});
+class HomeShell extends StatefulWidget {
+  const HomeShell({super.key});
 
   @override
-  State<TabsShell> createState() => _TabsShellState();
+  State<HomeShell> createState() => _HomeShellState();
 }
 
-class _TabsShellState extends State<TabsShell> {
-  final pageController = PageController();
+class _HomeShellState extends State<HomeShell> {
+  // final pageController = PageController();
   int _currentIndex = 0;
 
-  void _onTabTap(int index) {
-    if (!pageController.hasClients) return;
-    final current = pageController.page?.round() ?? _currentIndex;
-    final distance = (index - current).abs();
-
-    if (distance >= 1) {
-      int neighbor = index > _currentIndex ? index - 1 : index + 1;
-      pageController.jumpToPage(neighbor);
-    }
-    pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOut,
-    );
-  }
+  // void _onTabTap(int index) {
+  //   if (!pageController.hasClients) return;
+  //   final current = pageController.page?.round() ?? _currentIndex;
+  //   final distance = (index - current).abs();
+  //   if (distance >= 1) {
+  //     int neighbor = index > _currentIndex ? index - 1 : index + 1;
+  //     pageController.jumpToPage(neighbor);
+  //   }
+  //   pageController.animateToPage(
+  //     index,
+  //     duration: const Duration(milliseconds: 300),
+  //     curve: Curves.easeOut,
+  //   );
+  // }
 
   @override
   void dispose() {
-    pageController.dispose();
+    // pageController.dispose();
     super.dispose();
   }
 
@@ -37,30 +41,28 @@ class _TabsShellState extends State<TabsShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: Colors.transparent,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 0),
-        child: PageView(
-          controller: pageController,
-          onPageChanged: (index) {
-            if (mounted) {
-              setState(() {
-                _currentIndex = index;
-              });
-            }
-          },
-          children: [
-            // const HomePage(),
-            // const ExplorePage(),
-            // const BookmarksPage(),
-            // const ProfilePage(),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 0),
+          child: IndexedStack(
+            index: _currentIndex,
+            children: [
+              const HomeScreen(),
+              const CategoriesScreen(),
+              const BookMarksScreen(),
+              const ProfileScreen(),
+            ],
+          ),
         ),
       ),
-      // bottomNavigationBar: BottomNav(
-      //   currentIndex: _currentIndex,
-      //   onTap: _onTabTap,
-      // ),
+      bottomNavigationBar: BottomNav(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
     );
   }
 }

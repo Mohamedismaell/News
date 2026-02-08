@@ -24,6 +24,7 @@ class _HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print('Build Home Screen');
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 20.w,
@@ -31,16 +32,16 @@ class _HomeBody extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: _HomeHeader()),
-          SizedBox(height: 32.h),
+          SliverToBoxAdapter(child: SizedBox(height: 32.h)),
           SliverToBoxAdapter(child: _BarSearch()),
-          SizedBox(height: 24.h),
+          SliverToBoxAdapter(child: SizedBox(height: 24.h)),
           SliverToBoxAdapter(child: _CategoryButton()),
-          SizedBox(height: 24.h),
+          SliverToBoxAdapter(child: SizedBox(height: 24.h)),
           SliverToBoxAdapter(child: PreviewSlide()),
-          SizedBox(height: 48.h),
+          SliverToBoxAdapter(child: SizedBox(height: 48.h)),
           SliverToBoxAdapter(child: _TopNews()),
-          SizedBox(height: 24.h),
-          // TopNewsSection(),
+          SliverToBoxAdapter(child: SizedBox(height: 24.h)),
+          TopNewsSection(),
         ],
       ),
     );
