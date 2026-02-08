@@ -25,36 +25,38 @@ class _CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 62.h,
+      height: 96.h,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(50),
-          topRight: Radius.circular(50),
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
         ),
         color: context.colorTheme.surface,
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 50.w),
+        padding: EdgeInsets.symmetric(horizontal: 44.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _NavSvgIcon(
-              icon: Icons.home,
+              path: 'assets/images/Vector(1).svg',
+              // icon: Icons.home,
               onTap: () => onTap(0),
               isActive: currentIndex == 0,
             ),
             _NavSvgIcon(
-              icon: Icons.grid_view_outlined,
+              path: 'assets/images/Vector(2).svg',
               onTap: () => onTap(1),
               isActive: currentIndex == 1,
             ),
             _NavSvgIcon(
-              icon: Icons.bookmark_outline_sharp,
+              path: 'assets/images/Vector(3).svg',
+              // icon: Icons.bookmark_outline_sharp,
               onTap: () => onTap(2),
               isActive: currentIndex == 2,
             ),
             _NavSvgIcon(
-              icon: Icons.person_sharp,
+              path: 'assets/images/Vector(4).svg',
               onTap: () => onTap(3),
               isActive: currentIndex == 3,
             ),
@@ -67,9 +69,11 @@ class _CustomBottomNav extends StatelessWidget {
 
 class _NavSvgIcon extends StatelessWidget {
   const _NavSvgIcon({
-    this.path,
     required this.onTap,
     required this.isActive,
+    // ignore: unused_element_parameter
+    this.path,
+    // ignore: unused_element_parameter
     this.icon,
   });
   final String? path;
@@ -85,14 +89,13 @@ class _NavSvgIcon extends StatelessWidget {
         duration: const Duration(milliseconds: 180),
         key: ValueKey(isActive),
         curve: Curves.easeOut,
-        scale: isActive ? 1.2 : 1.0,
+        scale: isActive ? 1.2.sp : 1.0.sp,
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 220),
+          duration: const Duration(milliseconds: 300),
           child: path == null
               ? Icon(icon, size: 24.sp, color: color)
               : SvgPicture.asset(
                   path!,
-                  width: 24.w,
                   fit: BoxFit.contain,
                   colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
                 ),

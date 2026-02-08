@@ -29,15 +29,70 @@ class CategoryNewsSkeltonizer extends StatelessWidget {
           itemBuilder: (context, index) {
             final post = posts[index];
             final category = 'category';
-            final isBookmarked = false;
             return Row(
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Container(
-                      width: 200.w,
+                      width: 230.w,
                       height: 256.h,
                       color: Colors.grey,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 16.0),
+                        child: Stack(
+                          alignment: Alignment.centerLeft,
+                          children: [
+                            //! image
+                            Container(
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Container(
+                                width: 230.w,
+                                height: 256.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                            //! Saved icon
+                            Positioned(
+                                top: 24,
+                                right: 24,
+                                child: Skeleton.shade(
+                                  child: Icon(
+                                    Icons.bookmark_border,
+                                    // color: AppColors.white,
+                                    size: 30.r,
+                                  ),
+                                )),
+                            //! category + title
+                            Padding(
+                              padding: EdgeInsets.all(24.r),
+                              child: SizedBox(
+                                width: 230.w - (24 * 2).r,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      category,
+                                    ),
+                                    SizedBox(height: 8.h),
+                                    Text(
+                                      maxLines: 2,
+                                      softWrap: false,
+                                      overflow: TextOverflow.ellipsis,
+                                      post.threadtitle.toString(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     )),
                 SizedBox(width: 15.w),
               ],

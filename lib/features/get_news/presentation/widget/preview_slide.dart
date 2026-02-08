@@ -34,7 +34,6 @@ class _LoadedState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 256.w,
       height: 256.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -43,21 +42,14 @@ class _LoadedState extends StatelessWidget {
           final post = state.newsByCategory![index];
           final category = state.selectedCategory.split(',').first.trim();
           final isBookmarked = state.isBookmarked(post.id);
-          return Row(
-            children: [
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: StackedImage(
-                    post: post,
-                    category: category,
-                    isBookmarked: isBookmarked,
-                    imageWidth: 200.w,
-                    imageHeight: 256.h,
-                    textContainerWidth: 0.7,
-                    // textContainerWidth: 300,
-                  )),
-              SizedBox(width: 15.w),
-            ],
+          return StackedImage(
+            post: post,
+            category: category,
+            isBookmarked: isBookmarked,
+            imageWidth: 230.w,
+            imageHeight: 256.h,
+            textContainerWidth: 0.7,
+            // textContainerWidth: 300,
           );
         },
       ),
