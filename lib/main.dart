@@ -7,6 +7,7 @@ import 'package:hive_ce_flutter/adapters.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
 import 'package:news_app/core/injection/service_locator.dart';
+import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
 import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 
 import 'core/observers/app_bloc_observer.dart';
@@ -28,8 +29,8 @@ Future<void> main() async {
   await initializeDependencies(onboardingBox: onboardingBox);
   print('Step 5: Service Locator initialized');
   runApp(
-    DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
-    // AppBootstrap(),
+    // DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
+    AppBootstrap(),
   );
 }
 
@@ -42,7 +43,7 @@ class AppBootstrap extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => sl<ThemeCubit>()),
-        BlocProvider(create: (context) => sl<OnboardingCubit>()),
+        BlocProvider(create: (context) => sl<AppGateCubit>()),
       ],
       child: const MyApp(),
     );

@@ -1,4 +1,4 @@
-import '../../enums/validation_type.dart';
+import '../enums/validation_type.dart';
 
 class FormValidators {
   String? _validateFullName(String? value) {

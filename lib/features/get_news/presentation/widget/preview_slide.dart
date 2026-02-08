@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/widget/stacked_image.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../../utility.dart';
 
 class PreviewSlide extends StatelessWidget {
@@ -32,8 +34,13 @@ class _LoadingState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-          // height: 256,
-          child: const CircularProgressIndicator()),
+        width: 256.w,
+        height: 256.h,
+        child: Shimmer.fromColors(
+            baseColor: Colors.red,
+            highlightColor: Colors.yellow,
+            child: const Center(child: CircularProgressIndicator())),
+      ),
     );
   }
 }
@@ -45,14 +52,13 @@ class _ErrorState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 256,
+      height: 256.h,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.error_outline,
-                size: 48, color: Colors.red),
-            SizedBox(height: 8),
+            Icon(Icons.error_outline, size: 48.sp, color: Colors.red),
+            SizedBox(height: 8.h),
             Text(message ?? 'Error loading news'),
           ],
         ),
@@ -67,16 +73,13 @@ class _LoadedState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 256,
+      height: 256.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: state.newsByCategory!.length,
         itemBuilder: (context, index) {
           final post = state.newsByCategory![index];
-          final category = state.selectedCategory
-              .split(',')
-              .first
-              .trim();
+          final category = state.selectedCategory.split(',').first.trim();
           final isBookmarked = state.isBookmarked(post.id);
           return Row(
             children: [
@@ -86,12 +89,12 @@ class _LoadedState extends StatelessWidget {
                     post: post,
                     category: category,
                     isBookmarked: isBookmarked,
-                    imageHeight: 330,
-                    imageWidth: 330,
+                    imageWidth: 256.w,
+                    imageHeight: 256.h,
                     textContainerWidth: 0.7,
                     // textContainerWidth: 300,
                   )),
-              addHorizental(15),
+              SizedBox(width: 15.w),
             ],
           );
         },

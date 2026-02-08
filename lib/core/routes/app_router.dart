@@ -3,22 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/routes/go_router_refresh_stream.dart';
+import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
 import 'package:news_app/features/get_news/routes/home_routes.dart';
-import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 import 'package:news_app/features/onboarding/routes/onboarding_routes.dart';
 
 class AppRouter {
-  final OnboardingCubit onboardingCubit;
-  AppRouter({required this.onboardingCubit});
+  final AppGateCubit appGateCubit;
+  AppRouter({required this.appGateCubit});
   // static GoRouter get router => _router;
 
   late final GoRouter router = GoRouter(
     initialLocation: AppRoutes.splash,
-    refreshListenable: GoRouterRefreshStream(onboardingCubit.stream),
+    refreshListenable: GoRouterRefreshStream(appGateCubit.stream),
     redirect: (context, state) {
-      final gate = context.read<OnboardingCubit>().state;
-      if (gate is ShowOnboarding) return '/onboarding';
-      if (gate is SkipOnboarding) return '/home';
+      final gate = context.read<AppGateCubit>().state;
+      if (gate is AppGateOnboarding) return '/onboarding';
+      if (gate is AppGateSkipOnboarding) return '/home';
       return null;
     },
     routes: [...OnBoardingRoutes.routes, ...HomeRoutes.routes],

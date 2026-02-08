@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/app_colors.dart';
-import 'package:news_app/core/theme/app_text_styles.dart';
-import 'package:news_app/core/theme/manager/theme_cubit.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
+import 'package:news_app/core/theme/manager/theme_cubit.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/utility.dart';
+
 import '../../data/datasources/news_category.dart';
 import '../widget/preview_slide.dart';
 import '../widget/top_news.dart';

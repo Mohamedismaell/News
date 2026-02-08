@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
 import 'package:news_app/utility.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -43,11 +45,10 @@ class StackedImage extends StatelessWidget {
               height: imageHeight,
               width: imageWidth,
               fit: BoxFit.cover,
-              placeholder: (_, __) => Container(
+              placeholder: (_, __) => SizedBox(
                 height: imageHeight,
                 width: imageWidth,
-                color: Colors.grey.shade300,
-                child: const Center(child: CircularProgressIndicator()),
+                child: Text('dsadadsa'),
               ),
               errorWidget: (
                 context,
@@ -90,8 +91,8 @@ class StackedImage extends StatelessWidget {
           ),
           //! Saved icon
           Positioned(
-            right: 5,
-            top: 5,
+            right: 5.w,
+            top: 5.h,
             child: IconButton(
                 onPressed: () => context
                     .read<NewsCubit>()
@@ -99,7 +100,7 @@ class StackedImage extends StatelessWidget {
                 icon: Icon(
                   isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                   color: AppColors.white,
-                  size: 30,
+                  size: 30.r,
                 )),
           ),
           //! category + title

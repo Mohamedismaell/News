@@ -1,11 +1,11 @@
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/routes/app_router.dart';
+import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
 import 'package:news_app/features/onboarding/data/repositories/on_boarding_impl.dart';
 import 'package:news_app/features/onboarding/data/sources/on_boarding_local_data_source.dart';
 import 'package:news_app/features/onboarding/data/sources/onboarding_local_data_source.dart';
 import 'package:news_app/features/onboarding/domain/repositories/auth_repository.dart';
-import 'package:news_app/features/onboarding/domain/usecases/check_first_time_use_case.dart';
 import 'package:news_app/features/onboarding/domain/usecases/complete_onboarding_use_case.dart';
 import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 
@@ -24,21 +24,23 @@ class OnboardingDi {
       () => OnboardingRepositoryImpl(local: sl<OnboardingLocalDataSource>()),
     );
     //! Use Cases
-    sl.registerLazySingleton<CheckFirstTimeUseCase>(
-      () => CheckFirstTimeUseCase(sl<OnboardingRepository>()),
-    );
+    // sl.registerLazySingleton<CheckFirstTimeUseCase>(
+    //   () => CheckFirstTimeUseCase(sl<OnboardingRepository>()),
+    // );
     sl.registerLazySingleton<CompleteOnboardingUseCase>(
       () => CompleteOnboardingUseCase(sl<OnboardingRepository>()),
     );
     //!Cubit
     sl.registerLazySingleton<OnboardingCubit>(
-      () => OnboardingCubit(
-          sl<CheckFirstTimeUseCase>(), sl<CompleteOnboardingUseCase>()),
+      () => OnboardingCubit(sl<CompleteOnboardingUseCase>()),
     );
     sl.registerLazySingleton(
       () => AppRouter(
-        onboardingCubit: sl<OnboardingCubit>(),
+        appGateCubit: sl<AppGateCubit>(),
       ),
+    );
+    sl.registerLazySingleton(
+      () => AppGateCubit(onboardingRepository: sl<OnboardingRepository>()),
     );
   }
 }

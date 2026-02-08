@@ -1,4 +1,4 @@
-import 'package:news_app/core/connections/result.dart';
+import 'package:news_app/core/utils/result.dart';
 import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
 
