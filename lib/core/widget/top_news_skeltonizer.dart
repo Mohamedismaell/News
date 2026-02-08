@@ -20,6 +20,10 @@ class TopNewsSkeltonizer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverSkeletonizer(
+      effect: ShimmerEffect(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+      ),
       child: SliverList.builder(
           itemCount: posts.length,
           itemBuilder: (context, index) {
@@ -38,7 +42,7 @@ class TopNewsSkeltonizer extends StatelessWidget {
                         child: Container(
                           width: 96.w,
                           height: 96.h,
-                          color: Colors.grey,
+                          color: Colors.grey.shade200,
                         ),
                       ),
                       SizedBox(width: 15.w),
