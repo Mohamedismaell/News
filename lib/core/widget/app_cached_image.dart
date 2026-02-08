@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class AppCachedImage extends StatelessWidget {
   final String imageUrl;
@@ -23,9 +23,11 @@ class AppCachedImage extends StatelessWidget {
       width: width,
       height: height,
       fit: fit,
-      placeholder: (_, __) => Shimmer.fromColors(
-        baseColor: Colors.grey,
-        highlightColor: Colors.white,
+      placeholder: (_, __) => Skeletonizer(
+        effect: ShimmerEffect(
+          baseColor: Colors.grey.shade300,
+          highlightColor: Colors.grey.shade100,
+        ),
         child: SizedBox(width: width, height: height),
       ),
       errorWidget: (_, __, ___) => const Icon(Icons.broken_image),

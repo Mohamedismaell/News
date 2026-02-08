@@ -5,7 +5,6 @@ import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/widget/category_news_skeltonizer.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/widget/stacked_image.dart';
-import 'package:shimmer/shimmer.dart';
 
 class PreviewSlide extends StatelessWidget {
   const PreviewSlide({super.key});
