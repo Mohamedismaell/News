@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:news_app/core/database/api/dio_consumer.dart';
 import 'package:news_app/core/database/cache/cache_helper.dart';
 import 'package:news_app/core/injection/service_locator.dart';
-import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
 import 'package:news_app/core/theme/manager/theme_cubit.dart';
 import 'package:news_app/core/utils/form_validators.dart';
 import 'package:news_app/features/get_news/data/datasources/news_remote_data_source.dart';
@@ -11,7 +10,6 @@ import 'package:news_app/features/get_news/data/repositories/news_repository_imp
 import 'package:news_app/features/get_news/domain/repositories/news_repository.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/onboarding/domain/repositories/auth_repository.dart';
 
 CacheHelper get cacheHelper => sl<CacheHelper>();
 

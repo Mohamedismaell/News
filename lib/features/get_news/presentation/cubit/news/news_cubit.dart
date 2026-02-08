@@ -58,7 +58,7 @@ class NewsCubit extends Cubit<NewsState> {
         emit(
           state.copyWith(
             categoryStatus: NewsStatus.error,
-            errorMessage: errorMessage.errMessage,
+            errorMessage: errorMessage.message,
           ),
         );
       },
@@ -88,7 +88,7 @@ class NewsCubit extends Cubit<NewsState> {
         emit(
           state.copyWith(
             dateStatus: NewsStatus.error,
-            errorMessage: error.errMessage,
+            errorMessage: error.message,
           ),
         );
       },

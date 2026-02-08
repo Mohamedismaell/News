@@ -1,11 +1,11 @@
-import 'package:news_app/core/utils/result.dart';
+import 'package:dio/dio.dart';
+import 'package:news_app/core/database/api/api_error_mapper.dart';
+import 'package:news_app/core/errors/failure.dart';
+import 'package:news_app/core/helper/result.dart';
 import 'package:news_app/core/params/news_category_params.dart';
+import 'package:news_app/features/get_news/data/datasources/news_remote_data_source.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
-
-import '../../../../core/errors/exceptions.dart';
-import '../../../../core/errors/failure.dart';
-import '../../domain/repositories/news_repository.dart';
-import '../datasources/news_remote_data_source.dart';
+import 'package:news_app/features/get_news/domain/repositories/news_repository.dart';
 
 class NewsRepositoryImpl extends NewsRepository {
   // final NetworkInfo networkInfo;
@@ -24,10 +24,12 @@ class NewsRepositoryImpl extends NewsRepository {
       // await Future.delayed(Duration(seconds: 20));
       final remoteNews = await remoteDataSource.getNewsByCategory(params);
       return Result.ok(remoteNews.posts ?? []);
-    } on ServerExceptions catch (e) {
+    } on DioException catch (e) {
       return Result.error(
-        Failure(errMessage: e.errorModel.errorMessage),
+        ApiErrorMapper.fromDioException(e),
       );
+    } catch (_) {
+      return Result.error(const UnknownFailure());
     }
   }
 
@@ -41,10 +43,12 @@ class NewsRepositoryImpl extends NewsRepository {
       // );
       // debugPrint('remoteNews.posts: ${remoteNews?.posts}');
       return Result.ok(remoteNews.posts ?? []);
-    } on ServerExceptions catch (e) {
+    } on DioException catch (e) {
       return Result.error(
-        Failure(errMessage: e.errorModel.errorMessage),
+        ApiErrorMapper.fromDioException(e),
       );
+    } catch (_) {
+      return Result.error(const UnknownFailure());
     }
   }
 }

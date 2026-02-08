@@ -1,6 +1,6 @@
 import 'package:news_app/core/params/news_category_params.dart';
 
-import '../../../../core/utils/result.dart';
+import '../../../../core/helper/result.dart';
 import '../entities/post_entitiy.dart';
 
 abstract class NewsRepository {

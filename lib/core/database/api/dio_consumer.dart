@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import '../../errors/exceptions.dart';
+
 import 'api_consumer.dart';
 import 'api_interceptor.dart';
 import 'end_points.dart';
