@@ -33,16 +33,12 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
     CancelToken? cancelToken,
   }) async {
-    try {
-      final response = await dio.delete(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    final response = await dio.delete(
+      path,
+      data: isFormData ? FormData.fromMap(data) : data,
+      queryParameters: queryParameters,
+    );
+    return response.data;
   }
 
   @override
@@ -53,30 +49,14 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
     CancelToken? cancelToken,
   }) async {
-    try {
-      // debugPrint('🔍 Request URL: ${dio.options.baseUrl}$path');
-      // debugPrint('🔍 Query Parameters: $queryParameters');
+    final response = await dio.get(
+      path,
+      data: isFormData ? FormData.fromMap(data) : data,
+      queryParameters: queryParameters,
+      cancelToken: cancelToken,
+    );
 
-      final response = await dio.get(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-        cancelToken: cancelToken,
-      );
-
-      // debugPrint('📥 Total Results: ${response.data['totalResults']}');
-      // debugPrint('📥 Posts Count: ${response.data['posts']?.length ?? 0}');
-      // debugPrint('📥 Requests Left: ${response.data['requestsLeft']}');
-      // debugPrint(
-      //   '📥 Response URL: ${dio.options.baseUrl}$path?${Uri(queryParameters: queryParameters).query}',
-      // );
-      // debugPrint(
-      //   '📥 Response categories: ${response.data['posts']?[0]?['categories']}',
-      // );
-      return response.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    return response.data;
   }
 
   @override
@@ -87,16 +67,12 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
     CancelToken? cancelToken,
   }) async {
-    try {
-      final response = await dio.patch(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    final response = await dio.patch(
+      path,
+      data: isFormData ? FormData.fromMap(data) : data,
+      queryParameters: queryParameters,
+    );
+    return response.data;
   }
 
   @override
@@ -107,15 +83,11 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
     CancelToken? cancelToken,
   }) async {
-    try {
-      final response = await dio.post(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    final response = await dio.post(
+      path,
+      data: isFormData ? FormData.fromMap(data) : data,
+      queryParameters: queryParameters,
+    );
+    return response.data;
   }
 }

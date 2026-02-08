@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/navigaiton/tabs_shell.dart';
 import 'package:news_app/core/routes/app_routes.dart';
-import 'package:news_app/features/get_news/data/datasources/news_category.dart';
+import 'package:news_app/core/enums/news_category.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/model/news_detail_args.dart';
 import 'package:news_app/features/get_news/presentation/screens/post_details.dart';

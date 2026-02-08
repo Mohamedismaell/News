@@ -1,0 +1,73 @@
+import 'package:dio/dio.dart';
+import 'package:news_app/core/errors/failure.dart';
+
+class ApiErrorMapper {
+  static Failure fromDioException(DioException e) {
+    switch (e.type) {
+      case DioExceptionType.connectionTimeout:
+        return NetworkFailure(
+          message: 'Connection timed out',
+          debugMessage: e.message,
+        );
+
+      case DioExceptionType.sendTimeout:
+        return NetworkFailure(
+          message: 'Request timed out',
+          debugMessage: e.message,
+        );
+
+      case DioExceptionType.receiveTimeout:
+        return NetworkFailure(
+          message: 'Server took too long to respond',
+          debugMessage: e.message,
+        );
+
+      case DioExceptionType.connectionError:
+        return NetworkFailure(
+          message: 'No internet connection',
+          debugMessage: e.message,
+        );
+
+      case DioExceptionType.badResponse:
+        return _mapBadResponse(e);
+
+      case DioExceptionType.cancel:
+      case DioExceptionType.unknown:
+      default:
+        return const UnknownFailure();
+    }
+  }
+
+  static Failure _mapBadResponse(DioException e) {
+    final response = e.response;
+    if (response == null) {
+      return const ServerFailure('Server error');
+    }
+
+    final statusCode = response.statusCode ?? 0;
+    final data = response.data;
+
+    if (statusCode == 401 || statusCode == 403) {
+      return const UnauthorizedFailure();
+    }
+
+    final message = _extractMessage(data);
+
+    return ServerFailure(
+      message,
+      debugMessage: e.message,
+    );
+  }
+
+  static String _extractMessage(dynamic data) {
+    if (data is Map<String, dynamic>) {
+      if (data['message'] != null) return data['message'].toString();
+      if (data['errorMessage'] != null) return data['errorMessage'].toString();
+      if (data['error'] != null) return data['error'].toString();
+      if (data['errors'] is List && data['errors'].isNotEmpty) {
+        return data['errors'].first.toString();
+      }
+    }
+    return 'Server error occurred';
+  }
+}

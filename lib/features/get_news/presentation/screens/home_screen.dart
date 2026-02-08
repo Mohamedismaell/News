@@ -6,7 +6,7 @@ import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/core/theme/manager/theme_cubit.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 
-import '../../data/datasources/news_category.dart';
+import '../../../../core/enums/news_category.dart';
 import '../widget/preview_slide.dart';
 import '../widget/top_news.dart';
 
