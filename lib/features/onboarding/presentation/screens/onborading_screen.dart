@@ -17,8 +17,6 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late PageController pageController;
-  final CarouselSliderController carouselController =
-      CarouselSliderController();
   @override
   void initState() {
     pageController = PageController();
@@ -33,58 +31,58 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<OnboardingCubit>(
-      create: (context) => sl<OnboardingCubit>(),
-      child: Builder(builder: (context) {
-        return Scaffold(
-            body: SafeArea(
-                child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              OnboardingPages(
-                  pageController: pageController,
-                  carouselController: carouselController),
-              SizedBox(height: 15.h),
-              SmoothPageIndicator(
-                controller: pageController,
-                count: 2,
-                effect: ExpandingDotsEffect(
-                  dotColor: context.colorTheme.surface,
-                  activeDotColor: context.colorTheme.primary,
-                ),
-                // onDotClicked: (index) {},
+    return BlocBuilder<OnboardingCubit, OnboardingState>(
+        builder: (context, state) {
+      return Scaffold(
+          body: SafeArea(
+              child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            OnboardingPages(
+              pageController: pageController,
+            ),
+            SizedBox(height: 15.h),
+            SmoothPageIndicator(
+              controller: pageController,
+              count: 2,
+              effect: ExpandingDotsEffect(
+                dotColor: context.colorTheme.surface,
+                activeDotColor: context.colorTheme.primary,
               ),
-              SizedBox(height: 15.h),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (pageController.page == 1) {
-                      context.read<OnboardingCubit>().finishOnboarding();
-                      context.read<AppGateCubit>().start();
-                    } else {
-                      pageController.nextPage(
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeIn,
-                      );
-                    }
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text('Next'),
-                      // SizedBox(width: 8.w),
-                      // Icon(Icons.arrow_forward_outlined),
-                    ],
-                  ),
+              // onDotClicked: (index) {},
+            ),
+            SizedBox(height: 15.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+              child: ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<OnboardingCubit>()
+                      .updateIndex(pageController.page!.toInt());
+                  // print('pageController.page ${pageController.page!.toInt()}');
+                  // print('state.isLastPage ${state.isLastPage}');
+                  state.isLastPage
+                      ? context.read<AppGateCubit>().start()
+                      : pageController.nextPage(
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeIn,
+                        );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text('Next'),
+                    // SizedBox(width: 8.w),
+                    // Icon(Icons.arrow_forward_outlined),
+                  ],
                 ),
               ),
-            ],
-          ),
-        )));
-      }),
-    );
+            ),
+          ],
+        ),
+      )));
+    });
   }
 }

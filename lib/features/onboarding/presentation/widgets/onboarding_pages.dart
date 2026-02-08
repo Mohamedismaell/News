@@ -8,10 +8,10 @@ class OnboardingPages extends StatelessWidget {
   const OnboardingPages({
     super.key,
     required this.pageController,
-    required this.carouselController,
+    // required this.carouselController,
   });
   final PageController pageController;
-  final CarouselSliderController carouselController;
+  // final CarouselSliderController carouselController;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -50,13 +50,14 @@ class OnboardingPages extends StatelessWidget {
   }
 }
 
-Widget _buildImageSlider(
-    {required OnboardingModel item,
-    required bool isSingleImage,
-    CarouselSliderController? carouselController}) {
+Widget _buildImageSlider({
+  required OnboardingModel item,
+  required bool isSingleImage,
+  // CarouselSliderController? carouselController
+}) {
   return Expanded(
     child: CarouselSlider(
-        carouselController: carouselController,
+        // carouselController: carouselController,
         options: CarouselOptions(
           viewportFraction: isSingleImage ? 1 : 0.8,
           height: 336.0,
