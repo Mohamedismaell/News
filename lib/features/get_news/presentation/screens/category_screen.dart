@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:news_app/core/enums/news_category.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/enums/news_category.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/widget/stacked_image.dart';
+
 import '../../../../core/theme/app_text_styles.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -55,9 +56,9 @@ class _Posts extends StatelessWidget {
       final Widget content = ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: state.newsByCategory!.length,
+        itemCount: state.categoryNews.length,
         itemBuilder: (context, index) {
-          final post = state.newsByCategory![index];
+          final post = state.categoryNews[index];
           final isBookmarked = state.isBookmarked(post.id);
           return Column(
             children: [

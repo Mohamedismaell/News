@@ -16,13 +16,10 @@ class NewsCubit extends Cubit<NewsState> {
     init();
   }
   final GetNewsByCategory getNews;
-  // int _categoryRequestId = 0;
-  // // int _dateRequestId = 0;
 
   Future<void> callNewsCategory(
     String category,
   ) async {
-    // final requestId = ++_categoryRequestId;
     emit(state.copyWith(
       categoryStatus: NewsStatus.loading,
       selectedCategory: category,
@@ -31,25 +28,12 @@ class NewsCubit extends Cubit<NewsState> {
       params: NewsCategoryParams(category: category),
     );
 
-    // if (requestId != _categoryRequestId) {
-    //   return;
-    // }
     response.when(
       success: (posts) {
-        // if (requestId != _categoryRequestId) return;
-
-        // final validateNewsCategory = posts.where((post) {
-        //   return post.threadimageUrl != null &&
-        //       post.threadimageUrl!.isNotEmpty &&
-        //       Uri.tryParse(
-        //             post.threadimageUrl!,
-        //           )?.hasAbsolutePath ==
-        //           true;
-        // }).toList();
         emit(
           state.copyWith(
             categoryStatus: NewsStatus.loaded,
-            newsByCategory: posts,
+            categoryNews: posts,
           ),
         );
       },
@@ -64,61 +48,32 @@ class NewsCubit extends Cubit<NewsState> {
     );
   }
 
-  // Future<void> callTopNews() async {
-  //   final response = await getNews.callNewsDate();
-  //   return response.when(
-  //     success: (news) {
-  //       final validateNewsDate = news.where((post) {
-  //         return post.threadimageUrl != null &&
-  //             post.threadimageUrl!.isNotEmpty &&
-  //             Uri.tryParse(
-  //                   post.threadimageUrl!,
-  //                 )?.hasAbsolutePath ==
-  //                 true;
-  //       }).toList();
-  //       emit(
-  //         state.copyWith(
-  //           dateStatus: NewsStatus.loaded,
-  //           newsByDate: validateNewsDate,
-  //         ),
-  //       );
-  //     },
-  //     failure: (error) {
-  //       emit(
-  //         state.copyWith(
-  //           dateStatus: NewsStatus.error,
-  //           errorMessage: error.message,
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
+  Future<void> callTopHeadLines() async {
+    final response = await getNews.callTopHeadLines();
+    return response.when(
+      success: (posts) {
+        emit(
+          state.copyWith(
+            dateStatus: NewsStatus.loaded,
+            topHeadLines: posts,
+          ),
+        );
+      },
+      failure: (errorMessage) {
+        emit(
+          state.copyWith(
+            dateStatus: NewsStatus.error,
+            errorMessage: errorMessage.message,
+          ),
+        );
+      },
+    );
+  }
 
   Future<void> init() async {
     await callNewsCategory(EndPoints.defaultCategory);
-    // await callTopNews();
+    await callTopHeadLines();
   }
-
-  //* wait for it now
-
-  // void init() {
-
-  // }
-
-  // Future<void> fetchInitial(bool isloaded) async {
-  //   if (!isloaded) {
-  //     emit(
-  //       state.copyWith(
-  //         categoryStatus: NewsStatus.loading,
-  //         dateStatus: NewsStatus.loading,
-  //       ),
-  //     );
-  //     await eitherFailureOrSuccessByCategory(
-  //       EndPoints.defaultCategory,
-  //     );
-  //     await eitherFailureOrSuccessByDate();
-  //   }
-  // }
 
   void selectCategory(String category) {
     if (state.selectedCategory == category) return;

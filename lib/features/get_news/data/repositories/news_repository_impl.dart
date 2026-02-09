@@ -39,22 +39,22 @@ class NewsRepositoryImpl extends NewsRepository {
     }
   }
 
-  // @override
-  // Future<Result<List<PostEntity>>> getNewsByDate() async {
-  //   try {
-  //     // await Future.delayed(Duration(seconds: 20));
-  //     final remoteNews = await remoteDataSource.getNewsByDate();
-  //     // debugPrint(
-  //     //   'remoteNews from data source: $remoteNews',
-  //     // );
-  //     // debugPrint('remoteNews.posts: ${remoteNews?.posts}');
-  //     return Result.ok(remoteNews.posts ?? []);
-  //   } on DioException catch (e) {
-  //     return Result.error(
-  //       ApiErrorMapper.fromDioException(e),
-  //     );
-  //   } catch (_) {
-  //     return Result.error(const UnknownFailure());
-  //   }
-  // }
+  @override
+  Future<Result<List<PostEntity>>> getTopHeadLines() async {
+    try {
+      final remoteNews = await remoteDataSource.getTopHeadLines();
+
+      final articles = remoteNews.articles
+          .map((article) => ArticleMapper.toEntity(article))
+          .toList();
+
+      return Result.ok(articles);
+    } on DioException catch (e) {
+      return Result.error(
+        ApiErrorMapper.fromDioException(e),
+      );
+    } catch (e) {
+      return Result.error(const UnknownFailure());
+    }
+  }
 }
