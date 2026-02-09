@@ -9,6 +9,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
+import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 
 import 'core/observers/app_bloc_observer.dart';
 import 'core/routes/app_router.dart';
@@ -29,6 +30,7 @@ Future<void> main() async {
   await initializeDependencies(onboardingBox: onboardingBox);
   print('Step 5: Service Locator initialized');
   debugPaintSizeEnabled = false;
+
   runApp(
     DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
     // AppBootstrap(),
@@ -45,6 +47,7 @@ class AppBootstrap extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => sl<ThemeCubit>()),
         BlocProvider(create: (context) => sl<AppGateCubit>()),
+        BlocProvider(create: (context) => sl<NewsCubit>()),
       ],
       child: const MyApp(),
     );

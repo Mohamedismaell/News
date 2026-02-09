@@ -6,10 +6,8 @@ import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/core/widget/app_cached_image.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
 
-import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../cubit/news/news_cubit.dart';
-import '../model/news_detail_args.dart';
 
 class StackedImage extends StatelessWidget {
   const StackedImage(
@@ -29,11 +27,20 @@ class StackedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () async {
-      //   await context.push(AppRoutes.newsDetails,
-      //       extra:
-      //           NewsDetailsArgs(post: post, category: post.categories.first));
-      // },
+      onTap: () async {
+        await context.pushNamed(
+          'postDetails',
+          pathParameters: {
+            'postId': post.id,
+          },
+          extra: {
+            'heroTag': 'post_${post.id}',
+            'coverUrl': post.threadimageUrl,
+            'title': post.threadtitle,
+            'author': post.author,
+          },
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.only(right: 16.0),
         child: Stack(

@@ -4,7 +4,7 @@ import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
 class ArticleMapper {
   static PostEntity toEntity(ArticleDto dto) {
     return PostEntity(
-      id: dto.url,
+      id: dto.title,
       thereadurl: dto.urlToImage ?? '',
       threadtitle: dto.title,
       threadText: dto.description ?? '',

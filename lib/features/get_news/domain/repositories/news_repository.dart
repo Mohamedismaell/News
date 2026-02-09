@@ -8,4 +8,7 @@ abstract class NewsRepository {
     required NewsCategoryParams params,
   });
   Future<Result<List<PostEntity>>> getTopHeadLines();
+  Future<Result<PostEntity>> getSpecificPost({
+    required NewsCategoryParams params,
+  });
 }

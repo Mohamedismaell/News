@@ -4,14 +4,14 @@ import 'package:news_app/core/params/news_category_params.dart';
 import '../entities/post_entitiy.dart';
 import '../repositories/news_repository.dart';
 
-class GetNewsByCategory {
+class GetSpecificPost {
   final NewsRepository repository;
 
-  GetNewsByCategory({required this.repository});
+  GetSpecificPost({required this.repository});
 
-  Future<Result<List<PostEntity>>> callNewsCategory({
+  Future<Result<PostEntity>> callSpecificPost({
     required NewsCategoryParams params,
   }) {
-    return repository.getNewsByCategory(params: params);
+    return repository.getSpecificPost(params: params);
   }
 }

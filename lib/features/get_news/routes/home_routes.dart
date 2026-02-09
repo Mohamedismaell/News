@@ -2,10 +2,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/navigaiton/tabs_shell.dart';
+import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/enums/news_category.dart';
+import 'package:news_app/features/get_news/domain/usecases/get_specific_post_usecase.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/get_news/presentation/model/news_detail_args.dart';
+import 'package:news_app/features/get_news/presentation/cubit/post_/post_details_cubit.dart';
 import 'package:news_app/features/get_news/presentation/screens/post_details.dart';
 import 'package:news_app/features/get_news/presentation/screens/profile_screen.dart';
 import '../presentation/screens/book_marks_screen.dart';
@@ -49,11 +51,21 @@ class HomeRoutes {
       ],
     ),
     GoRoute(
+        name: 'postDetails',
         path: AppRoutes.newsDetails,
         builder: (context, state) {
-          final argu = state.extra as NewsDetailsArgs;
-
-          return PostDetails(category: argu.category, post: argu.post);
+          final postId = state.pathParameters['postId']!;
+          final extra = state.extra as Map<String, dynamic>?;
+          return BlocProvider(
+            create: (context) => PostDetailsCubit(sl<GetSpecificPost>())
+              ..callSpecificPost(NewsCategoryParams(category: postId)),
+            child: PostDetails(
+              heroTag: extra?['heroTag'],
+              previewCover: extra?['coverUrl'],
+              previewTitle: extra?['title'],
+              previewAuthor: extra?['author'],
+            ),
+          );
         }),
   ];
 }

@@ -57,4 +57,25 @@ class NewsRepositoryImpl extends NewsRepository {
       return Result.error(const UnknownFailure());
     }
   }
+
+  @override
+  Future<Result<PostEntity>> getSpecificPost({
+    required NewsCategoryParams params,
+  }) async {
+    try {
+      final remoteNews = await remoteDataSource.getSpecificPost(params);
+
+      final articles = remoteNews.articles
+          .map((article) => ArticleMapper.toEntity(article))
+          .toList();
+
+      return Result.ok(articles.first);
+    } on DioException catch (e) {
+      return Result.error(
+        ApiErrorMapper.fromDioException(e),
+      );
+    } catch (e) {
+      return Result.error(const UnknownFailure());
+    }
+  }
 }

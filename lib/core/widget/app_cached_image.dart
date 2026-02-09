@@ -40,9 +40,9 @@ class AppCachedImage extends StatelessWidget {
           String url,
           Object error,
         ) {
-          debugPrint('❌ Image failed');
-          debugPrint('URL: $url');
-          debugPrint('ErrorImageHere: $error');
+          // debugPrint('❌ Image failed');
+          // debugPrint('URL: $url');
+          // debugPrint('ErrorImageHere: $error');
           return Image.asset(
             'assets/images/Rectangle 18.png',
             width: width,

@@ -36,9 +36,9 @@ class _LoadedState extends StatelessWidget {
       height: 256.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: state.categoryNews!.length,
+        itemCount: state.categoryNews.length,
         itemBuilder: (context, index) {
-          final post = state.categoryNews![index];
+          final post = state.categoryNews[index];
           final category = state.selectedCategory.split(',').first.trim();
           final isBookmarked = state.isBookmarked(post.id);
           return StackedImage(

@@ -30,4 +30,15 @@ class NewsRemoteDataSource {
     );
     return NewsResponseDto.fromJsonMap(newsCategoryRes);
   }
+
+  Future<NewsResponseDto> getSpecificPost(NewsCategoryParams params) async {
+    final response = await api.get(
+      EndPoints.allNews,
+      queryParameters: {
+        'q': params.category,
+        'apiKey': EndPoints.token,
+      },
+    );
+    return NewsResponseDto.fromJsonMap(response);
+  }
 }

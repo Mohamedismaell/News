@@ -37,28 +37,5 @@ class CommonDi {
     //   ),
     // );
     // sl.registerLazySingleton(() => CacheHelper());
-
-    //! Data Sources
-    sl.registerLazySingleton<NewsRemoteDataSource>(
-      () => NewsRemoteDataSource(api: sl<DioConsumer>()),
-    );
-
-    //! Repositories
-    sl.registerLazySingleton<NewsRepository>(
-      () => NewsRepositoryImpl(
-        remoteDataSource: sl<NewsRemoteDataSource>(),
-        // networkInfo: sl<NetworkInfo>(),
-      ),
-    );
-
-    //! Use Cases
-    sl.registerLazySingleton(
-      () => GetNewsByCategory(repository: sl<NewsRepository>()),
-    );
-
-    //! Cubits
-    sl.registerLazySingleton(
-      () => NewsCubit(sl<GetNewsByCategory>()),
-    );
   }
 }

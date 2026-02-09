@@ -44,10 +44,10 @@ class NewsState extends Equatable {
         false;
   }
 
-  @override
-  String toString() {
-    return 'NewsState(selectedCategory: $selectedCategory, categoryStatus: $categoryStatus, dateStatus: $dateStatus, categoryNews: $categoryNews, topHeadLines: $topHeadLines, bookmarks: $bookmarks, errorMessage: $errorMessage)';
-  }
+  // @override
+  // String toString() {
+  //   return 'NewsState(selectedCategory: $selectedCategory, categoryStatus: $categoryStatus, dateStatus: $dateStatus, categoryNews: $categoryNews, topHeadLines: $topHeadLines, bookmarks: $bookmarks, errorMessage: $errorMessage)';
+  // }
 
   @override
   List<Object?> get props => [

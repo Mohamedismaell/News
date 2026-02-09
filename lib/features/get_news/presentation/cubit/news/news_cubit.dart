@@ -5,6 +5,8 @@ import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
+import 'package:news_app/features/get_news/domain/usecases/get_specific_post_usecase.dart';
+import 'package:news_app/features/get_news/domain/usecases/get_top_head_lines.dart';
 
 import '../../../domain/entities/post_entitiy.dart';
 import '../../model/book_marked_post.dart';
@@ -12,10 +14,16 @@ import '../../model/book_marked_post.dart';
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
-  NewsCubit(this.getNews) : super(NewsState()) {
+  NewsCubit(this.getNews, this.getTopHeadLines) : super(NewsState()) {
     init();
   }
   final GetNewsByCategory getNews;
+  final GetTopHeadLines getTopHeadLines;
+
+  Future<void> init() async {
+    await callNewsCategory(EndPoints.defaultCategory);
+    await callTopHeadLines();
+  }
 
   Future<void> callNewsCategory(
     String category,
@@ -49,7 +57,7 @@ class NewsCubit extends Cubit<NewsState> {
   }
 
   Future<void> callTopHeadLines() async {
-    final response = await getNews.callTopHeadLines();
+    final response = await getTopHeadLines.callTopHeadLines();
     return response.when(
       success: (posts) {
         emit(
@@ -68,11 +76,6 @@ class NewsCubit extends Cubit<NewsState> {
         );
       },
     );
-  }
-
-  Future<void> init() async {
-    await callNewsCategory(EndPoints.defaultCategory);
-    await callTopHeadLines();
   }
 
   void selectCategory(String category) {
