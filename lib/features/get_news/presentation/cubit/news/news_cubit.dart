@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/enums/stats.dart';
@@ -15,42 +16,40 @@ class NewsCubit extends Cubit<NewsState> {
     init();
   }
   final GetNewsByCategory getNews;
-  int _categoryRequestId = 0;
-  // int _dateRequestId = 0;
+  // int _categoryRequestId = 0;
+  // // int _dateRequestId = 0;
 
   Future<void> callNewsCategory(
     String category,
   ) async {
-    final requestId = ++_categoryRequestId;
+    // final requestId = ++_categoryRequestId;
     emit(state.copyWith(
       categoryStatus: NewsStatus.loading,
-      newsByCategory: [],
       selectedCategory: category,
     ));
     final response = await getNews.callNewsCategory(
       params: NewsCategoryParams(category: category),
     );
 
-    if (requestId != _categoryRequestId) {
-      return;
-    }
-
+    // if (requestId != _categoryRequestId) {
+    //   return;
+    // }
     response.when(
-      success: (newsApi) {
-        if (requestId != _categoryRequestId) return;
+      success: (posts) {
+        // if (requestId != _categoryRequestId) return;
 
-        final validateNewsCategory = newsApi.where((post) {
-          return post.threadimageUrl != null &&
-              post.threadimageUrl!.isNotEmpty &&
-              Uri.tryParse(
-                    post.threadimageUrl!,
-                  )?.hasAbsolutePath ==
-                  true;
-        }).toList();
+        // final validateNewsCategory = posts.where((post) {
+        //   return post.threadimageUrl != null &&
+        //       post.threadimageUrl!.isNotEmpty &&
+        //       Uri.tryParse(
+        //             post.threadimageUrl!,
+        //           )?.hasAbsolutePath ==
+        //           true;
+        // }).toList();
         emit(
           state.copyWith(
             categoryStatus: NewsStatus.loaded,
-            newsByCategory: validateNewsCategory,
+            newsByCategory: posts,
           ),
         );
       },
@@ -65,39 +64,39 @@ class NewsCubit extends Cubit<NewsState> {
     );
   }
 
-  Future<void> callTopNews() async {
-    final response = await getNews.callNewsDate();
-    return response.when(
-      success: (news) {
-        final validateNewsDate = news.where((post) {
-          return post.threadimageUrl != null &&
-              post.threadimageUrl!.isNotEmpty &&
-              Uri.tryParse(
-                    post.threadimageUrl!,
-                  )?.hasAbsolutePath ==
-                  true;
-        }).toList();
-        emit(
-          state.copyWith(
-            dateStatus: NewsStatus.loaded,
-            newsByDate: validateNewsDate,
-          ),
-        );
-      },
-      failure: (error) {
-        emit(
-          state.copyWith(
-            dateStatus: NewsStatus.error,
-            errorMessage: error.message,
-          ),
-        );
-      },
-    );
-  }
+  // Future<void> callTopNews() async {
+  //   final response = await getNews.callNewsDate();
+  //   return response.when(
+  //     success: (news) {
+  //       final validateNewsDate = news.where((post) {
+  //         return post.threadimageUrl != null &&
+  //             post.threadimageUrl!.isNotEmpty &&
+  //             Uri.tryParse(
+  //                   post.threadimageUrl!,
+  //                 )?.hasAbsolutePath ==
+  //                 true;
+  //       }).toList();
+  //       emit(
+  //         state.copyWith(
+  //           dateStatus: NewsStatus.loaded,
+  //           newsByDate: validateNewsDate,
+  //         ),
+  //       );
+  //     },
+  //     failure: (error) {
+  //       emit(
+  //         state.copyWith(
+  //           dateStatus: NewsStatus.error,
+  //           errorMessage: error.message,
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   Future<void> init() async {
     await callNewsCategory(EndPoints.defaultCategory);
-    await callTopNews();
+    // await callTopNews();
   }
 
   //* wait for it now

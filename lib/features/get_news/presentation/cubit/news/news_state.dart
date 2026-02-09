@@ -1,20 +1,20 @@
 part of 'news_cubit.dart';
 
 @immutable
-class NewsState {
+class NewsState extends Equatable {
   final String selectedCategory;
   final NewsStatus categoryStatus;
   final NewsStatus dateStatus;
-  final List<PostEntity>? newsByCategory;
-  final List<PostEntity>? newsByDate;
+  final List<PostEntity> newsByCategory;
+  final List<PostEntity> newsByDate;
   final List<BookmarkedPost>? bookmarks;
   final String? errorMessage;
   const NewsState({
     this.dateStatus = NewsStatus.loading,
     this.categoryStatus = NewsStatus.loading,
     this.selectedCategory = 'Politics',
-    this.newsByCategory,
-    this.newsByDate,
+    this.newsByCategory = const [],
+    this.newsByDate = const [],
     this.errorMessage,
     this.bookmarks,
   });
@@ -43,4 +43,20 @@ class NewsState {
     return bookmarks?.any((markedPost) => markedPost.post.id == postId) ??
         false;
   }
+
+  @override
+  String toString() {
+    return 'NewsState(selectedCategory: $selectedCategory, categoryStatus: $categoryStatus, dateStatus: $dateStatus, newsByCategory: $newsByCategory, newsByDate: $newsByDate, bookmarks: $bookmarks, errorMessage: $errorMessage)';
+  }
+
+  @override
+  List<Object?> get props => [
+        selectedCategory,
+        categoryStatus,
+        dateStatus,
+        newsByCategory,
+        newsByDate,
+        bookmarks,
+        errorMessage
+      ];
 }

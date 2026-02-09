@@ -15,7 +15,7 @@ class GetNewsByCategory {
     return repository.getNewsByCategory(params: params);
   }
 
-  Future<Result<List<PostEntity>>> callNewsDate() {
-    return repository.getNewsByDate();
-  }
+  // Future<Result<List<PostEntity>>> callNewsDate() {
+  //   return repository.getNewsByDate();
+  // }
 }

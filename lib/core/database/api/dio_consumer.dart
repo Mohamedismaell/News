@@ -18,8 +18,8 @@ class DioConsumer extends ApiConsumer {
         request: kDebugMode,
         requestHeader: kDebugMode,
         requestBody: kDebugMode,
-        responseBody: kDebugMode,
-        responseHeader: kDebugMode,
+        // responseBody: kDebugMode,
+        // responseHeader: kDebugMode,
         error: kDebugMode,
       ),
     );

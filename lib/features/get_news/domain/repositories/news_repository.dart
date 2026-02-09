@@ -7,5 +7,5 @@ abstract class NewsRepository {
   Future<Result<List<PostEntity>>> getNewsByCategory({
     required NewsCategoryParams params,
   });
-  Future<Result<List<PostEntity>>> getNewsByDate();
+  // Future<Result<List<PostEntity>>> getNewsByDate();
 }

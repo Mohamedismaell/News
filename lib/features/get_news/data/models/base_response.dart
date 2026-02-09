@@ -1,46 +1,62 @@
-// class BaseResponse {
-//   final int? totalResults;
-//   final int? moreResultsAvailable;
-//   final String? next;
-//   final int? requestsLeft;
-//   final int? warnings;
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 
-//   BaseResponse({
-//     required this.totalResults,
-//     required this.moreResultsAvailable,
-//     required this.next,
-//     required this.requestsLeft,
-//     required this.warnings,
-//   });
+import 'package:equatable/equatable.dart';
 
-//   Map<String, dynamic> toJson() {
-//     return <String, dynamic>{
-//       'totalResults': totalResults,
-//       'moreResultsAvailable': moreResultsAvailable,
-//       'next': next,
-//       'requestsLeft': requestsLeft,
-//       'warnings': warnings,
-//     };
-//   }
+import 'article_model.dart';
 
-//   factory BaseResponse.fromJson(Map<String, dynamic> json) {
-//     return BaseResponse(
-//       totalResults: json['totalResults'] != null
-//           ? json['totalResults'] as int
-//           : null,
-//       moreResultsAvailable:
-//           json['moreResultsAvailable'] != null
-//           ? json['moreResultsAvailable'] as int
-//           : null,
-//       next: json['next'] != null
-//           ? json['next'] as String
-//           : null,
-//       requestsLeft: json['requestsLeft'] != null
-//           ? json['requestsLeft'] as int
-//           : null,
-//       warnings: json['warnings'] != null
-//           ? json['warnings'] as int
-//           : null,
-//     );
-//   }
-// }
+class NewsResponseDto extends Equatable {
+  final String status;
+  final int totalResults;
+  final List<ArticleDto> articles;
+
+  const NewsResponseDto({
+    required this.status,
+    required this.totalResults,
+    required this.articles,
+  });
+
+  @override
+  List<Object> get props => [status, totalResults, articles];
+
+  NewsResponseDto copyWith({
+    String? status,
+    int? totalResults,
+    List<ArticleDto>? articles,
+  }) {
+    return NewsResponseDto(
+      status: status ?? this.status,
+      totalResults: totalResults ?? this.totalResults,
+      articles: articles ?? this.articles,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'status': status,
+      'totalResults': totalResults,
+      'articles': articles.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  //! ['articles'] as List<int> ===> check
+  factory NewsResponseDto.fromJsonMap(Map<String, dynamic> map) {
+    return NewsResponseDto(
+      status: map['status'] as String,
+      totalResults: map['totalResults'] as int,
+      articles: List<ArticleDto>.from(
+        (map['articles'] as List).map<ArticleDto>(
+          (x) => ArticleDto.fromJsonMap(x as Map<String, dynamic>),
+        ),
+      ),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory NewsResponseDto.fromJsonString(String source) =>
+      NewsResponseDto.fromJsonMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  bool get stringify => true;
+}

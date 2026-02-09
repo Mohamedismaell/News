@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:news_app/core/database/api/end_points.dart';
 
 class ApiInterceptor extends Interceptor {
-  // @override
-  // void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-  //   super.onRequest(options, handler);
-  // }
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    options.baseUrl = EndPoints.baseUrl;
+    super.onRequest(options, handler);
+  }
 }

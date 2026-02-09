@@ -58,12 +58,12 @@ class TopNewsSection extends StatelessWidget {
                         boxShadow: [],
                       ),
                       child: GestureDetector(
-                          onTap: () async => await context.push(
-                                AppRoutes.newsDetails,
-                                extra: NewsDetailsArgs(
-                                    post: post,
-                                    category: post.categories.first),
-                              ),
+                          // onTap: () async => await context.push(
+                          //       AppRoutes.newsDetails,
+                          //       extra: NewsDetailsArgs(
+                          //           post: post,
+                          //           category: post.categories.first),
+                          //     ),
                           child: AppCachedImage(
                               imageUrl: post.threadimageUrl.toString(),
                               width: 96.w,

@@ -16,7 +16,8 @@ class CategoryNewsSkeltonizer extends StatelessWidget {
           threadimageUrl:
               'threadimageUrlthreadimageUrlthreadimageUrlthreadimageUrl',
           categories: ['categories'],
-          author: 'jhone maikky'));
+          author: 'jhone maikky',
+          publishedAt: '12/12/2000'));
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(

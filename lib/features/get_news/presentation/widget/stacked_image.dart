@@ -29,8 +29,11 @@ class StackedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async => await context.push(AppRoutes.newsDetails,
-          extra: NewsDetailsArgs(post: post, category: post.categories.first)),
+      // onTap: () async {
+      //   await context.push(AppRoutes.newsDetails,
+      //       extra:
+      //           NewsDetailsArgs(post: post, category: post.categories.first));
+      // },
       child: Padding(
         padding: const EdgeInsets.only(right: 16.0),
         child: Stack(
@@ -89,7 +92,7 @@ class StackedImage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(category ?? post.categories.first,
+                    Text(category ?? post.author,
                         style: context.textTheme.labelMedium),
                     SizedBox(height: 8.h),
                     Text(
