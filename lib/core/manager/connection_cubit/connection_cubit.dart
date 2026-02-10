@@ -15,6 +15,7 @@ class AppConnectionCubit extends Cubit<AppConnectionState> {
   final InternetConnection _internetConnection;
   final RetryRunner retryRunner;
   StreamSubscription<InternetStatus>? _subscription;
+
   void _init() {
     _subscription = _internetConnection.onStatusChange.listen(
       (InternetStatus status) {
