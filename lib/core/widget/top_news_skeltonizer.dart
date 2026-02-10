@@ -9,16 +9,17 @@ class TopNewsSkeltonizer extends StatelessWidget {
   final posts = List.filled(
       10,
       PostEntity(
-          threadText: 'thereadurlthereadurl',
-          id: 'id',
-          thereadurl: 'thereadurlthereadurl',
-          threadtitle: 'threadimageUrlthreadimageUrlthreadimage',
-          threadimageUrl:
-              'threadimageUrlthreadimageUrlthreadimageUrlthreadimageUrl',
-          categories: ['categories'],
-          author: 'jhone maikky',
-          publishedAt: '12/12/2000',
-          posterName: 'posterName'));
+        description: 'thereadurlthereadurl',
+        id: 'id',
+        thereadurl: 'thereadurlthereadurl',
+        title: 'threadimageUrlthreadimageUrlthreadimage',
+        imageUrl: 'threadimageUrlthreadimageUrlthreadimageUrlthreadimageUrl',
+        categories: ['categories'],
+        author: 'jhone maikky',
+        publishedAt: '12/12/2000',
+        content: '',
+        postUrl: '',
+      ));
   @override
   Widget build(BuildContext context) {
     return SliverSkeletonizer(
@@ -73,7 +74,7 @@ class TopNewsSkeltonizer extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                                 softWrap: true,
-                                post.threadtitle,
+                                post.title,
                               ),
                             )
                           ],

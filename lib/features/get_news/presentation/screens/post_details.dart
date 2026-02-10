@@ -1,9 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/theme/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/cubit/post_/post_details_cubit.dart';
+import 'package:news_app/features/get_news/presentation/widget/post_details_appbar.dart';
 import '../../domain/entities/post_entitiy.dart';
 
 class PostDetails extends StatelessWidget {
@@ -12,50 +14,33 @@ class PostDetails extends StatelessWidget {
       required this.heroTag,
       required this.previewCover,
       required this.previewTitle,
-      required this.previewAuthor});
+      required this.previewAuthor,
+      required this.isBookmarked});
   final String heroTag;
   final String previewCover;
   final String previewTitle;
   final String previewAuthor;
-
-  @override
-  Widget build(BuildContext context) {
-    return _PostDetailsBody(
-      heroTag: heroTag,
-    );
-  }
-}
-
-class _PostDetailsBody extends StatelessWidget {
-  const _PostDetailsBody({required this.heroTag});
-  final String heroTag;
+  final bool isBookmarked;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<PostDetailsCubit, PostDetailsState>(
         builder: (context, state) {
-          // context.read<NewsCubit>().callNewsCategory(postId);
-          if (state is PostDetailsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is PostDetailsError) {
-            return Text(state.errorMessage);
-          }
-          if (state is PostDetailsLoaded) {
-            return CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                // PostDetailsAppbar(
-                //   imageUrl: post.threadimageUrl!,
-                //   category: category,
-                //   author: post.author,
-                // ),
-                // _BottomBar(post: post),
-              ],
-            );
-          }
-
-          return const SizedBox();
+          // final post = state is PostDetailsLoaded ? state.post : null;
+          return CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              PostDetailsAppbar(
+                imageUrl: previewCover,
+                author: previewAuthor,
+                title: previewTitle,
+                heroTag: heroTag,
+                isBookmarked: isBookmarked,
+              ),
+              if (state is PostDetailsLoaded) _BottomBar(post: state.post),
+            ],
+          );
+          // return const SizedBox();
         },
       ),
     );
@@ -76,27 +61,55 @@ class _BottomBar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text('Description',
+                style: context.textTheme.labelLarge!
+                    .copyWith(color: AppColors.blackPrimary)),
+            SizedBox(height: 8.h),
             Text(
-              'Results',
-              style: AppTextStyles.headlLineMedium
-                  .copyWith(color: context.customColors.secondaryColor),
+              post.description,
+              style: context.textTheme.bodyMedium!
+                  .copyWith(color: AppColors.greyDarker),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 16.h),
+            Text('Content',
+                style: context.textTheme.labelLarge!
+                    .copyWith(color: AppColors.blackPrimary)),
+            SizedBox(height: 8.h),
             Text(
-              post.threadtitle,
-              style: AppTextStyles.textRegular.copyWith(fontSize: 20),
+              post.content,
+              style: context.textTheme.bodyMedium!
+                  .copyWith(color: AppColors.greyDarker),
             ),
-            SizedBox(height: 20),
-            Text(
-              post.threadText,
-              style: AppTextStyles.textRegular.copyWith(fontSize: 18),
+            SizedBox(height: 16.h),
+            RichText(
+              text: TextSpan(
+                text: 'For more details vist. ',
+                style: context.textTheme.bodyMedium!
+                    .copyWith(color: AppColors.greyDarker),
+                children: [
+                  TextSpan(
+                    text: post.postUrl,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        //Todo Handle Navigation Url
+                        print('tapped');
+                      },
+                    style: context.textTheme.bodyMedium!
+                        .copyWith(color: AppColors.purplePrimary),
+                  ),
+                ],
+              ),
             ),
+
             //* Edite here
             // SizedBox(height:20),
-            const SizedBox(height: 1000),
+            const SizedBox(height: 30),
           ],
         ),
       ),
     );
   }
 }
+
+// For more detailed state results click on the States A-Z links
+//  at the bottom of this page. Results source: NEP/Edison via Reuters.

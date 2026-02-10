@@ -3,11 +3,11 @@ import 'dart:convert';
 
 class SourceDto {
   final String? id;
-  final String name;
+  final String? name;
 
   const SourceDto({
     this.id,
-    required this.name,
+    this.name,
   });
 
   SourceDto copyWith({
@@ -30,7 +30,7 @@ class SourceDto {
   factory SourceDto.fromJsonMap(Map<String, dynamic> map) {
     return SourceDto(
       id: map['id'] != null ? map['id'] as String : null,
-      name: map['name'] as String,
+      name: map['name'] != null ? map['name'] as String : null,
     );
   }
 

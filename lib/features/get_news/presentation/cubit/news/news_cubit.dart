@@ -5,7 +5,6 @@ import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
-import 'package:news_app/features/get_news/domain/usecases/get_specific_post_usecase.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_top_head_lines.dart';
 
 import '../../../domain/entities/post_entitiy.dart';

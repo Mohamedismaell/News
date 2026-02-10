@@ -7,49 +7,53 @@ class AppCachedImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
-
+  final String heroTag;
   const AppCachedImage({
     super.key,
     required this.imageUrl,
     this.width,
     this.height,
     this.fit = BoxFit.cover,
+    required this.heroTag,
   });
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-        imageUrl: imageUrl,
-        httpHeaders: const {
-          'User-Agent':
-              'Mozilla/5.0 (Linux; Android 13; Mobile; rv:120.0) Gecko/120.0 Firefox/120.0',
-          'Accept': 'image/avif,image/webp,image/*,*/*;q=0.8',
-        },
-        width: width,
-        height: height,
-        fit: fit,
-        placeholder: (_, __) => Skeletonizer(
-              effect: ShimmerEffect(
-                baseColor: Colors.grey.shade300,
-                highlightColor: Colors.grey.shade100,
+    return Hero(
+      tag: heroTag,
+      child: CachedNetworkImage(
+          imageUrl: imageUrl,
+          httpHeaders: const {
+            'User-Agent':
+                'Mozilla/5.0 (Linux; Android 13; Mobile; rv:120.0) Gecko/120.0 Firefox/120.0',
+            'Accept': 'image/avif,image/webp,image/*,*/*;q=0.8',
+          },
+          width: width,
+          height: height,
+          fit: fit,
+          placeholder: (_, __) => Skeletonizer(
+                effect: ShimmerEffect(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+                ),
+                child: SizedBox(width: width, height: height),
               ),
-              child: SizedBox(width: width, height: height),
-            ),
-        errorWidget: (
-          BuildContext context,
-          String url,
-          Object error,
-        ) {
-          // debugPrint('❌ Image failed');
-          // debugPrint('URL: $url');
-          // debugPrint('ErrorImageHere: $error');
-          return Image.asset(
-            'assets/images/Rectangle 18.png',
-            width: width,
-            height: height,
-            fit: fit,
-          );
-          // Icon(Icons.broken_image);
-        });
+          errorWidget: (
+            BuildContext context,
+            String url,
+            Object error,
+          ) {
+            // debugPrint('❌ Image failed');
+            // debugPrint('URL: $url');
+            // debugPrint('ErrorImageHere: $error');
+            return Image.asset(
+              'assets/images/Rectangle 18.png',
+              width: width,
+              height: height,
+              fit: fit,
+            );
+            // Icon(Icons.broken_image);
+          }),
+    );
   }
 }

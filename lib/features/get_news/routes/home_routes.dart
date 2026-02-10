@@ -64,6 +64,7 @@ class HomeRoutes {
               previewCover: extra?['coverUrl'] ?? '',
               previewTitle: extra?['title'] ?? '',
               previewAuthor: extra?['author'] ?? '',
+              isBookmarked: extra?['isBookmarked'] ?? false,
             ),
           );
         }),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
+
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../cubit/news/news_cubit.dart';
-import '../widget/stacked_image.dart';
 
 class BookMarksScreen extends StatelessWidget {
   const BookMarksScreen({super.key});

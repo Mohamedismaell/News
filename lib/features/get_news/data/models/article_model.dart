@@ -7,7 +7,7 @@ class ArticleDto {
   final String? author;
   final String title;
   final String? description;
-  final String url;
+  final String? url;
   final String? urlToImage;
   final String publishedAt;
   final String? content;
@@ -17,7 +17,7 @@ class ArticleDto {
     this.author,
     required this.title,
     this.description,
-    required this.url,
+    this.url,
     this.urlToImage,
     required this.publishedAt,
     this.content,
@@ -65,7 +65,7 @@ class ArticleDto {
       title: map['title'] as String,
       description:
           map['description'] != null ? map['description'] as String : null,
-      url: map['url'] as String,
+      url: map['url'] != null ? map['url'] as String : null,
       urlToImage:
           map['urlToImage'] != null ? map['urlToImage'] as String : null,
       publishedAt: map['publishedAt'] as String,

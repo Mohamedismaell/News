@@ -2,22 +2,26 @@
 class PostEntity {
   final String id;
   final String thereadurl;
-  final String posterName;
+  // final String posterName;
   final String author;
-  final String threadtitle;
-  final String threadText;
-  final String? threadimageUrl;
+  final String title;
+  final String description;
+  final String content;
+  final String postUrl;
+  final String? imageUrl;
   final List<String>? categories;
   final String publishedAt;
   PostEntity({
-    required this.posterName,
-    required this.threadText,
+    // required this.posterName,
+    required this.content,
+    required this.description,
     required this.id,
     required this.thereadurl,
-    required this.threadtitle,
-    required this.threadimageUrl,
+    required this.title,
+    required this.imageUrl,
     required this.author,
     required this.publishedAt,
+    required this.postUrl,
     this.categories,
   });
 }

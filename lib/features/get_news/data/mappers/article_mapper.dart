@@ -5,12 +5,14 @@ class ArticleMapper {
   static PostEntity toEntity(ArticleDto dto) {
     return PostEntity(
       id: dto.title,
-      posterName: dto.source.name,
+      // posterName: dto.source.name ?? 'UnKnown',
       thereadurl: dto.urlToImage ?? '',
-      threadtitle: dto.title,
-      threadText: dto.description ?? '',
-      threadimageUrl: dto.urlToImage ?? ' ',
-      author: dto.author ?? 'UnKnown',
+      title: dto.title,
+      description: dto.description ?? '',
+      content: dto.content ?? '',
+      imageUrl: dto.urlToImage ?? '',
+      author: dto.author ?? dto.source.name ?? 'UnKnown',
+      postUrl: dto.url ?? '',
       publishedAt: dto.publishedAt,
     );
   }

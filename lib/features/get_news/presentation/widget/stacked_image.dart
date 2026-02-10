@@ -27,98 +27,91 @@ class StackedImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('Tapped');
-        if (post.id.isNotEmpty) {
-          try {
-            context.pushNamed(
-              'postDetails',
-              pathParameters: {
-                'postId': post.id.toString(),
-              },
-              extra: {
-                'heroTag': 'post_${post.id}',
-                'coverUrl': post.threadimageUrl,
-                'title': post.threadtitle,
-                'author': post.author,
-              },
-            );
-          } catch (e) {
-            print('Navigation Error: $e');
-          }
-        } else {
-          print('Error: Post ID is empty');
-        }
+        context.pushNamed(
+          'postDetails',
+          pathParameters: {
+            'postId': post.id.toString(),
+          },
+          extra: {
+            'heroTag': 'post_${post.id}',
+            'coverUrl': post.imageUrl,
+            'title': post.title,
+            'author': post.author,
+            'isBookmarked': isBookmarked,
+          },
+        );
       },
-      child: Stack(
-        alignment: Alignment.centerLeft,
-        children: [
-          //! image
-          Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: AppCachedImage(
-              imageUrl: post.threadimageUrl ?? '',
-              height: imageHeight,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Stack(
+          alignment: Alignment.centerLeft,
+          children: [
+            //! image
+            AppCachedImage(
+              heroTag: 'post_${post.id}',
+              imageUrl: post.imageUrl ?? '',
               width: imageWidth,
+              height: imageHeight,
               fit: BoxFit.cover,
             ),
-          ),
-          //! linear gradiant
-          // Container(
-          //   height: imageHeight,
-          //   width: imageWidth,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(15),
-          //     gradient: LinearGradient(
-          //       begin: Alignment.bottomCenter,
-          //       end: Alignment.topCenter,
-          //       colors: [
-          //         // Color(0xFF22242F).withOpacity(0.8),
-          //         Color.fromARGB(255, 0, 0, 0),
-          //         Color(0x0022242F).withOpacity(0.48),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          //! Saved icon
-          // Positioned(
-          //   top: 24,
-          //   right: 24,
-          //   child: IconButton(
-          //       onPressed: () => context
-          //           .read<NewsCubit>()
-          //           .toggleBookmark(post, category: category),
-          //       icon: Icon(
-          //         isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-          //         color: AppColors.white,
-          //         size: 30.r,
-          //       )),
-          // ),
-          //! category + title
-          // Padding(
-          //   padding: EdgeInsets.all(24.r),
-          //   child: SizedBox(
-          //     width: imageWidth! - (24 * 2).r,
-          //     child: Column(
-          //       crossAxisAlignment: CrossAxisAlignment.start,
-          //       mainAxisAlignment: MainAxisAlignment.end,
-          //       children: [
-          //         Text(category ?? post.author,
-          //             style: context.textTheme.labelMedium),
-          //         SizedBox(height: 8.h),
-          //         Text(
-          //             maxLines: 2,
-          //             softWrap: false,
-          //             overflow: TextOverflow.ellipsis,
-          //             post.threadtitle.toString(),
-          //             style: context.textTheme.labelMedium),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-        ],
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withValues(alpha: 0.3),
+                      Colors.black.withValues(alpha: 0.5),
+                      Colors.black.withValues(alpha: 0.7),
+                    ],
+                    stops: const [0.0, 0.3, 0.6, 1.0],
+                  ),
+                ),
+              ),
+            ),
+            // ! Saved icon
+            Positioned(
+              top: 24,
+              right: 24,
+              child: IconButton(
+                  onPressed: () => context
+                      .read<NewsCubit>()
+                      .toggleBookmark(post, category: category),
+                  icon: Icon(
+                    isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                    color: AppColors.white,
+                    size: 24.sp,
+                  )),
+            ),
+            // ! category + title
+            Padding(
+              padding: EdgeInsets.all(24.r),
+              child: SizedBox(
+                width: imageWidth! - (24 * 2).r,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(category ?? post.author,
+                        style: context.textTheme.labelMedium),
+                    SizedBox(height: 8.h),
+                    Text(
+                        maxLines: 2,
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                        post.title.toString(),
+                        style: context.textTheme.labelMedium),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

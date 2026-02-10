@@ -1,5 +1,4 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +8,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
-import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
-
 import 'core/observers/app_bloc_observer.dart';
 import 'core/routes/app_router.dart';
 import 'core/theme/manager/theme_cubit.dart';

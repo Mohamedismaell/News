@@ -76,7 +76,8 @@ class TopNewsSection extends StatelessWidget {
                           boxShadow: [],
                         ),
                         child: AppCachedImage(
-                            imageUrl: post.threadimageUrl.toString(),
+                            heroTag: 'post_${post.id}',
+                            imageUrl: post.imageUrl.toString(),
                             width: 96.w,
                             height: 96.h,
                             fit: BoxFit.cover),
@@ -119,7 +120,7 @@ class TopNewsSection extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   softWrap: true,
-                                  post.threadtitle,
+                                  post.title,
                                   style: context.textTheme.bodySmall!.copyWith(
                                       fontSize: 14.sp,
                                       color: AppColors.blackPrimary)),
