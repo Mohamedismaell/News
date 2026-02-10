@@ -66,12 +66,15 @@ class NewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
   }
 
   Future<void> callTopHeadLines() async {
+    emit(state.copyWith(
+      topNewsStatus: NewsStatus.loading,
+    ));
     final response = await getTopHeadLines.callTopHeadLines();
     return response.when(
       success: (posts) {
         emit(
           state.copyWith(
-            dateStatus: NewsStatus.loaded,
+            topNewsStatus: NewsStatus.loaded,
             topHeadLines: posts,
           ),
         );
@@ -79,7 +82,7 @@ class NewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
       failure: (errorMessage) {
         emit(
           state.copyWith(
-            dateStatus: NewsStatus.error,
+            topNewsStatus: NewsStatus.error,
             errorMessage: errorMessage.message,
           ),
         );

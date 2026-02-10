@@ -4,13 +4,13 @@ part of 'news_cubit.dart';
 class NewsState extends Equatable {
   final String selectedCategory;
   final NewsStatus categoryStatus;
-  final NewsStatus dateStatus;
+  final NewsStatus topNewsStatus;
   final List<PostEntity> categoryNews;
   final List<PostEntity> topHeadLines;
   final List<BookmarkedPost>? bookmarks;
   final String? errorMessage;
   const NewsState({
-    this.dateStatus = NewsStatus.loading,
+    this.topNewsStatus = NewsStatus.loading,
     this.categoryStatus = NewsStatus.loading,
     this.selectedCategory = 'Politics',
     this.categoryNews = const [],
@@ -22,7 +22,7 @@ class NewsState extends Equatable {
   NewsState copyWith({
     String? selectedCategory,
     NewsStatus? categoryStatus,
-    NewsStatus? dateStatus,
+    NewsStatus? topNewsStatus,
     List<PostEntity>? categoryNews,
     List<PostEntity>? topHeadLines,
     List<BookmarkedPost>? bookmarks,
@@ -31,7 +31,7 @@ class NewsState extends Equatable {
     return NewsState(
       selectedCategory: selectedCategory ?? this.selectedCategory,
       categoryStatus: categoryStatus ?? this.categoryStatus,
-      dateStatus: dateStatus ?? this.dateStatus,
+      topNewsStatus: topNewsStatus ?? this.topNewsStatus,
       categoryNews: categoryNews ?? this.categoryNews,
       topHeadLines: topHeadLines ?? this.topHeadLines,
       bookmarks: bookmarks ?? this.bookmarks,
@@ -53,7 +53,7 @@ class NewsState extends Equatable {
   List<Object?> get props => [
         selectedCategory,
         categoryStatus,
-        dateStatus,
+        topNewsStatus,
         categoryNews,
         topHeadLines,
         bookmarks,

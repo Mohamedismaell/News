@@ -17,11 +17,11 @@ class TopNewsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        if (state.dateStatus == NewsStatus.loading) {
+        if (state.topNewsStatus == NewsStatus.loading) {
           return TopNewsSkeltonizer();
         }
 
-        if (state.dateStatus == NewsStatus.error) {
+        if (state.topNewsStatus == NewsStatus.error) {
           return SliverToBoxAdapter(
             child: Center(
               child: Text(state.errorMessage ?? 'Error'),
