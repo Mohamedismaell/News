@@ -17,8 +17,7 @@ class BookmarkedPost {
         // 'bookmarkedAt': bookmarkedAt.toIso8601String(),
       };
 
-  factory BookmarkedPost.fromJson(
-      Map<String, dynamic> json) {
+  factory BookmarkedPost.fromJson(Map<String, dynamic> json) {
     return BookmarkedPost(
       post: json['post'] as PostEntity,
       category: json['category'] as String?,

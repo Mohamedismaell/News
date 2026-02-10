@@ -1,7 +1,7 @@
 import 'package:news_app/core/database/api/api_consumer.dart';
 import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/params/news_category_params.dart';
-import 'package:news_app/features/get_news/data/models/base_response.dart';
+import 'package:news_app/features/get_news/data/models/news_response_dto.dart';
 
 class NewsRemoteDataSource {
   final ApiConsumer api;

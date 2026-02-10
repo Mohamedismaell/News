@@ -1,8 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:hive_ce_flutter/adapters.dart';
+
+part 'source_dto.g.dart';
+
+@HiveType(typeId: 2)
 class SourceDto {
+  @HiveField(0)
   final String? id;
+  @HiveField(1)
   final String? name;
 
   const SourceDto({

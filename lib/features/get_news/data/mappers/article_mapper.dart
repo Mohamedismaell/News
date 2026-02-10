@@ -1,4 +1,4 @@
-import 'package:news_app/features/get_news/data/models/article_model.dart';
+import 'package:news_app/features/get_news/data/models/articled_dto.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
 
 class ArticleMapper {

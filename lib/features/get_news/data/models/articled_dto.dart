@@ -1,15 +1,27 @@
 import 'dart:convert';
 
-import 'package:news_app/features/get_news/data/models/source.dart';
+import 'package:news_app/features/get_news/data/models/source_dto.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 
+part 'articled_dto.g.dart';
+
+@HiveType(typeId: 1)
 class ArticleDto {
+  @HiveField(0)
   final SourceDto source;
+  @HiveField(1)
   final String? author;
+  @HiveField(2)
   final String title;
+  @HiveField(3)
   final String? description;
+  @HiveField(4)
   final String? url;
+  @HiveField(5)
   final String? urlToImage;
+  @HiveField(6)
   final String publishedAt;
+  @HiveField(7)
   final String? content;
 
   const ArticleDto({

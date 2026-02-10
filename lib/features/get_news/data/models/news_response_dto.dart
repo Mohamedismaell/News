@@ -2,12 +2,19 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 
-import 'article_model.dart';
+import 'articled_dto.dart';
 
+part 'news_response_dto.g.dart';
+
+@HiveType(typeId: 0)
 class NewsResponseDto extends Equatable {
+  @HiveField(0)
   final String status;
+  @HiveField(1)
   final int totalResults;
+  @HiveField(2)
   final List<ArticleDto> articles;
 
   const NewsResponseDto({
