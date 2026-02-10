@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/widget/category_news_skeltonizer.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
@@ -41,14 +42,21 @@ class _LoadedState extends StatelessWidget {
           final post = state.categoryNews[index];
           final category = state.selectedCategory.split(',').first.trim();
           final isBookmarked = state.isBookmarked(post.id);
-          return StackedImage(
-            post: post,
-            category: category,
-            isBookmarked: isBookmarked,
-            imageWidth: 230.w,
-            imageHeight: 256.h,
-            textContainerWidth: 0.7,
-            // textContainerWidth: 300,
+          return Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: StackedImage(
+                  post: post,
+                  category: category,
+                  isBookmarked: isBookmarked,
+                  imageWidth: 230.w,
+                  imageHeight: 256.h,
+                  textContainerWidth: 0.7,
+                  // textContainerWidth: 300,
+                ),
+              ),
+            ],
           );
         },
       ),

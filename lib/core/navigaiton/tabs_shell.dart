@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/widget/bottom_nav.dart';
+import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 import 'package:news_app/features/get_news/presentation/screens/book_marks_screen.dart';
 import 'package:news_app/features/get_news/presentation/screens/categories_screen.dart';
 import 'package:news_app/features/get_news/presentation/screens/home_screen.dart';
@@ -39,30 +42,32 @@ class _HomeShellState extends State<HomeShell> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 0),
-          child: IndexedStack(
-            index: _currentIndex,
-            children: [
-              const HomeScreen(),
-              const CategoriesScreen(),
-              const BookMarksScreen(),
-              const ProfileScreen(),
-            ],
+    return BlocProvider(
+        create: (context) => sl<NewsCubit>()..init(),
+        child: Scaffold(
+          extendBody: true,
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0),
+              child: IndexedStack(
+                index: _currentIndex,
+                children: [
+                  const HomeScreen(),
+                  const CategoriesScreen(),
+                  const BookMarksScreen(),
+                  const ProfileScreen(),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      bottomNavigationBar: BottomNav(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-      ),
-    );
+          bottomNavigationBar: BottomNav(
+            currentIndex: _currentIndex,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
+        ));
   }
 }

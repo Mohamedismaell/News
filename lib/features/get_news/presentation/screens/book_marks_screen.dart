@@ -105,15 +105,16 @@ class _BookmarksPosts extends StatelessWidget {
                   final category = state.bookmarks![index].category;
                   final isBookmarked = state.isBookmarked(post.id);
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: StackedImage(
-                      post: post,
-                      category: category,
-                      isBookmarked: isBookmarked,
-                      imageHeight: 255,
-                      textContainerWidth: 0.8,
-                    ),
-                  );
+                      padding: const EdgeInsets.only(bottom: 15),
+                      child: SizedBox()
+                      // StackedImage(
+                      //   post: post,
+                      //   category: category,
+                      //   isBookmarked: isBookmarked,
+                      //   imageHeight: 255,
+                      //   textContainerWidth: 0.8,
+                      // ),
+                      );
                 },
               );
       },

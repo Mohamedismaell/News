@@ -32,8 +32,8 @@ Future<void> main() async {
   debugPaintSizeEnabled = false;
 
   runApp(
-    DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
-    // AppBootstrap(),
+    // DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
+    AppBootstrap(),
   );
 }
 
@@ -47,7 +47,7 @@ class AppBootstrap extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => sl<ThemeCubit>()),
         BlocProvider(create: (context) => sl<AppGateCubit>()),
-        BlocProvider(create: (context) => sl<NewsCubit>()),
+        // BlocProvider(create: (context) => sl<NewsCubit>()),
       ],
       child: const MyApp(),
     );

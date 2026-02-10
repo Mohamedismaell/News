@@ -17,8 +17,19 @@ class AppRouter {
     refreshListenable: GoRouterRefreshStream(appGateCubit.stream),
     redirect: (context, state) {
       final gate = context.read<AppGateCubit>().state;
-      if (gate is AppGateOnboarding) return '/onboarding';
-      if (gate is AppGateSkipOnboarding) return '/home';
+      final path = state.uri.path;
+
+      if (gate is AppGateOnboarding) {
+        if (path != AppRoutes.onBoarding) return AppRoutes.onBoarding;
+        return null;
+      }
+
+      if (gate is AppGateSkipOnboarding) {
+        if (path == AppRoutes.onBoarding || path == AppRoutes.splash) {
+          return AppRoutes.home;
+        }
+        return null;
+      }
       return null;
     },
     routes: [...OnBoardingRoutes.routes, ...HomeRoutes.routes],

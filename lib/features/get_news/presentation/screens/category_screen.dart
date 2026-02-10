@@ -62,12 +62,12 @@ class _Posts extends StatelessWidget {
           final isBookmarked = state.isBookmarked(post.id);
           return Column(
             children: [
-              StackedImage(
-                  post: post,
-                  category: category,
-                  isBookmarked: isBookmarked,
-                  imageHeight: 260,
-                  textContainerWidth: 0.8),
+              // StackedImage(
+              //     post: post,
+              //     category: category,
+              //     isBookmarked: isBookmarked,
+              //     imageHeight: 260,
+              //     textContainerWidth: 0.8),
               SizedBox(height: 20)
             ],
           );

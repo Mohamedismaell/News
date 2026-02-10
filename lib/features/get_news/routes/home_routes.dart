@@ -19,8 +19,7 @@ class HomeRoutes {
   static List<RouteBase> routes = [
     ShellRoute(
       builder: (context, state, child) {
-        return BlocProvider.value(
-            value: sl<NewsCubit>()..init(), child: HomeShell());
+        return HomeShell();
       },
       routes: [
         GoRoute(
@@ -54,16 +53,17 @@ class HomeRoutes {
         name: 'postDetails',
         path: AppRoutes.newsDetails,
         builder: (context, state) {
+          print('Did nav to postDetails');
           final postId = state.pathParameters['postId']!;
           final extra = state.extra as Map<String, dynamic>?;
           return BlocProvider(
             create: (context) => PostDetailsCubit(sl<GetSpecificPost>())
               ..callSpecificPost(NewsCategoryParams(category: postId)),
             child: PostDetails(
-              heroTag: extra?['heroTag'],
-              previewCover: extra?['coverUrl'],
-              previewTitle: extra?['title'],
-              previewAuthor: extra?['author'],
+              heroTag: extra?['heroTag'] ?? '',
+              previewCover: extra?['coverUrl'] ?? '',
+              previewTitle: extra?['title'] ?? '',
+              previewAuthor: extra?['author'] ?? '',
             ),
           );
         }),

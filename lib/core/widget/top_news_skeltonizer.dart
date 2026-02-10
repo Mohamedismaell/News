@@ -17,7 +17,8 @@ class TopNewsSkeltonizer extends StatelessWidget {
               'threadimageUrlthreadimageUrlthreadimageUrlthreadimageUrl',
           categories: ['categories'],
           author: 'jhone maikky',
-          publishedAt: '12/12/2000'));
+          publishedAt: '12/12/2000',
+          posterName: 'posterName'));
   @override
   Widget build(BuildContext context) {
     return SliverSkeletonizer(
