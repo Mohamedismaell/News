@@ -2,7 +2,7 @@
 // Do not modify
 // Check in to version control
 
-import 'package:hive_ce/hive_ce.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 import 'package:news_app/features/get_news/data/models/articled_dto.dart';
 import 'package:news_app/features/get_news/data/models/news_response_dto.dart';
 import 'package:news_app/features/get_news/data/models/source_dto.dart';

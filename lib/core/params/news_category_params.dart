@@ -1,5 +1,5 @@
 class NewsCategoryParams {
-  final String? category;
+  final String category;
 
   NewsCategoryParams({required this.category});
 }

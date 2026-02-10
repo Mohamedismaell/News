@@ -3,6 +3,7 @@ import 'package:news_app/core/database/api/api_error_mapper.dart';
 import 'package:news_app/core/errors/failure.dart/failure.dart';
 import 'package:news_app/core/helper/result.dart';
 import 'package:news_app/core/params/news_category_params.dart';
+import 'package:news_app/features/get_news/data/datasources/news_local_data_source.dart';
 import 'package:news_app/features/get_news/data/datasources/news_remote_data_source.dart';
 import 'package:news_app/features/get_news/data/mappers/article_mapper.dart';
 import 'package:news_app/features/get_news/domain/entities/post_entitiy.dart';
@@ -11,8 +12,10 @@ import 'package:news_app/features/get_news/domain/repositories/news_repository.d
 class NewsRepositoryImpl extends NewsRepository {
   // final NetworkInfo networkInfo;
   final NewsRemoteDataSource remoteDataSource;
+  final NewsLocalDataSource localDataSource;
   NewsRepositoryImpl({
     required this.remoteDataSource,
+    required this.localDataSource,
     // required this.networkInfo,
   });
   //!Filtered Posts with Category\
@@ -22,8 +25,9 @@ class NewsRepositoryImpl extends NewsRepository {
     required NewsCategoryParams params,
   }) async {
     try {
-      // await Future.delayed(Duration(seconds: 20));
       final remoteNews = await remoteDataSource.getNewsByCategory(params);
+
+      await localDataSource.saveCategoryNews(params.category, remoteNews);
 
       final articles = remoteNews.articles
           .map((article) => ArticleMapper.toEntity(article))
@@ -31,6 +35,12 @@ class NewsRepositoryImpl extends NewsRepository {
 
       return Result.ok(articles);
     } on DioException catch (e) {
+      final cached = localDataSource.getCategoryNews(params.category);
+      if (cached != null) {
+        final articles = cached.articles.map(ArticleMapper.toEntity).toList();
+
+        return Result.ok(articles);
+      }
       return Result.error(
         ApiErrorMapper.fromDioException(e),
       );
@@ -43,13 +53,21 @@ class NewsRepositoryImpl extends NewsRepository {
   Future<Result<List<PostEntity>>> getTopHeadLines() async {
     try {
       final remoteNews = await remoteDataSource.getTopHeadLines();
-
+      await localDataSource.saveTopHeadlinesNews(remoteNews);
       final articles = remoteNews.articles
           .map((article) => ArticleMapper.toEntity(article))
           .toList();
 
       return Result.ok(articles);
     } on DioException catch (e) {
+      final cached = localDataSource.getTopHeadlinesNews();
+
+      if (cached != null) {
+        final articles = cached.articles.map(ArticleMapper.toEntity).toList();
+
+        return Result.ok(articles);
+      }
+
       return Result.error(
         ApiErrorMapper.fromDioException(e),
       );

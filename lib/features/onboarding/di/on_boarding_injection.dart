@@ -12,12 +12,12 @@ import 'package:news_app/features/onboarding/presentation/manager/cubit/on_board
 class OnboardingDi {
   OnboardingDi._();
 
-  static void init({required Box onboardingBox}) {
-    sl.registerLazySingleton<Box>(() => onboardingBox);
+  static void init({required Box<bool> onboardingBox}) {
+    sl.registerLazySingleton<Box<bool>>(() => onboardingBox);
 
     //! Data Sources
     sl.registerLazySingleton<OnboardingLocalDataSource>(
-      () => OnboardingLocalDataSourceImpl(box: sl<Box>()),
+      () => OnboardingLocalDataSourceImpl(box: sl<Box<bool>>()),
     );
     //! Repositories
     sl.registerLazySingleton<OnboardingRepository>(

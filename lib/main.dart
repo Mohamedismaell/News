@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
+import 'package:news_app/core/database/cache/app_hive.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/manager/app_gate_cubit/app_gate_cubit.dart';
 import 'package:news_app/core/manager/connection_cubit/connection_cubit.dart';
@@ -17,16 +18,22 @@ import 'core/theme/theme_data/light_theme_data.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  print('Step 1: ensureInitialized done');
+  debugPrint('Step 1: ensureInitialized done');
+
   Bloc.observer = AppBlocObserver();
-  print('Step 2: Bloc observer set');
+  debugPrint('Step 2: Bloc observer set');
+
   HydratedBloc.storage = await buildHydratedStorage();
-  print('Step 3: HydratedStorage built');
-  await Hive.initFlutter();
-  final onboardingBox = await Hive.openBox('onboardingBox');
-  print('Step 4: Hive Opened');
-  await initializeDependencies(onboardingBox: onboardingBox);
-  print('Step 5: Service Locator initialized');
+  debugPrint('Step 3: HydratedStorage built');
+
+  await AppHive.init();
+  debugPrint('Step 4: Hive Opened');
+
+  await initializeDependencies(
+    onboardingBox: AppHive.onboardingBox,
+    newsBox: AppHive.newsBox,
+  );
+  debugPrint('Step 5: Service Locator initialized');
   debugPaintSizeEnabled = false;
 
   runApp(

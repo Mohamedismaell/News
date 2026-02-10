@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/manager/connection_cubit/connection_cubit.dart';
 
 class ConnectionBanner extends StatelessWidget {
@@ -10,7 +11,7 @@ class ConnectionBanner extends StatelessWidget {
     return BlocBuilder<AppConnectionCubit, AppConnectionState>(
       builder: (context, state) {
         final isOffline = state is! Connected;
-        if (!isOffline) {
+        if (!isOffline || state is ConnectionInitial) {
           return const SizedBox.shrink();
         }
         return AnimatedSlide(
@@ -29,20 +30,20 @@ class ConnectionBanner extends StatelessWidget {
                   borderRadius: BorderRadius.circular(14),
                   color: Colors.red.shade600,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 12.h,
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.wifi_off_rounded,
                           color: Colors.white,
-                          size: 20,
+                          size: 20.sp,
                         ),
-                        SizedBox(width: 10),
-                        Text(
+                        SizedBox(width: 10.w),
+                        const Text(
                           'No internet connection',
                           style: TextStyle(
                             color: Colors.white,

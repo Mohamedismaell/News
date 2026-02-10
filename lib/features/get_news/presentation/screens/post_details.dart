@@ -103,7 +103,7 @@ class _BottomBar extends StatelessWidget {
 
             //* Edite here
             // SizedBox(height:20),
-            const SizedBox(height: 30),
+            const SizedBox(height: 60),
           ],
         ),
       ),
