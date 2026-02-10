@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:news_app/core/connection/network_info.dart';
+import 'package:news_app/core/injection/service_locator.dart';
 
 import 'api_consumer.dart';
 import 'api_interceptor.dart';
@@ -7,11 +9,11 @@ import 'end_points.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
-
-  DioConsumer({required this.dio}) {
+  final ApiInterceptor apiInterceptor;
+  DioConsumer(this.dio, this.apiInterceptor) {
     dio.options.baseUrl = EndPoints.baseUrl;
 
-    dio.interceptors.add(ApiInterceptor());
+    dio.interceptors.add(apiInterceptor);
 
     dio.interceptors.add(
       LogInterceptor(

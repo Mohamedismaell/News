@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:news_app/core/errors/failure.dart';
+import 'package:news_app/core/errors/failure.dart/failure.dart';
 
 class ApiErrorMapper {
   static Failure fromDioException(DioException e) {

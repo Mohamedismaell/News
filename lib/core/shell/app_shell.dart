@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/core/connections/connection_visibility.dart';
+import 'package:news_app/core/connection/connection_visibility.dart';
 import 'package:news_app/core/widget/connection_banner.dart';
 
 class AppShell extends StatelessWidget {

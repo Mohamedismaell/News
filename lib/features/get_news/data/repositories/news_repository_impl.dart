@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/core/database/api/api_error_mapper.dart';
-import 'package:news_app/core/errors/failure.dart';
+import 'package:news_app/core/errors/failure.dart/failure.dart';
 import 'package:news_app/core/helper/result.dart';
 import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/features/get_news/data/datasources/news_remote_data_source.dart';

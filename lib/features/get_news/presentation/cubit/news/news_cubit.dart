@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/core/connection/refresh_on_reconnect.dart';
 import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/enums/stats.dart';
+import 'package:news_app/core/manager/connection_cubit/connection_cubit.dart';
 import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_top_head_lines.dart';
@@ -12,18 +14,26 @@ import '../../model/book_marked_post.dart';
 
 part 'news_state.dart';
 
-class NewsCubit extends Cubit<NewsState> {
-  NewsCubit(this.getNews, this.getTopHeadLines) : super(NewsState()) {
+class NewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
+  NewsCubit(this.getNews, this.getTopHeadLines, this._connectionCubit)
+      : super(NewsState()) {
     init();
+    reconnect(_connectionCubit, () {
+      init();
+    });
   }
   final GetNewsByCategory getNews;
   final GetTopHeadLines getTopHeadLines;
-
+  final AppConnectionCubit _connectionCubit;
   Future<void> init() async {
     await callNewsCategory(EndPoints.defaultCategory);
     await callTopHeadLines();
   }
 
+  // Future<void> reconnect() async {
+  //   await callNewsCategory(state.selectedCategory);
+  //   await callTopHeadLines();
+  // }
   Future<void> callNewsCategory(
     String category,
   ) async {

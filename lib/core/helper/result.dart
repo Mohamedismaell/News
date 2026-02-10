@@ -1,4 +1,4 @@
-import '../errors/failure.dart';
+import '../errors/failure.dart/failure.dart';
 
 sealed class Result<T> {
   const Result();
