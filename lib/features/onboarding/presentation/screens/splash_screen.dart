@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:news_app/core/manager/app_gate/app_gate_cubit.dart';
+import 'package:news_app/core/manager/app_gate_cubit/app_gate_cubit.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {

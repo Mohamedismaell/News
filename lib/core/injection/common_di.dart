@@ -4,8 +4,8 @@ import 'package:news_app/core/connections/network_info.dart';
 import 'package:news_app/core/database/api/dio_consumer.dart';
 import 'package:news_app/core/database/cache/cache_helper.dart';
 import 'package:news_app/core/injection/service_locator.dart';
-import 'package:news_app/core/manager/connection/connection_cubit.dart';
-import 'package:news_app/core/manager/theme/theme_cubit.dart';
+import 'package:news_app/core/manager/connection_cubit/connection_cubit.dart';
+import 'package:news_app/core/manager/theme_cubit/theme_cubit.dart';
 
 CacheHelper get cacheHelper => sl<CacheHelper>();
 

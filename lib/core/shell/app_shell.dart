@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/connections/connection_visibility.dart';
 import 'package:news_app/core/widget/connection_banner.dart';
 
 class AppShell extends StatelessWidget {
   final Widget child;
+  final String location;
 
-  const AppShell({super.key, required this.child});
+  const AppShell({
+    super.key,
+    required this.child,
+    required this.location,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final showBanner = shouldShowConnectionBanner(location);
     return Stack(
       children: [
         child,
-        const Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: ConnectionBanner(),
-        ),
+        if (showBanner)
+          const Positioned(
+            bottom: 10,
+            left: 0,
+            right: 0,
+            child: ConnectionBanner(),
+          ),
       ],
     );
   }

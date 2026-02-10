@@ -15,6 +15,7 @@ class NetworkInfoImpl implements NetworkInfo {
     if (kIsWeb) {
       return true;
     }
-    return connection.hasInternetAccess;
+    final isConnected = await connection.hasInternetAccess;
+    return isConnected;
   }
 }

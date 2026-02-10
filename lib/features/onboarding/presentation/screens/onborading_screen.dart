@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/core/manager/app_gate/app_gate_cubit.dart';
+import 'package:news_app/core/manager/app_gate_cubit/app_gate_cubit.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/onboarding/presentation/manager/cubit/on_boarding_cubit.dart';
 import 'package:news_app/features/onboarding/presentation/widgets/onboarding_pages.dart';
