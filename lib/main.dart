@@ -7,10 +7,12 @@ import 'package:hive_ce_flutter/adapters.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
 import 'package:news_app/core/injection/service_locator.dart';
-import 'package:news_app/core/routes/manager/cubit/app_gate_cubit.dart';
+import 'package:news_app/core/manager/app_gate/app_gate_cubit.dart';
+import 'package:news_app/core/manager/connection/connection_cubit.dart';
+import 'package:news_app/core/shell/app_shell.dart';
 import 'core/observers/app_bloc_observer.dart';
 import 'core/routes/app_router.dart';
-import 'core/theme/manager/theme_cubit.dart';
+import 'core/manager/theme/theme_cubit.dart';
 import 'core/theme/theme_data/dark_theme_data.dart';
 import 'core/theme/theme_data/light_theme_data.dart';
 
@@ -44,6 +46,7 @@ class AppBootstrap extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => sl<ThemeCubit>()),
         BlocProvider(create: (context) => sl<AppGateCubit>()),
+        BlocProvider(create: (context) => sl<AppConnectionCubit>()),
         // BlocProvider(create: (context) => sl<NewsCubit>()),
       ],
       child: const MyApp(),
@@ -71,7 +74,14 @@ class MyApp extends StatelessWidget {
                 darkTheme: getDarkTheme(),
                 themeMode: mode.themeMode,
                 routerConfig: sl<AppRouter>().router,
-                builder: DevicePreview.appBuilder,
+                builder: (context, child) {
+                  if (child == null) return const SizedBox.shrink();
+                  final previewWrapped = DevicePreview.appBuilder(
+                    context,
+                    child,
+                  );
+                  return AppShell(child: previewWrapped);
+                },
               );
             });
       },

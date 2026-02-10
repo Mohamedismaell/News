@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/injection/service_locator.dart';
-import 'package:news_app/core/navigaiton/tabs_shell.dart';
+import 'package:news_app/core/shell/tabs_shell.dart';
 import 'package:news_app/core/params/news_category_params.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/enums/news_category.dart';

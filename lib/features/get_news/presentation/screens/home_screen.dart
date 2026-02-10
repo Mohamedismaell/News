@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/theme/manager/theme_cubit.dart';
+import 'package:news_app/core/manager/theme/theme_cubit.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
 
 import '../../../../core/enums/news_category.dart';

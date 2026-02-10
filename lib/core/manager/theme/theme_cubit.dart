@@ -3,13 +3,11 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 part 'theme_state.dart';
 
 class ThemeCubit extends HydratedCubit<ThemeState> {
-  ThemeCubit()
-      : super(ThemeState(themeMode: ThemeMode.system));
+  ThemeCubit() : super(ThemeState(themeMode: ThemeMode.system));
 
   void toggleTheme() {
-    final newMode = state.themeMode == ThemeMode.light
-        ? ThemeMode.dark
-        : ThemeMode.light;
+    final newMode =
+        state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     emit(ThemeState(themeMode: newMode));
   }
 
