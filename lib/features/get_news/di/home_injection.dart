@@ -11,7 +11,7 @@ import 'package:news_app/features/get_news/domain/usecases/get_news.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_specific_post_usecase.dart';
 import 'package:news_app/features/get_news/domain/usecases/get_top_head_lines.dart';
 import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/get_news/presentation/cubit/post_/post_details_cubit.dart';
+import 'package:news_app/features/get_news/presentation/cubit/post_details/post_details_cubit.dart';
 
 class HomeDi {
   HomeDi._();

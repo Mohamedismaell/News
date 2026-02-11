@@ -4,8 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/get_news/presentation/cubit/post_/post_details_cubit.dart';
+import 'package:news_app/features/get_news/presentation/cubit/post_details/post_details_cubit.dart';
 import 'package:news_app/features/get_news/presentation/widget/post_details_appbar.dart';
+
 import '../../domain/entities/post_entitiy.dart';
 
 class PostDetails extends StatefulWidget {
@@ -29,7 +30,6 @@ class PostDetails extends StatefulWidget {
 class _PostDetailsState extends State<PostDetails> {
   @override
   void initState() {
-    print('CoverImage url from the route ***');
     super.initState();
   }
 
@@ -38,8 +38,6 @@ class _PostDetailsState extends State<PostDetails> {
     return Scaffold(
       body: BlocBuilder<PostDetailsCubit, PostDetailsState>(
         builder: (context, state) {
-          print('CoverImage url inside the Builder${widget.previewCover} ***');
-          // final post = state is PostDetailsLoaded ? state.post : null;
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
@@ -105,7 +103,6 @@ class _BottomBar extends StatelessWidget {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         //Todo Handle Navigation Url
-                        print('tapped');
                       },
                     style: context.textTheme.bodyMedium!
                         .copyWith(color: AppColors.purplePrimary),
