@@ -10,7 +10,7 @@ A modern, feature-rich News Application built with Flutter, designed to keep you
 - **Search**: Search for specific news articles.
 - **Dark/Light Mode**: Seamless theme switching.
 - **Responsive Design**:
-Optimized for various screen sizes.
+  Optimized for various screen sizes.
 
 ## 🛠️ Tech Stack
 
@@ -36,8 +36,8 @@ The project follows a **Feature-First** architecture to ensure scalability and s
 ```
 lib/
 ├── core/           # Core functionality (Routes, Themes, Utils, Network)
-├── features/       # Feature-based modules (e.g., get_news)
-│   └── get_news/
+├── features/       # Feature-based modules (e.g., home)
+│   └── home/
 │       ├── data/       # Data layer (Repositories, Data Sources, Models)
 │       ├── domain/     # Domain layer (Entities, Use Cases)
 │       └── presentation/ # UI layer (Blocs, Pages, Widgets)
@@ -45,10 +45,10 @@ lib/
 └── utility.dart    # General utilities
 ```
 
-
 ## 📸 Screenshots
 
 <markdown-accessiblity-table data-catalyst=""><table>
+
 <thead>
 <tr>
 <th>Light</th>
@@ -82,10 +82,6 @@ lib/
 </tr>  
 </tbody>
 </table></markdown-accessiblity-table>
-
-
-
-
 
 ## 🌐 API Source
 
@@ -138,7 +134,7 @@ flutter test
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 1.  Fork the project
-2.  Create your Feature Branch 
+2.  Create your Feature Branch
 3.  Commit your changes
-4.  Push to the Branch 
+4.  Push to the Branch
 5.  Open a Pull Request

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/routes/app_routes.dart';
 import 'package:news_app/core/routes/go_router_refresh_stream.dart';
 import 'package:news_app/core/manager/app_gate_cubit/app_gate_cubit.dart';
-import 'package:news_app/features/get_news/routes/home_routes.dart';
+import 'package:news_app/features/home/routes/home_routes.dart';
 import 'package:news_app/features/onboarding/routes/onboarding_routes.dart';
 import 'package:news_app/core/shell/app_shell.dart';
 

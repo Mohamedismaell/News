@@ -1,7 +1,7 @@
 import 'package:hive_ce_flutter/adapters.dart';
-import 'package:news_app/features/get_news/data/models/articled_dto.dart';
-import 'package:news_app/features/get_news/data/models/news_response_dto.dart';
-import 'package:news_app/features/get_news/data/models/source_dto.dart';
+import 'package:news_app/features/home/data/models/articled_dto.dart';
+import 'package:news_app/features/home/data/models/news_response_dto.dart';
+import 'package:news_app/features/home/data/models/source_dto.dart';
 
 class AppHive {
   static late Box<bool> onboardingBox;

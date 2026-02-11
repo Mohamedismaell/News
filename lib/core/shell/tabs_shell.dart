@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/injection/service_locator.dart';
 import 'package:news_app/core/widget/bottom_nav.dart';
-import 'package:news_app/features/get_news/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/get_news/presentation/screens/book_marks_screen.dart';
-import 'package:news_app/features/get_news/presentation/screens/categories_screen.dart';
-import 'package:news_app/features/get_news/presentation/screens/home_screen.dart';
-import 'package:news_app/features/get_news/presentation/screens/profile_screen.dart';
+import 'package:news_app/features/home/presentation/cubit/news/news_cubit.dart';
+import 'package:news_app/features/home/presentation/screens/book_marks_screen.dart';
+import 'package:news_app/features/home/presentation/screens/categories_screen.dart';
+import 'package:news_app/features/home/presentation/screens/home_screen.dart';
+import 'package:news_app/features/home/presentation/screens/profile_screen.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
