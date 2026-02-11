@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/connection/refresh_on_reconnect.dart';
 import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/enums/stats.dart';
+import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.dart';
 import 'package:news_app/core/shared/params/news_category_params.dart';
-import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
 import 'package:news_app/features/home/domain/usecases/get_news.dart';
 import 'package:news_app/features/home/presentation/model/book_marked_post.dart';
 
@@ -33,7 +33,7 @@ class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
       categoryStatus: NewsStatus.loading,
       selectedCategory: category,
     ));
-    final response = await getNews.callNewsCategory(
+    final response = await getNews.call(
       params: NewsCategoryParams(category: category),
     );
 

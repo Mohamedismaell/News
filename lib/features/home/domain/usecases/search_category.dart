@@ -3,14 +3,12 @@ import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 import 'package:news_app/core/shared/params/news_category_params.dart';
 import 'package:news_app/features/home/domain/repositories/news_repository.dart';
 
-class GetNewsByCategory {
+class SearchUseCase {
   final NewsRepository repository;
 
-  GetNewsByCategory({required this.repository});
+  SearchUseCase({required this.repository});
 
-  Future<Result<List<PostEntity>>> call({
-    required NewsCategoryParams params,
-  }) {
-    return repository.getNewsByCategory(params: params);
+  Future<Result<List<PostEntity>>> call(NewsCategoryParams query) {
+    return repository.getNewsByCategory(params: query);
   }
 }

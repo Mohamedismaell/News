@@ -31,7 +31,7 @@ class TopHeadLinesCubit extends Cubit<TopHeadLinesState>
     emit(state.copyWith(
       topNewsStatus: NewsStatus.loading,
     ));
-    final response = await getTopHeadLines.callTopHeadLines();
+    final response = await getTopHeadLines.call();
     return response.when(
       success: (posts) {
         emit(

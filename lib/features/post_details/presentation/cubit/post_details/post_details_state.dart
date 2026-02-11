@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
+part of 'post_details_cubit.dart';
 
 sealed class PostDetailsState extends Equatable {
   const PostDetailsState();
