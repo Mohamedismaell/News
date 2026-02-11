@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/manager/theme_cubit/theme_cubit.dart';
 import 'package:news_app/features/home/presentation/cubit/news/news_cubit.dart';
-
 import '../../../../core/enums/news_category.dart';
 import '../widget/preview_slide.dart';
 import '../widget/top_news.dart';
@@ -64,10 +62,6 @@ class _HomeHeader extends StatelessWidget {
                 style: context.textTheme.bodySmall)
           ],
         ),
-        Spacer(),
-        IconButton(
-            onPressed: () => context.read<ThemeCubit>().toggleTheme(),
-            icon: Icon(Icons.wb_sunny_outlined))
       ],
     );
   }

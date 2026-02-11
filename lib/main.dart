@@ -6,12 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:news_app/core/database/cache/app_hive.dart';
 import 'package:news_app/core/helper/hydrated_storage.dart';
-import 'package:news_app/core/injection/service_locator.dart';
-import 'package:news_app/core/manager/app_gate_cubit/app_gate_cubit.dart';
-import 'package:news_app/core/manager/connection_cubit/connection_cubit.dart';
-import 'core/manager/theme_cubit/theme_cubit.dart';
-import 'core/observers/app_bloc_observer.dart';
-import 'core/routes/app_router.dart';
+import 'package:news_app/core/shared/injection/service_locator.dart';
+import 'package:news_app/core/shared/manager/app_gate_cubit/app_gate_cubit.dart';
+import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.dart';
+import 'core/shared/manager/theme_cubit/theme_cubit.dart';
+import 'core/shared/observers/app_bloc_observer.dart';
+import 'core/shared/routes/app_router.dart';
 import 'core/theme/theme_data/dark_theme_data.dart';
 import 'core/theme/theme_data/light_theme_data.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:news_app/features/home/data/models/source_dto.dart';
+import 'package:news_app/core/shared/data/models/source_dto.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 
 part 'articled_dto.g.dart';

@@ -1,6 +1,6 @@
 import 'package:hive_ce_flutter/adapters.dart';
+import 'package:news_app/core/shared/data/models/news_response_dto.dart';
 import 'package:news_app/features/home/data/datasources/news_data_source.dart';
-import 'package:news_app/features/home/data/models/news_response_dto.dart';
 
 class NewsLocalDataSource implements NewsDataSource {
   final Box<NewsResponseDto> newsBox;

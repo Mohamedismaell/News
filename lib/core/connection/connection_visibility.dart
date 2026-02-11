@@ -1,4 +1,4 @@
-import 'package:news_app/core/routes/app_routes.dart';
+import 'package:news_app/core/shared/routes/app_routes.dart';
 
 bool shouldShowConnectionBanner(String location) {
   return !location.startsWith(AppRoutes.splash) &&

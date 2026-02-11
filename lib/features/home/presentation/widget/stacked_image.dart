@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/widget/app_cached_image.dart';
+import 'package:news_app/core/shared/widget/app_cached_image.dart';
 import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../cubit/news/news_cubit.dart';

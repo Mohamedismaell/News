@@ -1,10 +1,10 @@
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:news_app/core/database/api/dio_consumer.dart';
-import 'package:news_app/core/injection/service_locator.dart';
-import 'package:news_app/core/manager/connection_cubit/connection_cubit.dart';
+import 'package:news_app/core/shared/data/models/news_response_dto.dart';
+import 'package:news_app/core/shared/injection/service_locator.dart';
+import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.dart';
 import 'package:news_app/features/home/data/datasources/news_local_data_source.dart';
 import 'package:news_app/features/home/data/datasources/news_remote_data_source.dart';
-import 'package:news_app/features/home/data/models/news_response_dto.dart';
 import 'package:news_app/features/home/data/repositories/news_repository_impl.dart';
 import 'package:news_app/features/home/domain/repositories/news_repository.dart';
 import 'package:news_app/features/home/domain/usecases/get_news.dart';

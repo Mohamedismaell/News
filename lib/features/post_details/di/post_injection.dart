@@ -1,5 +1,5 @@
 import 'package:news_app/core/database/api/dio_consumer.dart';
-import 'package:news_app/core/injection/service_locator.dart';
+import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/features/post_details/data/datasources/post_local_data_source.dart';
 import 'package:news_app/features/post_details/data/datasources/post_remote_data_source.dart';
 import 'package:news_app/features/post_details/data/repositories/news_repository_impl.dart';

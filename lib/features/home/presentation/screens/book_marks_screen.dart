@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../cubit/news/news_cubit.dart';
+import 'package:news_app/features/home/presentation/cubit/news/news_cubit.dart';
 
 class BookMarksScreen extends StatelessWidget {
   const BookMarksScreen({super.key});
@@ -101,9 +100,9 @@ class _BookmarksPosts extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: state.bookmarks!.length,
                 itemBuilder: (context, index) {
-                  final post = state.bookmarks![index].post;
-                  final category = state.bookmarks![index].category;
-                  final isBookmarked = state.isBookmarked(post.id);
+                  // final post = state.bookmarks![index].post;
+                  // final category = state.bookmarks![index].category;
+                  // final isBookmarked = state.isBookmarked(post.id);
                   return Padding(
                       padding: const EdgeInsets.only(bottom: 15),
                       child: SizedBox()

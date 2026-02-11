@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/params/news_category_params.dart';
+import 'package:news_app/core/shared/params/news_category_params.dart';
 import 'package:news_app/features/post_details/domain/usecases/get_specific_post_usecase.dart';
 import 'package:news_app/features/post_details/presentation/cubit/post_details/post_details_state.dart';
 

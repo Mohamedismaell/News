@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/widget/app_cached_image.dart';
-import 'package:news_app/core/widget/top_news_skeltonizer.dart';
+import 'package:news_app/core/shared/widget/app_cached_image.dart';
+import 'package:news_app/core/shared/widget/top_news_skeltonizer.dart';
 import '../cubit/news/news_cubit.dart';
 
 class TopNewsSection extends StatelessWidget {
@@ -40,28 +40,19 @@ class TopNewsSection extends StatelessWidget {
             final isBookmarked = state.isBookmarked(post.id);
             return InkWell(
               onTap: () {
-                print('Tapped');
-                if (post.id.isNotEmpty) {
-                  try {
-                    context.push('/testScreen');
-                    // context.pushNamed(
-                    //   'postDetails',
-                    //   pathParameters: {
-                    //     'postId': post.id.toString(),
-                    //   },
-                    //   extra: {
-                    //     'heroTag': 'post_${post.id}',
-                    //     'coverUrl': post.threadimageUrl,
-                    //     'title': post.threadtitle,
-                    //     'author': post.author,
-                    //   },
-                    // );
-                  } catch (e) {
-                    print('Navigation Error: $e');
-                  }
-                } else {
-                  print('Error: Post ID is empty');
-                }
+                context.pushNamed(
+                  'postDetails',
+                  pathParameters: {
+                    'postId': post.id.toString(),
+                  },
+                  extra: {
+                    'heroTag': 'post_${post.id}',
+                    'coverUrl': post.imageUrl,
+                    'title': post.title,
+                    'author': post.author,
+                    'isBookmarked': isBookmarked,
+                  },
+                );
               },
               child: Padding(
                 padding: EdgeInsets.only(bottom: 10.h),

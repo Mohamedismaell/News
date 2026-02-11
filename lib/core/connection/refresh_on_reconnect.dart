@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
-import 'package:news_app/core/manager/connection_cubit/connection_cubit.dart';
+import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.dart';
 
 mixin RefreshOnReconnect {
   late final StreamSubscription _connectionSub;

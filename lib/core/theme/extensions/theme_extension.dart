@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/theme/extensions/custom_colors.dart';
 
-import '../../manager/theme_cubit/theme_cubit.dart';
+import '../../shared/manager/theme_cubit/theme_cubit.dart';
 
 extension ThemeContextX on BuildContext {
   ThemeState get themeState => watch<ThemeCubit>().state;
