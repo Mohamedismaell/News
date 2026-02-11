@@ -1,20 +1,16 @@
-part of 'news_cubit.dart';
+part of 'category_news_cubit.dart';
 
 @immutable
 class NewsState extends Equatable {
   final String selectedCategory;
   final NewsStatus categoryStatus;
-  final NewsStatus topNewsStatus;
   final List<PostEntity> categoryNews;
-  final List<PostEntity> topHeadLines;
   final List<BookmarkedPost>? bookmarks;
   final String? errorMessage;
   const NewsState({
-    this.topNewsStatus = NewsStatus.loading,
     this.categoryStatus = NewsStatus.loading,
     this.selectedCategory = 'Politics',
     this.categoryNews = const [],
-    this.topHeadLines = const [],
     this.errorMessage,
     this.bookmarks,
   });
@@ -22,18 +18,14 @@ class NewsState extends Equatable {
   NewsState copyWith({
     String? selectedCategory,
     NewsStatus? categoryStatus,
-    NewsStatus? topNewsStatus,
     List<PostEntity>? categoryNews,
-    List<PostEntity>? topHeadLines,
     List<BookmarkedPost>? bookmarks,
     String? errorMessage,
   }) {
     return NewsState(
       selectedCategory: selectedCategory ?? this.selectedCategory,
       categoryStatus: categoryStatus ?? this.categoryStatus,
-      topNewsStatus: topNewsStatus ?? this.topNewsStatus,
       categoryNews: categoryNews ?? this.categoryNews,
-      topHeadLines: topHeadLines ?? this.topHeadLines,
       bookmarks: bookmarks ?? this.bookmarks,
       errorMessage: errorMessage ?? this.errorMessage,
     );
@@ -46,17 +38,9 @@ class NewsState extends Equatable {
 
   // @override
   // String toString() {
-  //   return 'NewsState(selectedCategory: $selectedCategory, categoryStatus: $categoryStatus, dateStatus: $dateStatus, categoryNews: $categoryNews, topHeadLines: $topHeadLines, bookmarks: $bookmarks, errorMessage: $errorMessage)';
   // }
 
   @override
-  List<Object?> get props => [
-        selectedCategory,
-        categoryStatus,
-        topNewsStatus,
-        categoryNews,
-        topHeadLines,
-        bookmarks,
-        errorMessage
-      ];
+  List<Object?> get props =>
+      [selectedCategory, categoryStatus, categoryNews, bookmarks, errorMessage];
 }

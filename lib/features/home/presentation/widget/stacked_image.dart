@@ -6,7 +6,7 @@ import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/core/shared/widget/app_cached_image.dart';
 import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../cubit/news/news_cubit.dart';
+import '../cubit/news/category_news_cubit.dart';
 
 class StackedImage extends StatelessWidget {
   const StackedImage(
@@ -50,12 +50,14 @@ class StackedImage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           children: [
             //! image
-            AppCachedImage(
-              heroTag: 'post_${post.id}',
-              imageUrl: post.imageUrl ?? '',
-              width: imageWidth,
-              height: imageHeight,
-              fit: BoxFit.cover,
+            Hero(
+              tag: 'post_${post.id}',
+              child: AppCachedImage(
+                imageUrl: post.imageUrl ?? '',
+                width: imageWidth,
+                height: imageHeight,
+                fit: BoxFit.cover,
+              ),
             ),
             Positioned.fill(
               child: Container(
@@ -80,7 +82,7 @@ class StackedImage extends StatelessWidget {
               right: 24,
               child: IconButton(
                   onPressed: () => context
-                      .read<NewsCubit>()
+                      .read<CategoryNewsCubit>()
                       .toggleBookmark(post, category: category),
                   icon: Icon(
                     isBookmarked ? Icons.bookmark : Icons.bookmark_border,

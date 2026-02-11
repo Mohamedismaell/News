@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/enums/news_category.dart';
 import 'package:news_app/core/enums/stats.dart';
+import 'package:news_app/core/theme/app_text_styles.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/home/presentation/cubit/news/news_cubit.dart';
-import 'package:news_app/features/home/presentation/widget/stacked_image.dart';
-
-import '../../../../core/theme/app_text_styles.dart';
+import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key, required this.category});
@@ -52,14 +50,14 @@ class _Posts extends StatelessWidget {
   final String category;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewsCubit, NewsState>(builder: (context, state) {
+    return BlocBuilder<CategoryNewsCubit, NewsState>(builder: (context, state) {
       final Widget content = ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemCount: state.categoryNews.length,
         itemBuilder: (context, index) {
-          final post = state.categoryNews[index];
-          final isBookmarked = state.isBookmarked(post.id);
+          // final post = state.categoryNews[index];
+          // final isBookmarked = state.isBookmarked(post.id);
           return Column(
             children: [
               // StackedImage(

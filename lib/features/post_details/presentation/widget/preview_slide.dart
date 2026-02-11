@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/shared/widget/category_news_skeltonizer.dart';
-import 'package:news_app/features/home/presentation/cubit/news/news_cubit.dart';
+import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
 import 'package:news_app/features/home/presentation/widget/stacked_image.dart';
 
 class PreviewSlide extends StatelessWidget {
   const PreviewSlide({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewsCubit, NewsState>(
+    return BlocBuilder<CategoryNewsCubit, NewsState>(
       builder: (context, state) {
         return switch (state.categoryStatus) {
           NewsStatus.loading => CategoryNewsSkeltonizer(),

@@ -8,31 +8,24 @@ import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.d
 import 'package:news_app/core/shared/params/news_category_params.dart';
 import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
 import 'package:news_app/features/home/domain/usecases/get_news.dart';
-import 'package:news_app/features/home/domain/usecases/get_top_head_lines.dart';
 import 'package:news_app/features/home/presentation/model/book_marked_post.dart';
 
-part 'news_state.dart';
+part 'category_news_state.dart';
 
-class NewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
-  NewsCubit(this.getNews, this.getTopHeadLines, this._connectionCubit)
-      : super(NewsState()) {
+class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
+  CategoryNewsCubit(this.getNews, this._connectionCubit) : super(NewsState()) {
     init();
     reconnect(_connectionCubit, () {
       init();
     });
   }
   final GetNewsByCategory getNews;
-  final GetTopHeadLines getTopHeadLines;
   final AppConnectionCubit _connectionCubit;
+
   Future<void> init() async {
     await callNewsCategory(EndPoints.defaultCategory);
-    await callTopHeadLines();
   }
 
-  // Future<void> reconnect() async {
-  //   await callNewsCategory(state.selectedCategory);
-  //   await callTopHeadLines();
-  // }
   Future<void> callNewsCategory(
     String category,
   ) async {
@@ -57,31 +50,6 @@ class NewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
         emit(
           state.copyWith(
             categoryStatus: NewsStatus.error,
-            errorMessage: errorMessage.message,
-          ),
-        );
-      },
-    );
-  }
-
-  Future<void> callTopHeadLines() async {
-    emit(state.copyWith(
-      topNewsStatus: NewsStatus.loading,
-    ));
-    final response = await getTopHeadLines.callTopHeadLines();
-    return response.when(
-      success: (posts) {
-        emit(
-          state.copyWith(
-            topNewsStatus: NewsStatus.loaded,
-            topHeadLines: posts,
-          ),
-        );
-      },
-      failure: (errorMessage) {
-        emit(
-          state.copyWith(
-            topNewsStatus: NewsStatus.error,
             errorMessage: errorMessage.message,
           ),
         );

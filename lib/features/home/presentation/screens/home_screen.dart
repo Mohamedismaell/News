@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/home/presentation/cubit/news/news_cubit.dart';
-import '../../../../core/enums/news_category.dart';
-import '../widget/preview_slide.dart';
-import '../widget/top_news.dart';
+import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
+import 'package:news_app/features/home/presentation/widget/category_button.dart';
+import 'package:news_app/features/home/presentation/widget/home_header.dart';
+import 'package:news_app/features/home/presentation/widget/preview_slide.dart';
+import 'package:news_app/features/home/presentation/widget/top_news.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _HomeBody();
+    return BlocProvider(
+      create: (context) => sl<CategoryNewsCubit>()..init(),
+      child: _HomeBody(),
+    );
   }
 }
 
@@ -29,11 +33,11 @@ class _HomeBody extends StatelessWidget {
       ),
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: _HomeHeader()),
-          SliverToBoxAdapter(child: SizedBox(height: 32.h)),
-          SliverToBoxAdapter(child: _BarSearch()),
+          SliverToBoxAdapter(child: HomeHeader()),
+          // SliverToBoxAdapter(child: SizedBox(height: 32.h)),
+          // SliverToBoxAdapter(child: CustomSearchBar()),
           SliverToBoxAdapter(child: SizedBox(height: 24.h)),
-          SliverToBoxAdapter(child: _CategoryButton()),
+          SliverToBoxAdapter(child: CategoryButton()),
           SliverToBoxAdapter(child: SizedBox(height: 24.h)),
           SliverToBoxAdapter(child: PreviewSlide()),
           SliverToBoxAdapter(child: SizedBox(height: 48.h)),
@@ -42,103 +46,6 @@ class _HomeBody extends StatelessWidget {
           TopNewsSection(),
         ],
       ),
-    );
-  }
-}
-
-class _HomeHeader extends StatelessWidget {
-  const _HomeHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Browse', style: context.textTheme.headlineMedium),
-            SizedBox(height: 8.h),
-            Text('Discover thing of this world',
-                style: context.textTheme.bodySmall)
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class _BarSearch extends StatelessWidget {
-  const _BarSearch();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color(0xFFF3F4F6),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.search,
-            size: 24.sp,
-            color: AppColors.greyPrimary,
-          ),
-          hintText: 'Search',
-          // isCollapsed: true,
-          suffixIcon: Icon(
-            Icons.mic,
-            size: 24.sp,
-            color: AppColors.greyPrimary,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _CategoryButton extends StatelessWidget {
-  const _CategoryButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<NewsCubit, NewsState>(
-      builder: (context, state) {
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: NewsCategory.values.map((
-              category,
-            ) {
-              final isSelected = state.selectedCategory == category.value;
-              return Padding(
-                  padding: EdgeInsets.only(
-                    right: 16.w,
-                  ),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: isSelected
-                              ? context.colorTheme.primary
-                              : context.colorTheme.surface,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16.w, vertical: 8.h),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16.r)),
-                          elevation: 0),
-                      onPressed: () => context
-                          .read<NewsCubit>()
-                          .selectCategory(category.value),
-                      child: Text(
-                        category.value.split(',').first.trim(),
-                        style: context.textTheme.labelSmall!.copyWith(
-                            color: isSelected
-                                ? context.colorTheme.onPrimary
-                                : context.colorTheme.onSurface),
-                      )));
-            }).toList(),
-          ),
-        );
-      },
     );
   }
 }

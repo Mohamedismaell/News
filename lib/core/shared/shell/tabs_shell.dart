@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/shared/widget/bottom_nav.dart';
-import 'package:news_app/features/home/presentation/cubit/news/news_cubit.dart';
+import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
 import 'package:news_app/features/home/presentation/screens/book_marks_screen.dart';
 import 'package:news_app/features/home/presentation/screens/categories_screen.dart';
 import 'package:news_app/features/home/presentation/screens/home_screen.dart';
@@ -42,32 +42,30 @@ class _HomeShellState extends State<HomeShell> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => sl<NewsCubit>()..init(),
-        child: Scaffold(
-          extendBody: true,
-          body: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              child: IndexedStack(
-                index: _currentIndex,
-                children: [
-                  const HomeScreen(),
-                  const CategoriesScreen(),
-                  const BookMarksScreen(),
-                  const ProfileScreen(),
-                ],
-              ),
-            ),
+    return Scaffold(
+      extendBody: true,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 0),
+          child: IndexedStack(
+            index: _currentIndex,
+            children: [
+              const HomeScreen(),
+              const CategoriesScreen(),
+              const BookMarksScreen(),
+              const ProfileScreen(),
+            ],
           ),
-          bottomNavigationBar: BottomNav(
-            currentIndex: _currentIndex,
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-          ),
-        ));
+        ),
+      ),
+      bottomNavigationBar: BottomNav(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
+    );
   }
 }
