@@ -56,17 +56,20 @@ class HomeRoutes {
           print('Did nav to postDetails');
           final postId = state.pathParameters['postId']!;
           final extra = state.extra as Map<String, dynamic>?;
-          return BlocProvider(
-            create: (context) => PostDetailsCubit(sl<GetSpecificPost>())
-              ..callSpecificPost(NewsCategoryParams(category: postId)),
-            child: PostDetails(
-              heroTag: extra?['heroTag'] ?? '',
-              previewCover: extra?['coverUrl'] ?? '',
-              previewTitle: extra?['title'] ?? '',
-              previewAuthor: extra?['author'] ?? '',
-              isBookmarked: extra?['isBookmarked'] ?? false,
-            ),
-          );
+          return BlocProvider<PostDetailsCubit>(
+              create: (context) {
+                final coverImage = extra?['coverUrl'];
+                print('coverImage ***$coverImage');
+                return PostDetailsCubit(sl<GetSpecificPost>())
+                  ..callSpecificPost(NewsCategoryParams(category: postId));
+              },
+              child: PostDetails(
+                heroTag: extra?['heroTag'] ?? '',
+                previewCover: extra?['coverUrl'] ?? '',
+                previewTitle: extra?['title'] ?? '',
+                previewAuthor: extra?['author'] ?? '',
+                isBookmarked: extra?['isBookmarked'] ?? false,
+              ));
         }),
   ];
 }

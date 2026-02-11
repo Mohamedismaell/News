@@ -14,6 +14,7 @@ class AppRouter {
   // static GoRouter get router => _router;
 
   late final GoRouter router = GoRouter(
+    // navigatorKey: ,
     initialLocation: AppRoutes.splash,
     refreshListenable: GoRouterRefreshStream(appGateCubit.stream),
     redirect: (context, state) {
@@ -34,6 +35,7 @@ class AppRouter {
       return null;
     },
     routes: [
+      ...OnBoardingRoutes.routes,
       ShellRoute(
         builder: (context, state, child) {
           return AppShell(
@@ -41,7 +43,7 @@ class AppRouter {
             child: child,
           );
         },
-        routes: [...OnBoardingRoutes.routes, ...HomeRoutes.routes],
+        routes: [...HomeRoutes.routes],
       ),
     ],
     errorBuilder: (context, state) => ErrorScreen(error: state.error),

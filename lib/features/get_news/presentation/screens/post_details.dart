@@ -8,7 +8,7 @@ import 'package:news_app/features/get_news/presentation/cubit/post_/post_details
 import 'package:news_app/features/get_news/presentation/widget/post_details_appbar.dart';
 import '../../domain/entities/post_entitiy.dart';
 
-class PostDetails extends StatelessWidget {
+class PostDetails extends StatefulWidget {
   const PostDetails(
       {super.key,
       required this.heroTag,
@@ -21,21 +21,34 @@ class PostDetails extends StatelessWidget {
   final String previewTitle;
   final String previewAuthor;
   final bool isBookmarked;
+
+  @override
+  State<PostDetails> createState() => _PostDetailsState();
+}
+
+class _PostDetailsState extends State<PostDetails> {
+  @override
+  void initState() {
+    print('CoverImage url from the route ***');
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<PostDetailsCubit, PostDetailsState>(
         builder: (context, state) {
+          print('CoverImage url inside the Builder${widget.previewCover} ***');
           // final post = state is PostDetailsLoaded ? state.post : null;
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               PostDetailsAppbar(
-                imageUrl: previewCover,
-                author: previewAuthor,
-                title: previewTitle,
-                heroTag: heroTag,
-                isBookmarked: isBookmarked,
+                imageUrl: widget.previewCover,
+                author: widget.previewAuthor,
+                title: widget.previewTitle,
+                heroTag: widget.heroTag,
+                isBookmarked: widget.isBookmarked,
               ),
               if (state is PostDetailsLoaded) _BottomBar(post: state.post),
             ],

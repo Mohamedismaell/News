@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/core/connection/connection_visibility.dart';
+// import 'package:news_app/core/connection/connection_visibility.dart';
 import 'package:news_app/core/widget/connection_banner.dart';
 
 class AppShell extends StatelessWidget {
@@ -14,17 +14,17 @@ class AppShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showBanner = shouldShowConnectionBanner(location);
+    // final showBanner = shouldShowConnectionBanner(location);
     return Stack(
       children: [
         child,
-        if (showBanner)
-          const Positioned(
-            bottom: 10,
-            left: 0,
-            right: 0,
-            child: ConnectionBanner(),
-          ),
+        // if (showBanner)
+        const Positioned(
+          bottom: 10,
+          left: 0,
+          right: 0,
+          child: ConnectionBanner(),
+        ),
       ],
     );
   }

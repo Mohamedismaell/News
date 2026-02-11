@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
+import 'package:news_app/core/widget/app_cached_image.dart';
 
 class PostDetailsAppbar extends StatelessWidget {
   const PostDetailsAppbar({
@@ -41,9 +43,9 @@ class PostDetailsAppbar extends StatelessWidget {
               //! image
               Opacity(
                 opacity: 0.9,
-                child: Image.network(
-                  imageUrl,
+                child: CachedNetworkImage(
                   fit: BoxFit.cover,
+                  imageUrl: imageUrl,
                 ),
               ),
               //! Grdiant
