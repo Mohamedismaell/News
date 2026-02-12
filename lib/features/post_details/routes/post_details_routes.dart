@@ -11,7 +11,7 @@ class PostDetailsRoutes {
   static List<RouteBase> routes = [
     GoRoute(
         name: 'postDetails',
-        path: AppRoutes.newsDetails,
+        path: AppRoutes.postDetails,
         builder: (context, state) {
           final postId = state.pathParameters['postId']!;
           final extra = state.extra as Map<String, dynamic>?;

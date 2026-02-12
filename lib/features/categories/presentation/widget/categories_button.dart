@@ -25,10 +25,6 @@ class CategoriesButton extends StatelessWidget {
           childCount: NewsCategory.values.length,
           (context, index) {
             final category = NewsCategory.values[index];
-            //     !.split(',')
-            //     .first
-            //     .trim();
-
             return InkWell(
               onTap: () {
                 context.push(AppRoutes.categoryScreen, extra: category);

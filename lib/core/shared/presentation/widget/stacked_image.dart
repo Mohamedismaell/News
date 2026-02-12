@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
+import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/shared/widget/app_cached_image.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../cubit/news/category_news_cubit.dart';
+import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
+import '../../../theme/app_colors.dart';
+import '../manager/news/category_news_cubit.dart';
 
 class StackedImage extends StatelessWidget {
   const StackedImage(
@@ -16,30 +17,50 @@ class StackedImage extends StatelessWidget {
       required this.isBookmarked,
       required this.imageHeight,
       this.imageWidth,
-      required this.textContainerWidth});
+      required this.textContainerWidth,
+      required this.heroType,
+      required this.routeName});
   final PostEntity post;
   final String? category;
   final bool isBookmarked;
   final double imageHeight;
   final double? imageWidth;
   final double textContainerWidth;
+  final String heroType;
+  final String routeName;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(
-          'postDetails',
-          pathParameters: {
-            'postId': post.id.toString(),
-          },
-          extra: {
-            'heroTag': 'post_${post.id}',
-            'coverUrl': post.imageUrl,
-            'title': post.title,
-            'author': post.author,
-            'isBookmarked': isBookmarked,
-          },
-        );
+        if (routeName == AppRoutes.postDetails) {
+          context.pushNamed(
+            'postDetails',
+            pathParameters: {
+              'postId': post.id.toString(),
+            },
+            extra: {
+              'heroTag': '${heroType}_${post.id}',
+              'coverUrl': post.imageUrl,
+              'title': post.title,
+              'author': post.author,
+              'isBookmarked': isBookmarked,
+            },
+          );
+        } else {
+          context.pushNamed(
+            'postDetails',
+            pathParameters: {
+              'postId': post.id.toString(),
+            },
+            extra: {
+              'heroTag': '${heroType}_${post.id}',
+              'coverUrl': post.imageUrl,
+              'title': post.title,
+              'author': post.author,
+              'isBookmarked': isBookmarked,
+            },
+          );
+        }
       },
       child: Container(
         clipBehavior: Clip.antiAlias,
@@ -47,11 +68,11 @@ class StackedImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: Stack(
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.bottomLeft,
           children: [
             //! image
             Hero(
-              tag: 'post_${post.id}',
+              tag: '${heroType}_${post.id}',
               child: AppCachedImage(
                 imageUrl: post.imageUrl ?? '',
                 width: imageWidth,

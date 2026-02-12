@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/enums/news_category.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/news/category_news_cubit.dart';
 
 class CategoryButton extends StatelessWidget {
   const CategoryButton({super.key});

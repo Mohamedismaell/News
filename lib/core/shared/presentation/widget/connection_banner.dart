@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/connection_cubit/connection_cubit.dart';
 
 class ConnectionBanner extends StatelessWidget {
   const ConnectionBanner({super.key});

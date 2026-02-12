@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
-import 'package:news_app/features/home/presentation/cubit/search/search_cubit.dart';
+import 'package:news_app/features/home/presentation/manager/search/search_cubit.dart';
 import 'package:news_app/features/home/presentation/widget/custom_search_bar.dart';
 
 class SearchScreen extends StatelessWidget {

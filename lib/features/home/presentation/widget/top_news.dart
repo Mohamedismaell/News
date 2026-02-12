@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
-import 'package:news_app/core/shared/widget/app_cached_image.dart';
-import 'package:news_app/core/shared/widget/top_news_skeltonizer.dart';
+import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
+import 'package:news_app/core/shared/presentation/widget/top_news_skeltonizer.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/home/presentation/cubit/top_head_lines.dart/top_head_lines_cubit.dart';
+import 'package:news_app/features/home/presentation/manager/top_head_lines.dart/top_head_lines_cubit.dart';
 
-import '../cubit/news/category_news_cubit.dart';
+import '../../../../core/shared/presentation/manager/news/category_news_cubit.dart';
 
 class TopNewsSection extends StatelessWidget {
   const TopNewsSection({
@@ -54,7 +54,7 @@ class TopNewsSection extends StatelessWidget {
                         'postId': post.id.toString(),
                       },
                       extra: {
-                        'heroTag': 'post_${post.id}',
+                        'heroTag': 'post_${index}_${post.id}',
                         'coverUrl': post.imageUrl,
                         'title': post.title,
                         'author': post.author,
@@ -75,7 +75,7 @@ class TopNewsSection extends StatelessWidget {
                               boxShadow: [],
                             ),
                             child: Hero(
-                              tag: 'post_${post.id}',
+                              tag: 'post_${index}_${post.id}',
                               child: AppCachedImage(
                                   imageUrl: post.imageUrl.toString(),
                                   width: 96.w,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:news_app/core/connection/connection_visibility.dart';
-import 'package:news_app/core/shared/widget/connection_banner.dart';
+import 'package:news_app/core/shared/presentation/widget/connection_banner.dart';
 
 class AppShell extends StatelessWidget {
   final Widget child;

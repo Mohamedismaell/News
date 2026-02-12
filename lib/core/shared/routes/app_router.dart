@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/core/shared/routes/go_router_refresh_stream.dart';
-import 'package:news_app/core/shared/manager/app_gate_cubit/app_gate_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/app_gate_cubit/app_gate_cubit.dart';
 import 'package:news_app/features/categories/routes/categories_routes.dart';
 import 'package:news_app/features/home/routes/home_routes.dart';
 import 'package:news_app/features/onboarding/routes/onboarding_routes.dart';
-import 'package:news_app/core/shared/shell/app_shell.dart';
+import 'package:news_app/core/shared/presentation/shell/app_shell.dart';
 import 'package:news_app/features/post_details/routes/post_details_routes.dart';
 
 class AppRouter {

@@ -6,7 +6,7 @@ import 'package:news_app/core/database/api/end_points.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 import 'package:news_app/core/shared/domain/usecases/get_news.dart';
-import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/connection_cubit/connection_cubit.dart';
 import 'package:news_app/core/shared/params/news_category_params.dart';
 import 'package:news_app/features/home/presentation/model/book_marked_post.dart';
 
@@ -14,7 +14,6 @@ part 'category_news_state.dart';
 
 class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
   CategoryNewsCubit(this.getNews, this._connectionCubit) : super(NewsState()) {
-    init();
     reconnect(_connectionCubit, () {
       init();
     });
@@ -29,6 +28,7 @@ class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
   Future<void> callNewsCategory(
     String category,
   ) async {
+    if (isClosed) return;
     emit(state.copyWith(
       categoryStatus: NewsStatus.loading,
       selectedCategory: category,
@@ -39,20 +39,24 @@ class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
 
     response.when(
       success: (posts) {
-        emit(
-          state.copyWith(
-            categoryStatus: NewsStatus.loaded,
-            categoryNews: posts,
-          ),
-        );
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+              categoryStatus: NewsStatus.loaded,
+              categoryNews: posts,
+            ),
+          );
+        }
       },
       failure: (errorMessage) {
-        emit(
-          state.copyWith(
-            categoryStatus: NewsStatus.error,
-            errorMessage: errorMessage.message,
-          ),
-        );
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+              categoryStatus: NewsStatus.error,
+              errorMessage: errorMessage.message,
+            ),
+          );
+        }
       },
     );
   }

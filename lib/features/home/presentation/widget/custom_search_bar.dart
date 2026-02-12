@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/theme/app_colors.dart';
-import 'package:news_app/features/home/presentation/cubit/search/search_cubit.dart';
+import 'package:news_app/features/home/presentation/manager/search/search_cubit.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key});

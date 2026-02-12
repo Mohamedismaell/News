@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/news/category_news_cubit.dart';
 import 'package:news_app/features/home/presentation/widget/category_button.dart';
 import 'package:news_app/features/home/presentation/widget/home_header.dart';
 import 'package:news_app/features/home/presentation/widget/preview_slide.dart';

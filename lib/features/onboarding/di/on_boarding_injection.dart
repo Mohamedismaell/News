@@ -1,7 +1,7 @@
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/shared/routes/app_router.dart';
-import 'package:news_app/core/shared/manager/app_gate_cubit/app_gate_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/app_gate_cubit/app_gate_cubit.dart';
 import 'package:news_app/features/onboarding/data/repositories/on_boarding_impl.dart';
 import 'package:news_app/features/onboarding/data/sources/on_boarding_local_data_source.dart';
 import 'package:news_app/features/onboarding/data/sources/onboarding_local_data_source.dart';

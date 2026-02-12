@@ -14,8 +14,8 @@ import 'package:news_app/core/shared/data/repositories/news_repository_impl.dart
 import 'package:news_app/core/shared/domain/repositories/news_repository.dart';
 import 'package:news_app/core/shared/domain/usecases/get_news.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
-import 'package:news_app/core/shared/manager/connection_cubit/connection_cubit.dart';
-import 'package:news_app/core/shared/manager/theme_cubit/theme_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/connection_cubit/connection_cubit.dart';
+import 'package:news_app/core/shared/presentation/manager/theme_cubit/theme_cubit.dart';
 
 CacheHelper get cacheHelper => sl<CacheHelper>();
 

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/enums/stats.dart';
-import 'package:news_app/core/shared/widget/category_news_skeltonizer.dart';
-import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
-import 'package:news_app/features/home/presentation/widget/stacked_image.dart';
+import 'package:news_app/core/shared/presentation/manager/news/category_news_cubit.dart';
+import 'package:news_app/core/shared/presentation/widget/category_news_skeltonizer.dart';
+import 'package:news_app/core/shared/presentation/widget/stacked_image.dart';
+import 'package:news_app/core/shared/routes/app_routes.dart';
 
 class PreviewSlide extends StatelessWidget {
   const PreviewSlide({super.key});
@@ -46,6 +47,8 @@ class _LoadedState extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 16.0),
                 child: StackedImage(
+                  routeName: AppRoutes.postDetails,
+                  heroType: 'home_$index',
                   post: post,
                   category: category,
                   isBookmarked: isBookmarked,
