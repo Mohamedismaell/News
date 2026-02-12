@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/shared/widget/bottom_nav.dart';
-import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
+import 'package:news_app/features/categories/presentation/screens/categories_screen.dart';
 import 'package:news_app/features/home/presentation/screens/book_marks_screen.dart';
-import 'package:news_app/features/home/presentation/screens/categories_screen.dart';
 import 'package:news_app/features/home/presentation/screens/home_screen.dart';
 import 'package:news_app/features/home/presentation/screens/profile_screen.dart';
 

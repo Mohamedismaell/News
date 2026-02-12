@@ -6,8 +6,8 @@ import 'package:news_app/core/shared/shell/tabs_shell.dart';
 import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
 import 'package:news_app/features/home/presentation/screens/profile_screen.dart';
 import 'package:news_app/features/home/presentation/screens/search_screen.dart';
+
 import '../presentation/screens/book_marks_screen.dart';
-import '../presentation/screens/categories_screen.dart';
 import '../presentation/screens/category_screen.dart';
 import '../presentation/screens/home_screen.dart';
 
@@ -23,10 +23,6 @@ class HomeRoutes {
           builder: (_, __) => const HomeScreen(),
         ),
         GoRoute(
-          path: AppRoutes.categories,
-          builder: (_, __) => const CategoriesScreen(),
-        ),
-        GoRoute(
           path: AppRoutes.bookmarks,
           builder: (_, __) => const BookMarksScreen(),
         ),
@@ -34,17 +30,6 @@ class HomeRoutes {
           path: AppRoutes.profile,
           builder: (_, __) => const ProfileScreen(),
         ),
-        GoRoute(
-            path: AppRoutes.categoryScreen,
-            builder: (context, state) {
-              //Todo: Edit cateogry passing type here.
-              final category = state.extra as NewsCategory;
-              context
-                  .read<CategoryNewsCubit>()
-                  .callNewsCategory(category.value);
-
-              return CategoryScreen(category: category);
-            }),
       ],
     ),
     GoRoute(

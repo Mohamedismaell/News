@@ -1,74 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:news_app/core/enums/news_category.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_text_styles.dart';
-import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/enums/news_category.dart';
 
-class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const _CategoriesBody();
-  }
-}
-
-class _CategoriesBody extends StatelessWidget {
-  const _CategoriesBody();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 5,
-      ),
-      child: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            const _CategoryHeader(),
-            const _CategoriesButton(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CategoryHeader extends StatelessWidget {
-  const _CategoryHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: 20,
-          left: 20,
-          right: 20,
-          bottom: 7,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Categories',
-                style: AppTextStyles.headlLineLarge
-                    .copyWith(color: context.customColors.secondaryColor)),
-            SizedBox(height: 8),
-            Text('Thousands of articles in each category',
-                style: AppTextStyles.hintTextlarge),
-            SizedBox(height: 16)
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CategoriesButton extends StatelessWidget {
-  const _CategoriesButton();
+class CategoriesButton extends StatelessWidget {
+  const CategoriesButton({super.key});
 
   @override
   Widget build(BuildContext context) {

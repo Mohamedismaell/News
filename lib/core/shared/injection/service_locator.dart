@@ -12,7 +12,7 @@ Future<void> initializeDependencies({
   required Box<bool> onboardingBox,
   required Box<NewsResponseDto> newsBox,
 }) async {
-  await CommonDi.init();
+  await CommonDi.init(newsBox);
   OnboardingDi.init(onboardingBox: onboardingBox);
   HomeDi.init(newsBox);
   PostDi.init();
