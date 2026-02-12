@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -29,64 +28,54 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-        // pinned: true,
-        floating: true,
-        snap: true,
-        // backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.white,
-        surfaceTintColor: AppColors.white,
-        clipBehavior: Clip.antiAlias,
-        title: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.r),
-          ),
-          // width: constraints.maxWidth,
-          child: Row(
-            children: [
-              IconButton(
-                alignment: Alignment.center,
-                style: IconButton.styleFrom(
-                  splashFactory: NoSplash.splashFactory,
-                ),
-                onPressed: () => context.pop(),
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  size: 24.sp,
-                  color: AppColors.greyPrimary,
-                ),
+    return Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: 5.h),
+        child: Row(
+          children: [
+            IconButton(
+              alignment: Alignment.center,
+              style: IconButton.styleFrom(
+                splashFactory: NoSplash.splashFactory,
               ),
-              Expanded(
-                child: TextField(
-                  onChanged: (value) {
-                    context.read<SearchCubit>().search(value);
-                  },
-                  controller: searchController,
-                  autofocus: true,
-                  decoration: InputDecoration(hintText: 'Search'),
-                ),
+              onPressed: () => context.pop(),
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 24.sp,
+                color: AppColors.greyPrimary,
               ),
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.mic,
-                    size: 24.sp,
-                    color: AppColors.greyPrimary,
-                  )),
-              IconButton(
-                onPressed: () {
-                  // context.read<SearchCubit>().search(searchController.text);
+            ),
+            Expanded(
+              child: TextField(
+                onChanged: (value) {
+                  context.read<SearchCubit>().search(value);
                 },
+                controller: searchController,
+                autofocus: true,
+                decoration: InputDecoration(hintText: 'Search'),
+              ),
+            ),
+            IconButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {},
                 icon: Icon(
-                  Icons.search,
+                  Icons.mic,
                   size: 24.sp,
                   color: AppColors.greyPrimary,
-                ),
+                )),
+            IconButton(
+              padding: EdgeInsets.zero,
+              constraints: BoxConstraints(),
+              onPressed: () {
+                context.read<SearchCubit>().search(searchController.text);
+              },
+              icon: Icon(
+                Icons.search,
+                size: 24.sp,
+                color: AppColors.greyPrimary,
               ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }

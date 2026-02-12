@@ -32,7 +32,7 @@ class TopNewsSkeltonizer extends StatelessWidget {
           itemBuilder: (context, index) {
             final post = posts[index];
             return Padding(
-                padding: EdgeInsets.only(bottom: 10.h),
+                padding: EdgeInsets.only(right: 20.w),
                 child: SizedBox(
                   height: 96.h,
                   child: Row(

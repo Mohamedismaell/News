@@ -4,11 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
-import 'package:news_app/core/theme/app_colors.dart';
-import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/core/shared/widget/app_cached_image.dart';
 import 'package:news_app/core/shared/widget/top_news_skeltonizer.dart';
+import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/home/presentation/cubit/top_head_lines.dart/top_head_lines_cubit.dart';
+
 import '../cubit/news/category_news_cubit.dart';
 
 class TopNewsSection extends StatelessWidget {
@@ -43,91 +44,94 @@ class TopNewsSection extends StatelessWidget {
             itemBuilder: (context, index) {
               final post = state.topHeadLines[index];
               final isBookmarked = state.isBookmarked(post.id);
-              return InkWell(
-                onTap: () {
-                  context.pushNamed(
-                    'postDetails',
-                    pathParameters: {
-                      'postId': post.id.toString(),
-                    },
-                    extra: {
-                      'heroTag': 'post_${post.id}',
-                      'coverUrl': post.imageUrl,
-                      'title': post.title,
-                      'author': post.author,
-                      'isBookmarked': isBookmarked,
-                    },
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 10.h),
-                  child: SizedBox(
-                    height: 96.h,
-                    child: Row(
-                      children: [
-                        Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.r),
-                            boxShadow: [],
+              return Padding(
+                padding: EdgeInsets.only(right: 20.w),
+                child: InkWell(
+                  onTap: () {
+                    context.pushNamed(
+                      'postDetails',
+                      pathParameters: {
+                        'postId': post.id.toString(),
+                      },
+                      extra: {
+                        'heroTag': 'post_${post.id}',
+                        'coverUrl': post.imageUrl,
+                        'title': post.title,
+                        'author': post.author,
+                        'isBookmarked': isBookmarked,
+                      },
+                    );
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 10.h),
+                    child: SizedBox(
+                      height: 96.h,
+                      child: Row(
+                        children: [
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.r),
+                              boxShadow: [],
+                            ),
+                            child: Hero(
+                              tag: 'post_${post.id}',
+                              child: AppCachedImage(
+                                  imageUrl: post.imageUrl.toString(),
+                                  width: 96.w,
+                                  height: 96.h,
+                                  fit: BoxFit.cover),
+                            ),
                           ),
-                          child: Hero(
-                            tag: 'post_${post.id}',
-                            child: AppCachedImage(
-                                imageUrl: post.imageUrl.toString(),
-                                width: 96.w,
-                                height: 96.h,
-                                fit: BoxFit.cover),
+                          SizedBox(width: 15.w),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          post.author.split(',').first,
+                                          style: context.textTheme.bodyMedium),
+                                    ),
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        constraints: const BoxConstraints(),
+                                        visualDensity: VisualDensity.compact,
+                                        onPressed: () => context
+                                            .read<CategoryNewsCubit>()
+                                            .toggleBookmark(
+                                              post,
+                                            ),
+                                        icon: Icon(
+                                          isBookmarked
+                                              ? Icons.bookmark
+                                              : Icons.bookmark_border,
+                                          color: context.colorTheme.primary,
+                                          size: 18.sp,
+                                        )),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: Text(
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                      softWrap: true,
+                                      post.title,
+                                      style: context.textTheme.bodySmall!
+                                          .copyWith(
+                                              fontSize: 14.sp,
+                                              color: AppColors.blackPrimary)),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 15.w),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        post.author.split(',').first,
-                                        style: context.textTheme.bodyMedium),
-                                  ),
-                                  IconButton(
-                                      padding: EdgeInsets.zero,
-                                      constraints: const BoxConstraints(),
-                                      visualDensity: VisualDensity.compact,
-                                      onPressed: () => context
-                                          .read<CategoryNewsCubit>()
-                                          .toggleBookmark(
-                                            post,
-                                          ),
-                                      icon: Icon(
-                                        isBookmarked
-                                            ? Icons.bookmark
-                                            : Icons.bookmark_border,
-                                        color: context.colorTheme.primary,
-                                        size: 18.sp,
-                                      )),
-                                ],
-                              ),
-                              Expanded(
-                                child: Text(
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    softWrap: true,
-                                    post.title,
-                                    style: context.textTheme.bodySmall!
-                                        .copyWith(
-                                            fontSize: 14.sp,
-                                            color: AppColors.blackPrimary)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

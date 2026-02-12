@@ -28,7 +28,7 @@ class _HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     // print('Build Home Screen');
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      padding: EdgeInsets.only(left: 20.w, top: 10.h),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: HomeHeader()),
@@ -53,19 +53,21 @@ class _TopNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text('Top News', style: context.textTheme.headlineMedium),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: Text(
-            'See All',
-            style: context.textTheme.bodySmall,
-          ),
-        ),
-      ],
-    );
+    return Padding(
+        padding: EdgeInsets.only(right: 20.w),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text('Top News', style: context.textTheme.headlineMedium),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                'See All',
+                style: context.textTheme.bodySmall,
+              ),
+            ),
+          ],
+        ));
   }
 }
