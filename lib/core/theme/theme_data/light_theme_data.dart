@@ -19,18 +19,25 @@ ThemeData getLightTheme() {
       ),
       // //! input
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+        ),
         filled: true,
         hintStyle: rawTextTheme.bodyLarge,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(50.r),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(50.r),
           borderSide: BorderSide.none,
         ),
         hoverColor: Colors.transparent,
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          visualDensity: VisualDensity.standard,
+        ),
       ),
       // //! dialog
       // dialogTheme: DialogThemeData(

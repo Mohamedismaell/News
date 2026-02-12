@@ -9,7 +9,9 @@ import 'package:news_app/features/home/data/repositories/news_repository_impl.da
 import 'package:news_app/features/home/domain/repositories/news_repository.dart';
 import 'package:news_app/features/home/domain/usecases/get_news.dart';
 import 'package:news_app/features/home/domain/usecases/get_top_head_lines.dart';
+import 'package:news_app/features/home/domain/usecases/search_category.dart';
 import 'package:news_app/features/home/presentation/cubit/news/category_news_cubit.dart';
+import 'package:news_app/features/home/presentation/cubit/search/search_cubit.dart';
 import 'package:news_app/features/home/presentation/cubit/top_head_lines.dart/top_head_lines_cubit.dart';
 
 class HomeDi {
@@ -40,6 +42,9 @@ class HomeDi {
     sl.registerLazySingleton(
       () => GetTopHeadLines(repository: sl<NewsRepository>()),
     );
+    sl.registerLazySingleton(
+      () => SearchUseCase(repository: sl<NewsRepository>()),
+    );
 
     //! Cubits
     sl.registerLazySingleton(
@@ -51,6 +56,12 @@ class HomeDi {
     sl.registerLazySingleton(
       () => TopHeadLinesCubit(
         sl<GetTopHeadLines>(),
+        sl<AppConnectionCubit>(),
+      ),
+    );
+    sl.registerLazySingleton(
+      () => SearchCubit(
+        sl<SearchUseCase>(),
         sl<AppConnectionCubit>(),
       ),
     );

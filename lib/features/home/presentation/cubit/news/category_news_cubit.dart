@@ -77,4 +77,10 @@ class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
 
     emit(state.copyWith(bookmarks: currentBookmarks));
   }
+
+  @override
+  Future<void> close() {
+    disposeReconnect();
+    return super.close();
+  }
 }

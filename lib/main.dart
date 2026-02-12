@@ -37,8 +37,8 @@ Future<void> main() async {
   debugPaintSizeEnabled = false;
 
   runApp(
-    DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
-    // AppBootstrap(),
+    // DevicePreview(enabled: !kReleaseMode, builder: (context) => AppBootstrap()),
+    AppBootstrap(),
   );
 }
 

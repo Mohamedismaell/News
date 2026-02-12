@@ -2,11 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
-import 'package:news_app/features/post_details/presentation/cubit/post_details/post_details_cubit.dart';
-import 'package:news_app/features/post_details/presentation/cubit/post_details/post_details_state.dart';
+import 'package:news_app/features/post_details/presentation/manager/post_details/post_details_cubit.dart';
 import 'package:news_app/features/post_details/presentation/widget/post_details_appbar.dart';
 
 class PostDetails extends StatefulWidget {

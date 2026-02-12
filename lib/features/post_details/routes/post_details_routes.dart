@@ -4,7 +4,7 @@ import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/shared/params/news_category_params.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/features/post_details/domain/usecases/get_specific_post_usecase.dart';
-import 'package:news_app/features/post_details/presentation/cubit/post_details/post_details_cubit.dart';
+import 'package:news_app/features/post_details/presentation/manager/post_details/post_details_cubit.dart';
 import 'package:news_app/features/post_details/presentation/screens/post_details.dart';
 
 class PostDetailsRoutes {

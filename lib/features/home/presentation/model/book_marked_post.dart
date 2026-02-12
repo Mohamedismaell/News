@@ -1,4 +1,4 @@
-import '../../../home/domain/entities/post_entitiy.dart';
+import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 
 class BookmarkedPost {
   final PostEntity post;

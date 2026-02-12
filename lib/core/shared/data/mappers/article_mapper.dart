@@ -1,5 +1,5 @@
 import 'package:news_app/core/shared/data/models/articled_dto.dart';
-import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
+import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 
 class ArticleMapper {
   static PostEntity toEntity(ArticleDto dto) {

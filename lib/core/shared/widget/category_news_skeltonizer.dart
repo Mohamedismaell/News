@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/features/home/domain/entities/post_entitiy.dart';
+import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CategoryNewsSkeltonizer extends StatelessWidget {

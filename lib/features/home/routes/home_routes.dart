@@ -51,10 +51,9 @@ class HomeRoutes {
       name: 'search',
       path: AppRoutes.search,
       builder: (context, state) {
-        // final params = state.pathParameters;
         final extra = state.extra as Map<String, dynamic>?;
         return SearchScreen(
-          heroTag: extra!['heroTag']!,
+          heroTag: extra?['heroTag'] ?? '',
         );
       },
     ),
