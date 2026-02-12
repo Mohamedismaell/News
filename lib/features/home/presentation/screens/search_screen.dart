@@ -18,27 +18,8 @@ class SearchScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(
-                  child: Hero(
-                    tag: heroTag,
-                    child: CustomSearchBar(),
-                  ),
-                ),
-                BlocBuilder<SearchCubit, SearchState>(
-                  builder: (context, state) {
-                    return SliverList.builder(
-                      itemCount: state.searchResults.length,
-                      itemBuilder: (context, index) => ListTile(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
-                        leading: Icon(Icons.access_time),
-                        title:
-                            Text(maxLines: 1, state.searchResults[index].title),
-                        trailing: Transform.rotate(
-                            angle: 4, child: Icon(Icons.arrow_forward_sharp)),
-                      ),
-                    );
-                  },
-                ),
+                CustomSearchBar(),
+                _SearchContent(),
               ],
             ),
           ),
@@ -53,10 +34,18 @@ class _SearchContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const SizedBox();
+    return BlocBuilder<SearchCubit, SearchState>(
+      builder: (context, state) {
+        return SliverList.builder(
+          itemCount: state.searchResults.length,
+          itemBuilder: (context, index) => ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+            leading: Icon(Icons.access_time),
+            title: Text(maxLines: 1, state.searchResults[index].title),
+            trailing: Transform.rotate(
+                angle: 4, child: Icon(Icons.arrow_forward_sharp)),
+          ),
+        );
       },
     );
   }

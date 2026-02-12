@@ -30,7 +30,7 @@ class SearchCubit extends Cubit<SearchState> with RefreshOnReconnect {
     if (_debounce?.isActive ?? false) {
       _debounce!.cancel();
     }
-    _debounce = Timer(Duration(milliseconds: 500), () async {
+    _debounce = Timer(Duration(milliseconds: 300), () async {
       if (query.isEmpty) {
         emit(state.copyWith(searchStatus: NewsStatus.initial));
         return;
@@ -60,10 +60,10 @@ class SearchCubit extends Cubit<SearchState> with RefreshOnReconnect {
     });
   }
 
-  @override
-  Future<void> close() {
-    _debounce?.cancel();
-    disposeReconnect();
-    return super.close();
-  }
+  // @override
+  // Future<void> close() {
+  //   _debounce?.cancel();
+  //   disposeReconnect();
+  //   return super.close();
+  // }
 }
