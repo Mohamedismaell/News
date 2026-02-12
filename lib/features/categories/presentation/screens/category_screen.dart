@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/enums/news_category.dart';
 import 'package:news_app/core/enums/stats.dart';
 import 'package:news_app/core/shared/presentation/manager/news/category_news_cubit.dart';
-import 'package:news_app/core/shared/presentation/widget/category_news_skeltonizer.dart';
 import 'package:news_app/core/shared/presentation/widget/post_categories_skeltonizer.dart';
 import 'package:news_app/core/shared/presentation/widget/stacked_image.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';

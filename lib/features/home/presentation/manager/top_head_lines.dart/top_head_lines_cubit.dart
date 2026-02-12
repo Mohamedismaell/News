@@ -14,7 +14,6 @@ class TopHeadLinesCubit extends Cubit<TopHeadLinesState>
     with RefreshOnReconnect {
   TopHeadLinesCubit(this.getTopHeadLines, this._connectionCubit)
       : super(TopHeadLinesState()) {
-    init();
     reconnect(_connectionCubit, () {
       init();
     });
@@ -28,26 +27,32 @@ class TopHeadLinesCubit extends Cubit<TopHeadLinesState>
   }
 
   Future<void> callTopHeadLines() async {
+    if (isClosed) return;
+    // if (state.topNewsStatus == NewsStatus.loading) return;
     emit(state.copyWith(
       topNewsStatus: NewsStatus.loading,
     ));
     final response = await getTopHeadLines.call();
     return response.when(
       success: (posts) {
-        emit(
-          state.copyWith(
-            topNewsStatus: NewsStatus.loaded,
-            topHeadLines: posts,
-          ),
-        );
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+              topNewsStatus: NewsStatus.loaded,
+              topHeadLines: posts,
+            ),
+          );
+        }
       },
       failure: (errorMessage) {
-        emit(
-          state.copyWith(
-            topNewsStatus: NewsStatus.error,
-            errorMessage: errorMessage.message,
-          ),
-        );
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+              topNewsStatus: NewsStatus.error,
+              errorMessage: errorMessage.message,
+            ),
+          );
+        }
       },
     );
   }

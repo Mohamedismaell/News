@@ -9,7 +9,6 @@ import 'package:news_app/core/shared/presentation/widget/top_news_skeltonizer.da
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/home/presentation/manager/top_head_lines.dart/top_head_lines_cubit.dart';
-
 import '../../../../core/shared/presentation/manager/news/category_news_cubit.dart';
 
 class TopNewsSection extends StatelessWidget {
@@ -19,7 +18,7 @@ class TopNewsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<TopHeadLinesCubit>(),
+      create: (context) => sl<TopHeadLinesCubit>()..init(),
       child: BlocBuilder<TopHeadLinesCubit, TopHeadLinesState>(
         builder: (context, state) {
           print('build top news');

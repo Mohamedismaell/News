@@ -15,7 +15,7 @@ part 'category_news_state.dart';
 class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
   CategoryNewsCubit(this.getNews, this._connectionCubit) : super(NewsState()) {
     reconnect(_connectionCubit, () {
-      init();
+      callNewsCategory(state.selectedCategory);
     });
   }
   final GetNewsByCategory getNews;
@@ -29,6 +29,10 @@ class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
     String category,
   ) async {
     if (isClosed) return;
+    // if (state.categoryStatus == NewsStatus.loading &&
+    //     state.selectedCategory == category) {
+    //   return;
+    // }
     emit(state.copyWith(
       categoryStatus: NewsStatus.loading,
       selectedCategory: category,
