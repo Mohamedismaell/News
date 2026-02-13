@@ -31,6 +31,7 @@ class PreviewSlide extends StatelessWidget {
 class _LoadedState extends StatelessWidget {
   const _LoadedState({required this.state});
   final NewsState state;
+  // final bookMarks
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,7 +42,7 @@ class _LoadedState extends StatelessWidget {
         itemBuilder: (context, index) {
           final post = state.categoryNews[index];
           final category = state.selectedCategory.split(',').first.trim();
-          final isBookmarked = state.isBookmarked(post.id);
+          // final isBookmarked = state.isBookmarked(post.id);
           return Row(
             children: [
               Padding(
@@ -51,7 +52,6 @@ class _LoadedState extends StatelessWidget {
                   heroType: 'home_$index',
                   post: post,
                   category: category,
-                  isBookmarked: isBookmarked,
                   imageWidth: 230.w,
                   imageHeight: 256.h,
                   textContainerWidth: 0.7,

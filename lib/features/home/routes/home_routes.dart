@@ -4,7 +4,7 @@ import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/features/home/presentation/screens/profile_screen.dart';
 import 'package:news_app/features/home/presentation/screens/search_screen.dart';
 
-import '../presentation/screens/book_marks_screen.dart';
+import '../../book_marks/presentation/screens/book_marks_screen.dart';
 import '../presentation/screens/home_screen.dart';
 
 class HomeRoutes {

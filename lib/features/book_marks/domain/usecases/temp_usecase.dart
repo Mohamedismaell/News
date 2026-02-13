@@ -1,0 +1,13 @@
+import 'package:news_app/features/book_marks/domain/repositories/temp_repository.dart';
+
+class TemplateUseCase {
+  final TemplateRepository repository;
+
+  TemplateUseCase({required this.repository});
+
+  // Future<Result<List<PostEntity>>> call({
+  //   required NewsCategoryParams params,
+  // }) {
+  //   return repository.getNewsByCategory(params: params);
+  // }
+}

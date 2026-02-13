@@ -24,10 +24,11 @@ class CategoriesRoutes {
     GoRoute(
         path: AppRoutes.categoryScreen,
         builder: (context, state) {
-          final category = state.extra as NewsCategory;
+          final extra = state.extra as Map<String, dynamic>?;
+          final category = extra?['category'] as NewsCategory?;
           return BlocProvider(
-            create: (context) =>
-                sl<CategoryNewsCubit>()..callNewsCategory(category.value),
+            create: (context) => sl<CategoryNewsCubit>()
+              ..callNewsCategory(category?.value ?? ''),
             child: CategoryScreen(category: category),
           );
         })

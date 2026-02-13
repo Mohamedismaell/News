@@ -8,8 +8,8 @@ import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
 import 'package:news_app/core/shared/presentation/widget/top_news_skeltonizer.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
+import 'package:news_app/features/book_marks/presentation/manager/cubit/book_marks_cubit.dart';
 import 'package:news_app/features/home/presentation/manager/top_head_lines.dart/top_head_lines_cubit.dart';
-import '../../../../core/shared/presentation/manager/news/category_news_cubit.dart';
 
 class TopNewsSection extends StatelessWidget {
   const TopNewsSection({
@@ -21,7 +21,6 @@ class TopNewsSection extends StatelessWidget {
       create: (context) => sl<TopHeadLinesCubit>()..init(),
       child: BlocBuilder<TopHeadLinesCubit, TopHeadLinesState>(
         builder: (context, state) {
-          print('build top news');
           if (state.topNewsStatus == NewsStatus.loading) {
             return TopNewsSkeltonizer();
           }
@@ -42,7 +41,6 @@ class TopNewsSection extends StatelessWidget {
             itemCount: state.topHeadLines.length,
             itemBuilder: (context, index) {
               final post = state.topHeadLines[index];
-              final isBookmarked = state.isBookmarked(post.id);
               return Padding(
                 padding: EdgeInsets.only(right: 20.w),
                 child: InkWell(
@@ -57,7 +55,6 @@ class TopNewsSection extends StatelessWidget {
                         'coverUrl': post.imageUrl,
                         'title': post.title,
                         'author': post.author,
-                        'isBookmarked': isBookmarked,
                       },
                     );
                   },
@@ -97,22 +94,27 @@ class TopNewsSection extends StatelessWidget {
                                           post.author.split(',').first,
                                           style: context.textTheme.bodyMedium),
                                     ),
-                                    IconButton(
-                                        padding: EdgeInsets.zero,
-                                        constraints: const BoxConstraints(),
-                                        visualDensity: VisualDensity.compact,
-                                        onPressed: () => context
-                                            .read<CategoryNewsCubit>()
-                                            .toggleBookmark(
-                                              post,
-                                            ),
-                                        icon: Icon(
-                                          isBookmarked
-                                              ? Icons.bookmark
-                                              : Icons.bookmark_border,
-                                          color: context.colorTheme.primary,
-                                          size: 18.sp,
-                                        )),
+                                    BlocBuilder<BookMarksCubit, BookMarksState>(
+                                      builder: (context, state) {
+                                        return IconButton(
+                                            padding: EdgeInsets.zero,
+                                            constraints: const BoxConstraints(),
+                                            visualDensity:
+                                                VisualDensity.compact,
+                                            onPressed: () => context
+                                                .read<BookMarksCubit>()
+                                                .toggleBookmark(
+                                                  post: post,
+                                                ),
+                                            icon: Icon(
+                                              state.isBookmarked(post.id)
+                                                  ? Icons.bookmark
+                                                  : Icons.bookmark_border,
+                                              color: context.colorTheme.primary,
+                                              size: 18.sp,
+                                            ));
+                                      },
+                                    ),
                                   ],
                                 ),
                                 Expanded(

@@ -27,7 +27,8 @@ class CategoriesButton extends StatelessWidget {
             final category = NewsCategory.values[index];
             return InkWell(
               onTap: () {
-                context.push(AppRoutes.categoryScreen, extra: category);
+                context.push(AppRoutes.categoryScreen,
+                    extra: {'category': category});
               },
               child: Container(
                 alignment: Alignment.center,
