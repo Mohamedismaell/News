@@ -1,4 +1,4 @@
-import 'package:clean_arch/features/template/domain/repositories/temp_repository.dart';
+import '../repositories/temp_repository.dart';
 
 class TemplateUseCase {
   final TemplateRepository repository;

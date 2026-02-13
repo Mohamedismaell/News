@@ -3,12 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
+import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
 import 'package:news_app/features/book_marks/presentation/manager/cubit/book_marks_cubit.dart';
 import '../../../theme/app_colors.dart';
-import '../manager/news/category_news_cubit.dart';
 
 class StackedImage extends StatelessWidget {
   const StackedImage(

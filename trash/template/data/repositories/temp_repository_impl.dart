@@ -1,6 +1,6 @@
-import 'package:clean_arch/features/template/data/datasources/temp_local_data_source.dart';
-import 'package:clean_arch/features/template/data/datasources/temp_remote_data_source.dart';
-import 'package:clean_arch/features/template/domain/repositories/temp_repository.dart';
+import '../../domain/repositories/temp_repository.dart';
+import '../datasources/temp_local_data_source.dart';
+import '../datasources/temp_remote_data_source.dart';
 
 class TemplateRepositoryImpl extends TemplateRepository {
   // final NetworkInfo networkInfo;

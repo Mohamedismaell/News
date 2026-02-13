@@ -1,4 +1,4 @@
-import 'package:clean_arch/features/template/data/datasources/temp_data_source.dart';
+import 'temp_data_source.dart';
 
 class TemplateLocalDataSource implements TemplateDataSource {
   // final Box<NewsResponseDto> newsBox;

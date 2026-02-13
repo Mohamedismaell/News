@@ -61,7 +61,7 @@ Widget _buildImageSlider({
         options: CarouselOptions(
           viewportFraction: isSingleImage ? 1 : 0.8,
           height: 336.0,
-          autoPlay: false,
+          autoPlay: true,
           autoPlayInterval: Duration(seconds: 4),
           autoPlayAnimationDuration: Duration(milliseconds: 1300),
           autoPlayCurve: Curves.fastOutSlowIn,
