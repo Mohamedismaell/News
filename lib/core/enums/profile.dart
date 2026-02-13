@@ -12,3 +12,5 @@ enum Profile {
   final String value;
   const Profile(this.value);
 }
+
+enum ImageOptions { camera, gallery }

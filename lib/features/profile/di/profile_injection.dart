@@ -1,3 +1,6 @@
+import 'package:news_app/core/shared/injection/service_locator.dart';
+import 'package:news_app/features/profile/presentation/manager/cubit/user_profile_cubit.dart';
+
 class ProfileDi {
   ProfileDi._();
 
@@ -23,11 +26,8 @@ class ProfileDi {
     // );
 
     //! Cubits
-    // sl.registerLazySingleton(
-    //   () => CategoryNewsCubit(
-    //     sl<GetNewsByCategory>(),
-    //     sl<AppConnectionCubit>(),
-    //   ),
-    // );
+    sl.registerLazySingleton(
+      () => UserProfileCubit(),
+    );
   }
 }

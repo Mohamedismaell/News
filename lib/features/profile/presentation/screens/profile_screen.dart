@@ -31,27 +31,6 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {},
                 ),
               ),
-
-            // CustomProfileOptions(
-            //   widgetType: Profile.language,
-            //   onTap: () {},
-            // ),
-            // CustomProfileOptions(
-            //   widgetType: Profile.changePassword,
-            //   onTap: () {},
-            // ),
-            // CustomProfileOptions(
-            //   widgetType: Profile.privacy,
-            //   onTap: () {},
-            // ),
-            // CustomProfileOptions(
-            //   widgetType: Profile.termsAndConditions,
-            //   onTap: () {},
-            // ),
-            // CustomProfileOptions(
-            //   widgetType: Profile.signOut,
-            //   onTap: () {},
-            // ),
           ],
         ),
       ),
