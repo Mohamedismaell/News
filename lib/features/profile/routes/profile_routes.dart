@@ -2,10 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/shared/presentation/shell/tabs_shell.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/features/profile/presentation/screens/profile_screen.dart';
-import 'package:news_app/features/home/presentation/screens/search_screen.dart';
-import '../presentation/screens/home_screen.dart';
 
-class HomeRoutes {
+class ProfileRoutes {
   static List<RouteBase> routes = [
     ShellRoute(
       builder: (context, state, child) {
@@ -13,24 +11,10 @@ class HomeRoutes {
       },
       routes: [
         GoRoute(
-          path: AppRoutes.home,
-          builder: (_, __) => const HomeScreen(),
-        ),
-        GoRoute(
           path: AppRoutes.profile,
           builder: (_, __) => const ProfileScreen(),
         ),
       ],
-    ),
-    GoRoute(
-      name: 'search',
-      path: AppRoutes.search,
-      builder: (context, state) {
-        final extra = state.extra as Map<String, dynamic>?;
-        return SearchScreen(
-          heroTag: extra?['heroTag'] ?? '',
-        );
-      },
     ),
   ];
 }

@@ -12,7 +12,7 @@ import 'package:news_app/core/shared/presentation/manager/app_gate_cubit/app_gat
 import 'package:news_app/core/shared/presentation/manager/connection_cubit/connection_cubit.dart';
 import 'package:news_app/features/book_marks/presentation/manager/cubit/book_marks_cubit.dart';
 import 'core/shared/presentation/manager/theme_cubit/theme_cubit.dart';
-import 'core/shared/observers/app_bloc_observer.dart';
+import 'core/observers/app_bloc_observer.dart';
 import 'core/shared/routes/app_router.dart';
 import 'core/theme/theme_data/dark_theme_data.dart';
 import 'core/theme/theme_data/light_theme_data.dart';

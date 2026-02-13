@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/core/shared/routes/go_router_refresh_stream.dart';
 import 'package:news_app/core/shared/presentation/manager/app_gate_cubit/app_gate_cubit.dart';
+import 'package:news_app/features/book_marks/routes/home_routes.dart';
 import 'package:news_app/features/categories/routes/categories_routes.dart';
 import 'package:news_app/features/home/routes/home_routes.dart';
 import 'package:news_app/features/onboarding/routes/onboarding_routes.dart';
@@ -45,7 +46,11 @@ class AppRouter {
             child: child,
           );
         },
-        routes: [...HomeRoutes.routes, ...CategoriesRoutes.routes],
+        routes: [
+          ...HomeRoutes.routes,
+          ...CategoriesRoutes.routes,
+          ...BookMarksRoutes.routes
+        ],
       ),
       ...PostDetailsRoutes.routes,
     ],

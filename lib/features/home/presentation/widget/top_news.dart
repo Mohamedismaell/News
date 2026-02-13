@@ -111,7 +111,7 @@ class TopNewsSection extends StatelessWidget {
                                                   ? Icons.bookmark
                                                   : Icons.bookmark_border,
                                               color: context.colorTheme.primary,
-                                              size: 18.sp,
+                                              size: 24.sp,
                                             ));
                                       },
                                     ),

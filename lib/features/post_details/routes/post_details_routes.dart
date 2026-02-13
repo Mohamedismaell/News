@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/shared/params/news_category_params.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';

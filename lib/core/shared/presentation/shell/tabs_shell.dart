@@ -3,7 +3,7 @@ import 'package:news_app/core/shared/presentation/widget/bottom_nav.dart';
 import 'package:news_app/features/categories/presentation/screens/categories_screen.dart';
 import 'package:news_app/features/book_marks/presentation/screens/book_marks_screen.dart';
 import 'package:news_app/features/home/presentation/screens/home_screen.dart';
-import 'package:news_app/features/home/presentation/screens/profile_screen.dart';
+import 'package:news_app/features/profile/presentation/screens/profile_screen.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
