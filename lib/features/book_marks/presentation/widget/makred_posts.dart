@@ -14,7 +14,6 @@ class BookmarksPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookMarksCubit, BookMarksState>(
       builder: (context, state) {
-        //TODO: Empty refactor thew state condition
         return state.bookmarks.isEmpty
             ? SizedBox(
                 height: MediaQuery.of(context).size.height * 0.7,
@@ -26,17 +25,17 @@ class BookmarksPosts extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 72,
-                          height: 72,
+                          width: 72.w,
+                          height: 72.h,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
+                              borderRadius: BorderRadius.circular(50.r),
                               color: AppColors.purpleLighter),
                           child: Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: EdgeInsets.all(20.r),
                             child: Icon(
                               Icons.library_books_outlined,
                               color: AppColors.purplePrimary,
-                              size: 30,
+                              size: 30.sp,
                             ),
                           ),
                         ),
@@ -62,10 +61,9 @@ class BookmarksPosts extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.only(bottom: 15.h),
                     child: StackedImage(
-                      // imageWidth: double.infinity,
                       post: post,
                       category: category,
-                      imageHeight: 255,
+                      imageHeight: 255.h,
                       textContainerWidth: 0.8,
                       routeName: AppRoutes.bookmarks,
                       heroType: 'bookMarks_$index',

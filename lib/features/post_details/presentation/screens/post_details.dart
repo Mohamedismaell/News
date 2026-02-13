@@ -8,44 +8,37 @@ import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/post_details/presentation/manager/post_details/post_details_cubit.dart';
 import 'package:news_app/features/post_details/presentation/widget/post_details_appbar.dart';
 
-class PostDetails extends StatefulWidget {
-  const PostDetails(
-      {super.key,
-      required this.heroTag,
-      required this.previewCover,
-      required this.previewTitle,
-      required this.previewAuthor,
-      required this.isBookmarked});
+class PostDetails extends StatelessWidget {
+  const PostDetails({
+    super.key,
+    required this.heroTag,
+    required this.previewCover,
+    required this.previewTitle,
+    required this.previewAuthor,
+    required this.isBookmarked,
+  });
   final String heroTag;
   final String previewCover;
   final String previewTitle;
   final String previewAuthor;
   final bool isBookmarked;
-
-  @override
-  State<PostDetails> createState() => _PostDetailsState();
-}
-
-class _PostDetailsState extends State<PostDetails> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  // final PostEntity post;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<PostDetailsCubit, PostDetailsState>(
         builder: (context, state) {
+          final post = state is PostDetailsLoaded ? state.post : null;
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               PostDetailsAppbar(
-                imageUrl: widget.previewCover,
-                author: widget.previewAuthor,
-                title: widget.previewTitle,
-                heroTag: widget.heroTag,
-                isBookmarked: widget.isBookmarked,
+                post: post,
+                imageUrl: previewCover,
+                author: previewAuthor,
+                title: previewTitle,
+                heroTag: heroTag,
               ),
               if (state is PostDetailsLoaded) _BottomBar(post: state.post),
             ],

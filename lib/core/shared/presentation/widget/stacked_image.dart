@@ -76,7 +76,7 @@ class StackedImage extends StatelessWidget {
               tag: '${heroType}_${post.id}',
               child: AppCachedImage(
                 imageUrl: post.imageUrl ?? '',
-                width: imageWidth,
+                width: imageWidth ?? double.infinity,
                 height: imageHeight,
                 fit: BoxFit.cover,
               ),
