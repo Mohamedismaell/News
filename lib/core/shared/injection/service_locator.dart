@@ -13,11 +13,12 @@ final sl = GetIt.instance;
 Future<void> initializeDependencies({
   required Box<bool> onboardingBox,
   required Box<NewsResponseDto> newsBox,
+  required Box<String> profileBox,
 }) async {
   await CommonDi.init(newsBox);
   OnboardingDi.init(onboardingBox: onboardingBox);
   HomeDi.init(newsBox);
   PostDi.init();
   BookMarksDi.init();
-  ProfileDi.init();
+  ProfileDi.init(profileBox);
 }

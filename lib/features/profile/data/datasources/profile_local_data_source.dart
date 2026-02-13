@@ -1,19 +1,18 @@
+import 'package:hive_ce_flutter/adapters.dart';
 import 'package:news_app/features/profile/data/datasources/profile_data_source.dart';
 
 class ProfileLocalDataSource implements ProfileDataSource {
-  // final Box<NewsResponseDto> newsBox;
+  final Box<String> profileBox;
 
-  // String _categoryKey(String category) => 'category_$category';
+  ProfileLocalDataSource(this.profileBox);
 
-  ProfileLocalDataSource();
+  @override
+  String? getProfileImagePath() {
+    return profileBox.get('profileImagePath');
+  }
 
-  // @override
-  // NewsResponseDto? getCategoryNews(String category) {
-  //   return newsBox.get(_categoryKey(category));
-  // }
-
-  // @override
-  // Future<void> saveCategoryNews(String category, NewsResponseDto value) async {
-  //   await newsBox.put(_categoryKey(category), value);
-  // }
+  @override
+  Future<void> saveProfileImagePath(String value) {
+    return profileBox.put('profileImagePath', value);
+  }
 }

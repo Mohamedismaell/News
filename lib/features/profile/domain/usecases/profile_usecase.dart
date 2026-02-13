@@ -1,13 +1,21 @@
 import 'package:news_app/features/profile/domain/repositories/profile_repository.dart';
 
-class ProfileUseCase {
+class GetProfileImageUseCase {
   final ProfileRepository repository;
 
-  ProfileUseCase({required this.repository});
+  GetProfileImageUseCase({required this.repository});
 
-  // Future<Result<List<PostEntity>>> call({
-  //   required NewsCategoryParams params,
-  // }) {
-  //   return repository.getNewsByCategory(params: params);
-  // }
+  Future<String?> call() async {
+    return repository.getProfileImagePath();
+  }
+}
+
+class SaveProfileImageUseCase {
+  final ProfileRepository repository;
+
+  SaveProfileImageUseCase({required this.repository});
+
+  Future<void> call(String value) async {
+    return repository.saveProfileImagePath(value);
+  }
 }

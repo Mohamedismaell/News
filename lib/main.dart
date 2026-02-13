@@ -33,6 +33,7 @@ Future<void> main() async {
   await initializeDependencies(
     onboardingBox: AppHive.onboardingBox,
     newsBox: AppHive.newsBox,
+    profileBox: AppHive.profileBox,
   );
   debugPrint('Step 5: Service Locator initialized');
   debugPaintSizeEnabled = false;

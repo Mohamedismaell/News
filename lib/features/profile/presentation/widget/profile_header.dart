@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:news_app/core/enums/profile.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
 import 'package:news_app/features/profile/presentation/manager/cubit/user_profile_cubit.dart';
-import 'package:path_provider/path_provider.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});
@@ -17,22 +17,17 @@ class ProfileHeader extends StatelessWidget {
       children: [
         BlocBuilder<UserProfileCubit, UserProfileState>(
           builder: (context, state) {
+            context.read<UserProfileCubit>().getImagePath();
             return Stack(
               alignment: Alignment.bottomRight,
               children: [
-                SizedBox(
-                  child: CircleAvatar(
-                    radius: 35.r,
-                    backgroundColor: Colors.transparent,
-                    child: ClipOval(
-                      child: state.imagePath != null
-                          ? Image.file(
-                              File(state.imagePath!),
-                              fit: BoxFit.cover,
-                            )
-                          : Image.asset('assets/images/Rectangle 18.png'),
-                    ),
-                  ),
+                CircleAvatar(
+                  radius: 35.r,
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: state.imagePath != null
+                      ? FileImage(File(state.imagePath!))
+                      : const AssetImage('assets/images/Rectangle 18.png')
+                          as ImageProvider,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -81,7 +76,8 @@ void pickImage(BuildContext context) {
           children: [
             SimpleDialogOption(
               onPressed: () async {
-                final image = await pickPhoto(ImageOptions.camera);
+                final image =
+                    await pickPhoto(userProfileCubit, ImageOptions.camera);
                 // print(' image?.path == > ${image?.path}');
                 userProfileCubit.updateImagePath(image?.path);
                 if (!context.mounted) return;
@@ -97,7 +93,8 @@ void pickImage(BuildContext context) {
             ),
             SimpleDialogOption(
               onPressed: () async {
-                final image = await pickPhoto(ImageOptions.gallery);
+                final image =
+                    await pickPhoto(userProfileCubit, ImageOptions.gallery);
                 // print(' image?.path == > ${image?.path}');
                 userProfileCubit.updateImagePath(image?.path);
                 if (!context.mounted) return;
@@ -118,26 +115,23 @@ void pickImage(BuildContext context) {
   );
 }
 
-Future<File?> pickPhoto(ImageOptions imageOptions) async {
+Future<File?> pickPhoto(
+    UserProfileCubit userProfileCubit, ImageOptions imageOptions) async {
   switch (imageOptions) {
     case ImageOptions.camera:
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
       if (image != null) {
-        final savedImage = await saveImage(image);
+        // final savedImage = await saveImage(image);
+
+        final savedImage = await userProfileCubit.saveImageFile(image);
         return savedImage;
       }
     case ImageOptions.gallery:
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image != null) {
-        final savedImage = await saveImage(image);
+        final savedImage = await userProfileCubit.saveImageFile(image);
         return savedImage;
       }
   }
   return null;
-}
-
-Future<File?> saveImage(XFile image) async {
-  final appDir = await getApplicationDocumentsDirectory();
-  final newFile = await File(image.path).copy('${appDir.path}/${image.name}');
-  return newFile;
 }

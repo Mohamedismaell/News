@@ -1,16 +1,25 @@
 import 'package:news_app/features/profile/data/datasources/profile_local_data_source.dart';
-import 'package:news_app/features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:news_app/features/profile/domain/repositories/profile_repository.dart';
 
 class ProfileRepositoryImpl extends ProfileRepository {
   // final NetworkInfo networkInfo;
-  final ProfileRemoteDataSource remoteDataSource;
+  // final ProfileRemoteDataSource remoteDataSource;
   final ProfileLocalDataSource localDataSource;
   ProfileRepositoryImpl({
-    required this.remoteDataSource,
+    // required this.remoteDataSource,
     required this.localDataSource,
     // required this.networkInfo,
   });
+
+  @override
+  String? getProfileImagePath() {
+    return localDataSource.getProfileImagePath();
+  }
+
+  @override
+  Future<void> saveProfileImagePath(String value) {
+    return localDataSource.saveProfileImagePath(value);
+  }
 
   //!Posts with Category
 
