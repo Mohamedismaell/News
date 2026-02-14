@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:news_app/core/shared/presentation/manager/app_gate_cubit/app_gate_cubit.dart';
 import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/core/theme/extensions/theme_extension.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,10 +36,17 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 48.w,
             ),
             SizedBox(height: 24.h),
-            SvgPicture.asset(
-              'assets/images/logo-text.svg',
-              width: 120.w,
+            Text(
+              'QuickRead',
+              style: context.textTheme.headlineLarge!.copyWith(
+                  fontSize: 30.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
+            // SvgPicture.asset(
+            //   'assets/images/logo-text.svg',
+            //   width: 120.w,
+            // ),
           ],
         ),
       ),

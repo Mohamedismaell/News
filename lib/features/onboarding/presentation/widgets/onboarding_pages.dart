@@ -32,7 +32,10 @@ class OnboardingPages extends StatelessWidget {
               Text(
                 textAlign: TextAlign.center,
                 item.title,
-                style: context.textTheme.headlineLarge,
+                style: context.textTheme.headlineLarge!.copyWith(
+                  fontSize: 30.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 24.h),
               SizedBox(

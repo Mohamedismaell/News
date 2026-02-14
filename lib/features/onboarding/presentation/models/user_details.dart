@@ -22,7 +22,7 @@ class OnboardingModel {
       ],
     ),
     OnboardingModel(
-      title: 'NunTiume',
+      title: 'QuickRead',
       quote: 'All news in one place, be the first to know last news',
       // nextAction: 'Start Searching',
       imagePath: ['assets/images/3d-illustration.png'],
