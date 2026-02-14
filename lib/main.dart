@@ -10,8 +10,9 @@ import 'package:news_app/core/helper/hydrated_storage.dart';
 import 'package:news_app/core/shared/injection/service_locator.dart';
 import 'package:news_app/core/shared/presentation/manager/app_gate_cubit/app_gate_cubit.dart';
 import 'package:news_app/core/shared/presentation/manager/connection_cubit/connection_cubit.dart';
+import 'package:news_app/features/book_marks/presentation/manager/cubit/book_marks_cubit.dart';
 import 'core/shared/presentation/manager/theme_cubit/theme_cubit.dart';
-import 'core/shared/observers/app_bloc_observer.dart';
+import 'core/observers/app_bloc_observer.dart';
 import 'core/shared/routes/app_router.dart';
 import 'core/theme/theme_data/dark_theme_data.dart';
 import 'core/theme/theme_data/light_theme_data.dart';
@@ -32,6 +33,7 @@ Future<void> main() async {
   await initializeDependencies(
     onboardingBox: AppHive.onboardingBox,
     newsBox: AppHive.newsBox,
+    profileBox: AppHive.profileBox,
   );
   debugPrint('Step 5: Service Locator initialized');
   debugPaintSizeEnabled = false;
@@ -53,6 +55,7 @@ class AppBootstrap extends StatelessWidget {
         BlocProvider(create: (context) => sl<ThemeCubit>()),
         BlocProvider(create: (context) => sl<AppGateCubit>()),
         BlocProvider(create: (context) => sl<AppConnectionCubit>()),
+        BlocProvider(create: (context) => sl<BookMarksCubit>()),
         // BlocProvider(create: (context) => sl<NewsCubit>()),
       ],
       child: const MyApp(),

@@ -3,18 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
+import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
-import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
+import 'package:news_app/features/book_marks/presentation/manager/cubit/book_marks_cubit.dart';
 import '../../../theme/app_colors.dart';
-import '../manager/news/category_news_cubit.dart';
 
 class StackedImage extends StatelessWidget {
   const StackedImage(
       {super.key,
       required this.post,
       this.category,
-      required this.isBookmarked,
+      // required this.isBookmarked,
       required this.imageHeight,
       this.imageWidth,
       required this.textContainerWidth,
@@ -22,7 +22,7 @@ class StackedImage extends StatelessWidget {
       required this.routeName});
   final PostEntity post;
   final String? category;
-  final bool isBookmarked;
+  // final bool isBookmarked;
   final double imageHeight;
   final double? imageWidth;
   final double textContainerWidth;
@@ -43,7 +43,7 @@ class StackedImage extends StatelessWidget {
               'coverUrl': post.imageUrl,
               'title': post.title,
               'author': post.author,
-              'isBookmarked': isBookmarked,
+              // 'isBookmarked': isBookmarked,
             },
           );
         } else {
@@ -57,7 +57,7 @@ class StackedImage extends StatelessWidget {
               'coverUrl': post.imageUrl,
               'title': post.title,
               'author': post.author,
-              'isBookmarked': isBookmarked,
+              // 'isBookmarked': isBookmarked,
             },
           );
         }
@@ -75,7 +75,7 @@ class StackedImage extends StatelessWidget {
               tag: '${heroType}_${post.id}',
               child: AppCachedImage(
                 imageUrl: post.imageUrl ?? '',
-                width: imageWidth,
+                width: imageWidth ?? double.infinity,
                 height: imageHeight,
                 fit: BoxFit.cover,
               ),
@@ -101,21 +101,30 @@ class StackedImage extends StatelessWidget {
             Positioned(
               top: 24,
               right: 24,
-              child: IconButton(
-                  onPressed: () => context
-                      .read<CategoryNewsCubit>()
-                      .toggleBookmark(post, category: category),
-                  icon: Icon(
-                    isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                    color: AppColors.white,
-                    size: 24.sp,
-                  )),
+              child: BlocBuilder<BookMarksCubit, BookMarksState>(
+                builder: (context, state) {
+                  return IconButton(
+                      onPressed: () =>
+                          context.read<BookMarksCubit>().toggleBookmark(
+                                post: post,
+                              ),
+                      icon: Icon(
+                        state.isBookmarked(post.id)
+                            ? Icons.bookmark
+                            : Icons.bookmark_border,
+                        color: AppColors.white,
+                        size: 24.sp,
+                      ));
+                },
+              ),
             ),
             // ! category + title
             Padding(
               padding: EdgeInsets.all(24.r),
               child: SizedBox(
-                width: imageWidth! - (24 * 2).r,
+                width: imageWidth != null
+                    ? (imageWidth! - (24 * 2).r)
+                    : double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,

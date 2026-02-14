@@ -4,19 +4,20 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/shared/routes/app_routes.dart';
 import 'package:news_app/core/shared/routes/go_router_refresh_stream.dart';
 import 'package:news_app/core/shared/presentation/manager/app_gate_cubit/app_gate_cubit.dart';
+import 'package:news_app/core/shared/presentation/shell/app_shell.dart';
+import 'package:news_app/core/shared/presentation/shell/tabs_shell.dart';
+import 'package:news_app/features/book_marks/routes/home_routes.dart';
 import 'package:news_app/features/categories/routes/categories_routes.dart';
 import 'package:news_app/features/home/routes/home_routes.dart';
 import 'package:news_app/features/onboarding/routes/onboarding_routes.dart';
-import 'package:news_app/core/shared/presentation/shell/app_shell.dart';
 import 'package:news_app/features/post_details/routes/post_details_routes.dart';
+import 'package:news_app/features/profile/routes/profile_routes.dart';
 
 class AppRouter {
   final AppGateCubit appGateCubit;
   AppRouter({required this.appGateCubit});
-  // static GoRouter get router => _router;
 
   late final GoRouter router = GoRouter(
-    // navigatorKey: ,
     initialLocation: AppRoutes.splash,
     refreshListenable: GoRouterRefreshStream(appGateCubit.stream),
     redirect: (context, state) {
@@ -45,9 +46,31 @@ class AppRouter {
             child: child,
           );
         },
-        routes: [...HomeRoutes.routes, ...CategoriesRoutes.routes],
+        routes: [
+          StatefulShellRoute.indexedStack(
+            builder: (context, state, navigationShell) {
+              return TabsShell(navigationShell: navigationShell);
+            },
+            branches: [
+              StatefulShellBranch(
+                routes: [HomeRoutes.tabRoute],
+              ),
+              StatefulShellBranch(
+                routes: [CategoriesRoutes.tabRoute],
+              ),
+              StatefulShellBranch(
+                routes: [BookMarksRoutes.tabRoute],
+              ),
+              StatefulShellBranch(
+                routes: [ProfileRoutes.tabRoute],
+              ),
+            ],
+          ),
+          ...HomeRoutes.extraRoutes,
+          ...CategoriesRoutes.extraRoutes,
+          ...PostDetailsRoutes.routes,
+        ],
       ),
-      ...PostDetailsRoutes.routes,
     ],
     errorBuilder: (context, state) => ErrorScreen(error: state.error),
   );
@@ -95,7 +118,3 @@ class ErrorScreen extends StatelessWidget {
     );
   }
 }
-// class GoRouterRefreshStream extends ChangeNotifier{
-// final 
-
-// }

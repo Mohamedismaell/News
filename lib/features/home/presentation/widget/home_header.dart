@@ -17,7 +17,7 @@ class HomeHeader extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Browse', style: context.textTheme.headlineMedium),
+              Text('Browse', style: context.textTheme.headlineLarge),
               SizedBox(height: 8.h),
               Text('Discover thing of this world',
                   style: context.textTheme.bodySmall),

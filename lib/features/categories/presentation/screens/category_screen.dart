@@ -12,17 +12,17 @@ import 'package:news_app/core/theme/extensions/theme_extension.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key, required this.category});
-  final NewsCategory category;
+  final NewsCategory? category;
   @override
   Widget build(BuildContext context) {
-    final categoryValue = category.value.split(',').first.trim();
+    final categoryValue = category?.value.split(',').first.trim() ?? '';
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           _CategoryHeader(
             category: categoryValue,
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 10)),
+          // SliverToBoxAdapter(child: SizedBox(height: 10)),
           _Posts(category: categoryValue)
         ],
       ),
@@ -62,7 +62,6 @@ class _Posts extends StatelessWidget {
         itemCount: state.categoryNews.length,
         itemBuilder: (context, index) {
           final post = state.categoryNews[index];
-          final isBookmarked = state.isBookmarked(post.id);
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             child: Column(
@@ -72,11 +71,9 @@ class _Posts extends StatelessWidget {
                     heroType: 'category_$index',
                     post: post,
                     category: category,
-                    isBookmarked: isBookmarked,
                     imageWidth: double.infinity,
                     imageHeight: 260.h,
                     textContainerWidth: 0.8),
-                SizedBox(height: 20.h)
               ],
             ),
           );

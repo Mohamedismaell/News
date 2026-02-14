@@ -1,9 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/shared/domain/entities/post_entitiy.dart';
 import 'package:news_app/core/shared/presentation/widget/app_cached_image.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/extensions/theme_extension.dart';
+import 'package:news_app/features/book_marks/presentation/manager/cubit/book_marks_cubit.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class PostDetailsAppbar extends StatelessWidget {
   const PostDetailsAppbar({
@@ -12,15 +15,14 @@ class PostDetailsAppbar extends StatelessWidget {
     required this.title,
     required this.author,
     required this.heroTag,
-    required this.isBookmarked,
+    this.post,
   });
 
   final String imageUrl;
   final String title;
   final String author;
   final String heroTag;
-  final bool isBookmarked;
-
+  final PostEntity? post;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -72,13 +74,34 @@ class PostDetailsAppbar extends StatelessWidget {
                 right: 10.w,
                 child: Column(
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                        color: AppColors.white,
-                        size: 24.sp,
-                      ),
-                      onPressed: () {},
+                    BlocBuilder<BookMarksCubit, BookMarksState>(
+                      builder: (context, state) {
+                        if (post == null) {
+                          return Skeleton.shade(
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.bookmark_border,
+                                size: 24.sp,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          );
+                        }
+                        final isBookmarked = state.isBookmarked(post!.id);
+                        return IconButton(
+                          icon: Icon(
+                            isBookmarked
+                                ? Icons.bookmark
+                                : Icons.bookmark_border,
+                            color: AppColors.white,
+                            size: 24.sp,
+                          ),
+                          onPressed: () => context
+                              .read<BookMarksCubit>()
+                              .toggleBookmark(post: post!),
+                        );
+                      },
                     ),
                     IconButton(
                       icon: Icon(

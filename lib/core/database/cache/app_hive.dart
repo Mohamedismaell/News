@@ -6,6 +6,7 @@ import 'package:news_app/core/shared/data/models/source_dto.dart';
 class AppHive {
   static late Box<bool> onboardingBox;
   static late Box<NewsResponseDto> newsBox;
+  static late Box<String> profileBox;
 
   static Future<void> init() async {
     await Hive.initFlutter();
@@ -28,5 +29,6 @@ class AppHive {
   static Future<void> openBoxes() async {
     onboardingBox = await Hive.openBox<bool>('onboardingBox');
     newsBox = await Hive.openBox<NewsResponseDto>('newsBox');
+    profileBox = await Hive.openBox<String>('profileBox');
   }
 }

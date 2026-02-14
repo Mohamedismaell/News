@@ -71,21 +71,6 @@ class CategoryNewsCubit extends Cubit<NewsState> with RefreshOnReconnect {
     callNewsCategory(category);
   }
 
-  void toggleBookmark(PostEntity post, {String? category}) {
-    final currentBookmarks = List<BookmarkedPost>.from(state.bookmarks ?? []);
-    final index = currentBookmarks.indexWhere(
-      (bookmark) => bookmark.post.id == post.id,
-    );
-
-    if (index != -1) {
-      currentBookmarks.removeAt(index);
-    } else {
-      currentBookmarks.add(BookmarkedPost(post: post, category: category));
-    }
-
-    emit(state.copyWith(bookmarks: currentBookmarks));
-  }
-
   @override
   Future<void> close() {
     disposeReconnect();
