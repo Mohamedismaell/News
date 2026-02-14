@@ -26,7 +26,8 @@ class ProfileHeader extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   backgroundImage: state.imagePath != null
                       ? FileImage(File(state.imagePath!))
-                      : const AssetImage('assets/images/Rectangle 18.png')
+                      : const AssetImage(
+                              'assets/images/7CBCD403-05F5-4DE0-BF87-3AD3215870C7.png')
                           as ImageProvider,
                 ),
                 GestureDetector(
@@ -53,7 +54,7 @@ class ProfileHeader extends StatelessWidget {
         Column(
           children: [
             Text(
-              'John Doe',
+              'Mohamed Ismael',
               style: context.textTheme.headlineMedium,
             ),
           ],
