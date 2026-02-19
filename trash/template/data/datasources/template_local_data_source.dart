@@ -1,4 +1,4 @@
-import 'temp_data_source.dart';
+import 'template_data_source.dart';
 
 class TemplateLocalDataSource implements TemplateDataSource {
   // final Box<NewsResponseDto> newsBox;

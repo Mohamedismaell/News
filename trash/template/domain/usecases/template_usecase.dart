@@ -1,4 +1,4 @@
-import '../repositories/temp_repository.dart';
+import 'package:news_app/features/book_marks/domain/repositories/temp_repository.dart';
 
 class TemplateUseCase {
   final TemplateRepository repository;

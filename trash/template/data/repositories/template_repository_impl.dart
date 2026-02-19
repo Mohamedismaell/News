@@ -1,6 +1,6 @@
-import '../../domain/repositories/temp_repository.dart';
-import '../datasources/temp_local_data_source.dart';
-import '../datasources/temp_remote_data_source.dart';
+import 'package:news_app/features/book_marks/data/datasources/temp_local_data_source.dart';
+import 'package:news_app/features/book_marks/data/datasources/temp_remote_data_source.dart';
+import 'package:news_app/features/book_marks/domain/repositories/temp_repository.dart';
 
 class TemplateRepositoryImpl extends TemplateRepository {
   // final NetworkInfo networkInfo;

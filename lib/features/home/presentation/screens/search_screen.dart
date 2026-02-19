@@ -17,8 +17,7 @@ class SearchScreen extends StatelessWidget {
           body: SafeArea(
             child: Column(
               children: [
-                const CustomSearchBar(), // 🔹 Fixed at top
-
+                const CustomSearchBar(),
                 Expanded(
                   child: Scrollbar(
                     controller: controller,
