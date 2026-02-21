@@ -19,12 +19,10 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
-        working-directory: ./News   # 🔥 IMPORTANT FIX
+        run: npm install          # ✅ runs from repo root
 
       - name: Build project
-        run: npm run build
-        working-directory: ./News   # 🔥 IMPORTANT FIX
+        run: npm run build        # ✅ runs from repo root
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
