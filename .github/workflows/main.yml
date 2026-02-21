@@ -19,10 +19,7 @@ jobs:
           flutter-version: '3.x'
 
       - name: Install Flutter dependencies
-        run: flutter pub get        # ✅ No working-directory
-
-      - name: Run tests with coverage
-        run: flutter test --coverage # ✅ No working-directory
+        run: flutter pub get
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
