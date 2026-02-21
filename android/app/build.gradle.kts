@@ -42,3 +42,13 @@ android {
 flutter {
     source = "../.."
 }
+plugins {
+  id("org.sonarqube") version "7.1.0.6387"
+}
+
+sonar {
+  properties {
+    property("sonar.projectKey", "Test_app")
+    property("sonar.projectName", "Test_app")
+  }
+}
