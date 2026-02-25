@@ -1,4 +1,4 @@
-# 📰 News App
+# 📰 Quick Read - News App
 
 A modern, feature-rich News Application built with Flutter, designed to keep you updated with the latest headlines from around the world.
 
